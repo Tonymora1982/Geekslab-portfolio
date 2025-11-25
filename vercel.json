@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd ../.. && npm run build --filter=main-hub",
+  "buildCommand": "cd ../.. && npx turbo run build --filter=@geekslab/main-hub",
   "installCommand": "cd ../.. && npm install",
   "framework": "nextjs",
   "outputDirectory": ".next"
