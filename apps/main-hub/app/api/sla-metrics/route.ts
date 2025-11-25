@@ -22,7 +22,7 @@ export async function GET() {
             latency: data.latency,
             errorRate: data.errorRate / 100,
             status: status,
-            lastUpdated: data.timestamp.toISOString(),
+            lastUpdated: data.timestamp?.toISOString() ?? new Date().toISOString(),
         };
 
         return NextResponse.json(formattedData);

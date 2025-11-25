@@ -30,7 +30,7 @@ export const SLABadge = ({ className, apiUrl = "/api/sla-metrics" }: SLABadgePro
             uptime: parseFloat(uptime.toFixed(2)),
             latency: Math.round(latency),
             errorRate: parseFloat(errorRate.toFixed(2)),
-            lastUpdated: new Date(),
+            lastUpdated: new Date().toISOString(),
             status: uptime < 99.5 || latency > 500 || errorRate > 1 ? "critical" : uptime < 99.9 || latency > 300 || errorRate > 0.2 ? "degraded" : "healthy",
         };
     };

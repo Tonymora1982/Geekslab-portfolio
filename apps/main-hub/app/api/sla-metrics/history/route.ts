@@ -16,7 +16,7 @@ export async function GET() {
             latency: data.latency,
             errorRate: data.errorRate / 100,
             status: data.uptime >= 9990 ? 'healthy' : data.uptime >= 9950 ? 'degraded' : 'critical',
-            lastUpdated: data.timestamp.toISOString(),
+            lastUpdated: data.timestamp?.toISOString() ?? new Date().toISOString(),
         }));
 
         return NextResponse.json(formattedHistory);

@@ -10,7 +10,11 @@ const rateLimitStore = new Map<string, { count: number; lastReset: number }>();
 const MAX_REQUESTS = 5;
 const WINDOW_SIZE_MS = 60 * 60 * 1000; // 1 hour
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialization to avoid build-time errors
+const getResend = () => {
+    if (!process.env.RESEND_API_KEY) return null;
+    return new Resend(process.env.RESEND_API_KEY);
+};
 
 export const runtime = 'edge';
 
@@ -63,7 +67,8 @@ export async function POST(request: Request) {
         });
 
         // Send email notification
-        if (process.env.RESEND_API_KEY) {
+        const resend = getResend();
+        if (resend) {
             await resend.emails.send({
                 from: 'onboarding@resend.dev', // Replace with your verified domain
                 to: 'anthony@geekslab.tech', // Replace with your recipient email

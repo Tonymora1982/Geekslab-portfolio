@@ -344,7 +344,7 @@ export default function PortfolioHome() {
                                 header={
                                     <div className="h-full w-full border border-white/10 rounded-2xl bg-gradient-to-br from-white/5 via-transparent to-white/5 p-6 flex flex-col gap-4">
                                         <p className="text-xs uppercase tracking-[0.24em] text-neutral-400">{card.label}</p>
-                                        {card.lines && (
+                                        {"lines" in card && card.lines && (
                                             <ul className="space-y-3">
                                                 {card.lines.map((line: string) => (
                                                     <li key={line} className="flex items-start gap-3 text-sm text-neutral-200 leading-relaxed">
@@ -354,7 +354,7 @@ export default function PortfolioHome() {
                                                 ))}
                                             </ul>
                                         )}
-                                        {card.stack && (
+                                        {"stack" in card && card.stack && (
                                             <ul className="grid grid-cols-2 gap-3">
                                                 {card.stack.map((skill: string, index: number) => (
                                                     <AnimatedSkillBadge key={skill} skill={skill} index={index} />
