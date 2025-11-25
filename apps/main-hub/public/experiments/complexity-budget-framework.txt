@@ -1,0 +1,220 @@
+# Complexity Budget Framework
+
+**Autor:** [Tu nombre]  
+**Fecha:** Julio 2024  
+**Contexto:** Postmortem de over-engineering (Redis caché innecesario)
+
+---
+
+## Resumen
+
+Framework para evaluar si añadir una nueva abstracción/infraestructura justifica su costo de mantenimiento. Inspirado en performance budgets, pero aplicado a complejidad arquitectónica.
+
+---
+
+## El Problema
+
+**Escenario típico:**
+> "Este proyecto crecerá a 10k usuarios eventualmente, mejor añadir Redis ahora."
+
+**Resultado:**
+- +29% complejidad (700 LoC adicionales)
+- +233% costo ($15 → $50/mes)
+- Solo 4.2% mejora en latencia
+- Redis usado por 200 usuarios durante 60 días
+
+**Pregunta clave:** ¿Cómo decidir cuándo añadir infraestructura?
+
+---
+
+## Complexity Budget
+
+### Definición
+
+> **Complexity Budget**: Cantidad máxima de complejidad arquitectónica que un proyecto puede "costear" antes de que el costo de mantenimiento exceda el valor entregado.
+
+Similar a performance budgets:
+- **Performance Budget:** "Landing page no puede exceder 2s de FCP"
+- **Complexity Budget:** "Sistema no puede tener >3 data stores sin ROI documentado"
+
+---
+
+## Framework de Evaluación
+
+### Pre-requisitos (Antes de añadir abstracción)
+
+Responder estas 4 preguntas:
+
+#### 1. ¿Existe un bottleneck medido?
+
+❌ **Especulación:** "Eventualmente necesitaremos caching"  
+✅ **Evidencia:** "p95 latency es 2.1s, target es 500ms"
+
+**Criterio:** Debes tener flamegraph o APM traces mostrando el bottleneck.
+
+#### 2. ¿Cuál es el impacto esperado?
+
+❌ **Vago:** "Mejorará performance"  
+✅ **Cuantificado:** "Reducirá p95 latency de 780ms a <200ms (-74%)"
+
+**Criterio:** Predice mejora específica con +/- 20% margen.
+
+#### 3. ¿Cuánta complejidad añade?
+
+Evaluar en 3 dimensiones:
+
+| Dimensión | Medición | Ejemplo |
+|-----------|----------|---------|
+| **Code** | LoC añadidas | +700 LoC (config, invalidation, error handling) |
+| **Infrastructure** | Servicios nuevos | +1 Redis instance (config, monitoring, backup) |
+| **Mental Model** | Conceptos nuevos | Cache invalidation strategy, TTL tuning, thundering herd |
+
+**Criterio:** Complejidad debe ser proporcional al valor (ver matriz abajo).
+
+#### 4. ¿Cuál es el costo de mantenimiento?
+
+| Costo | Frecuencia | Ejemplo |
+|-------|------------|---------|
+| **Setup** | Una vez | 4-8hrs configuración inicial |
+| **Monitoring** | Continuo | Dashboards, alertas, on-call |
+| **Debugging** | Por incidente | Cache invalidation bugs |
+| **Scaling** | Por crecimiento | Re-sharding, eviction policies |
+| **Financiero** | Mensual | $35/mes adicional |
+
+**Criterio:** Costo mensual de mantenimiento < 10% del valor generado.
+
+---
+
+## Matriz de Decisión
+
+### Complejidad vs Impacto
+
+```
+         Alta Complejidad
+              ↑
+    ⚠️ EVALUAR  │  ✅ JUSTIFICADO
+    Complexity  │  High impact
+    may not be  │  worth the cost
+    worth it    │
+  ──────────────┼──────────────────→ Alto Impacto
+    ❌ RECHAZAR │  🤔 CONSIDERAR
+    Low ROI     │  If quick to
+                │  implement
+         Baja Complejidad
+```
+
+**Ejemplos:**
+
+- **✅ Redis para API con 2s latency → 200ms:** Justificado (alto impacto, complejidad manejable)
+- **❌ Redis para app con 120ms latency → 115ms:** No justificado (bajo impacto, alta complejidad)
+- **🤔 GraphQL para 3 REST endpoints:** Considerar (baja complejidad, bajo impacto inmediato pero high learning value)
+- **⚠️ Kafka para job queue con 100 jobs/día:** Evaluar (alta complejidad, impacto cuestionable)
+
+---
+
+## Reglas de Oro
+
+### 1. Optimiza DESPUÉS de medir, no antes
+
+```
+❌ Añadir Redis → Medir mejora → "Solo 4.2% mejor"
+✅ Medir bottleneck → Evaluar soluciones → Implementar → Validar
+```
+
+### 2. Empieza simple, escala cuando hay evidencia
+
+```
+❌ Día 1: Microservicios + Kafka + Redis + K8s
+✅ Día 1: Monolito + PostgreSQL + Simple deployment
+   Día 300: Evidencia de bottleneck → Escalar específicamente
+```
+
+### 3. "Can I afford this?" → "Will this pay for itself?"
+
+Cada abstracción debe "pagar" su costo de mantenimiento con valor entregado.
+
+**Ejemplo:**
+- Redis cuesta $35/mes + 2hrs mantenimiento/mes ($100 valor)
+- Para justificarlo: Debe generar >$135/mes en valor
+  - ¿Reduce churn? ¿Mejora conversión? ¿Ahorra compute?
+  - Si no puedes conectar mejora técnica a métrica de negocio, cuestiona la inversión
+
+### 4. Prefiere soluciones boring
+
+```
+❌ "Usemos este nuevo framework de caching ultra-optimizado"
+✅ "PostgreSQL con índices bien diseñados + query optimization"
+```
+
+Boring tech tiene:
+- Stack Overflow answers abundantes
+- Debugging paths conocidos
+- Onboarding más rápido para nuevos devs
+
+---
+
+## Proceso de Evaluación
+
+### Checklist Pre-Implementación
+
+Antes de añadir infraestructura nueva, validar:
+
+- [ ] **Bottleneck medido:** Tengo APM traces mostrando el problema
+- [ ] **Target cuantificado:** Sé exactamente qué métrica mejoraré y en cuánto
+- [ ] **Alternativas evaluadas:** Consideré al menos 2 soluciones más simples
+- [ ] **Complexity calculada:** Estimé LoC, servicios, y conceptos nuevos
+- [ ] **Costo de mantenimiento:** Calculé horas/mes y $/mes
+- [ ] **ROI justificado:** Valor > 3x costo de mantenimiento
+- [ ] **Rollback plan:** Puedo revertir si no funciona
+
+Si 1+ checkboxes fallan → **No implementar aún**
+
+---
+
+## Aplicación al Caso Redis
+
+### Evaluación Retrospectiva
+
+| Criterio | Valor | ✅/❌ |
+|----------|-------|------|
+| Bottleneck medido | ❌ No (latencia ya era 120ms) | ❌ |
+| Mejora cuantificada | 4.2% (120ms → 115ms) | ❌ |
+| Complejidad | +700 LoC, +1 servicio | ⚠️ Alta |
+| Costo mantenimiento | $35/mes + 2hrs/mes | ⚠️ $135/mes |
+| ROI | No medible | ❌ |
+
+**Veredicto:** No justificado. Debí usar PostgreSQL con índices mejor optimizados primero.
+
+---
+
+## Lecciones
+
+1. **"Premature optimization is the root of all evil" aplica a infraestructura también**
+   - No solo a algoritmos
+   - Infraestructura prematura = deuda técnica
+
+2. **Simplicidad es un feature**
+   - Menos servicios = menos puntos de falla
+   - Menos complejidad = onboarding más rápido
+   - Menos código = menos bugs
+
+3. **PostgreSQL es suficiente para 90% de apps**
+   - 10k usuarios no requiere Redis
+   - 100k usuarios probablemente tampoco
+   - Optimiza queries antes de añadir caching
+
+4. **Framework ayuda a tomar decisiones objetivas**
+   - Sin framework: decisiones emocionales ("suena cool")
+   - Con framework: decisiones basadas en datos
+
+---
+
+## Recursos
+
+- [Choose Boring Technology](https://mcfunley.com/choose-boring-technology) - Dan McKinley
+- [The Cost of Abstraction](https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction) - Sandi Metz
+- [Performance Budgets](https://web.dev/performance-budgets-101/)
+
+---
+
+**Próximos pasos:** Aplicar este framework antes de añadir Elasticsearch, GraphQL, o cualquier servicio nuevo.

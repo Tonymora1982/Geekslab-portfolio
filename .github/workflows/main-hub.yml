@@ -1,0 +1,32 @@
+name: Main Hub CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npx turbo run build --filter=@geekslab/main-hub
+      - name: Lint
+        run: npx turbo run lint --filter=@geekslab/main-hub
+      - name: Deploy to Vercel
+        if: github.ref == 'refs/heads/main'
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_MAIN_HUB_ID }}
+      - name: Run Lighthouse CI (Placeholder)
+        if: github.ref == 'refs/heads/main'
+        run: echo "Lighthouse CI will be configured here"

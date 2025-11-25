@@ -1,0 +1,50 @@
+{
+  "name": "@geekslab/main-hub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "build:hostinger": "node scripts/build-hostinger.js",
+    "start": "next start",
+    "lint": "next lint",
+    "preview": "npx serve@latest out"
+  },
+  "dependencies": {
+    "@geekslab/ui": "*",
+    "@hookform/resolvers": "^5.2.2",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.0",
+    "@types/three": "^0.181.0",
+    "@vercel/postgres": "^0.10.0",
+    "animejs": "^3.2.2",
+    "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.44.7",
+    "framer-motion": "^12.23.24",
+    "lenis": "^1.3.15",
+    "lucide-react": "^0.554.0",
+    "next": "16.0.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-hook-form": "^7.66.1",
+    "resend": "^3.0.0",
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.181.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@geekslab/config": "*",
+    "@tailwindcss/postcss": "^4",
+    "@types/animejs": "^3.1.13",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "drizzle-kit": "^0.31.7",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

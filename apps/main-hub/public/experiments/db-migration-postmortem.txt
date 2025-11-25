@@ -1,0 +1,178 @@
+# Postmortem: Migración DB con Rollback Fallido
+
+**Fecha:** 8 de noviembre, 2024  
+**Duración del incidente:** 2.3 horas  
+**Severidad:** P1 (Crítico - Downtime completo)  
+**Autor:** [Tu nombre]
+
+---
+
+## Resumen Ejecutivo
+
+Migración de esquema PostgreSQL ejecutada durante ventana de mantenimiento nocturna (2am-4am) resultó en downtime extendido de 2.3 horas debido a plan de rollback inadecuado. El rollback falló por dependencias de índices únicos no consideradas, requiriendo troubleshooting en producción.
+
+**Impacto:**
+- 1,847 queries fallidas
+- 23 tickets de soporte
+- 2.3 horas de downtime (vs 30min planificados)
+- Ventana de mantenimiento excedida en 360%
+
+---
+
+## ¿Qué sucedió?
+
+### Timeline
+
+**01:45** - Pre-check completado, backup de DB ejecutado  
+**02:00** - Migración iniciada (añadir columnas + índices únicos)  
+**02:12** - Migración completada, aplicación reiniciada  
+**02:15** - Detección de errores en logs: foreign key constraints violadas  
+**02:18** - Decisión de rollback  
+**02:20** - **Rollback falla:** No se pueden eliminar índices únicos con dependencias  
+**02:25** - Escalación a canal de emergencia  
+**02:30** - Debuggeo en producción inicia  
+**03:45** - Solución manual: DROP constraints → DROP indices → Rollback completo  
+**04:18** - Aplicación restaurada, validación de integridad  
+**04:30** - Incident closed
+
+### Causa Raíz
+
+1. **Plan de rollback incompleto:** Script de rollback solo revertía columnas, no consideraba dependencias de índices únicos añadidos en la migración
+2. **Falta de testing en staging:** Rollback nunca fue probado en ambiente staging
+3. **Asunciones incorrectas:** Asumí que PostgreSQL permitiría drop de índices únicos sin eliminar constraints dependientes primero
+
+---
+
+## Impacto Técnico
+
+### Métricas
+
+| Métrica | Objetivo | Real | Desviación |
+|---------|----------|------|------------|
+| Downtime planificado | 30 min | 2.3 hrs | +360% |
+| Queries fallidas | 0 | 1,847 | ∞ |
+| Rollback exitoso | ✅ | ❌ | Falla |
+| Tiempo de detección | <5 min | 3 min | ✅ |
+| Tiempo de resolución | <30 min | 2h 18min | +360% |
+
+### Queries Fallidas
+
+```sql
+-- Error recurrente (1,847 ocurrencias)
+ERROR: insert or update on table "users" violates foreign key constraint
+DETAIL: Key (subscription_tier_id)=(4) is not present in table "subscription_tiers"
+```
+
+**Causa:** Nueva columna `subscription_tier_id` con constraint FK apuntaba a tabla que aún no existía en secuencia de migración.
+
+---
+
+## ¿Por qué sucedió?
+
+### Factores Contribuyentes
+
+1. **Complejidad de migración subestimada**
+   - 3 tablas afectadas
+   - 5 foreign keys nuevas
+   - 7 índices únicos
+   - No documenté dependencias entre steps
+
+2. **Rollback como "plan B" débil**
+   - Script de rollback escrito apresuradamente
+   - Solo probado mentalmente, no ejecutado
+   - No consideró orden de eliminación de dependencias
+
+3. **Presión de timeline**
+   - Ventana de mantenimiento muy corta (2hrs)
+   - Asumí que "si falla, rollback rápido"
+   - No tuve buffer para troubleshooting
+
+4. **Monitoreo insuficiente durante ventana**
+   - No configuré alertas activas durante migración
+   - Detección manual después de restart (3 min delay)
+
+---
+
+## Aprendizajes
+
+### ❌ Lo que NO funcionó
+
+1. **"Plan de rollback básico"** es un oxymoron
+   - Rollback debe ser TAN robusto como deployment plan
+   - Si rollback no está probado, no existe
+
+2. **Asumir que PostgreSQL "lo manejará"**
+   - Dependencies entre constraints/indices deben ser explícitas
+   - Orden de creación ≠ Orden de eliminación
+
+3. **Ventanas de mantenimiento ajustadas**
+   - 2hrs es insuficiente para migración compleja
+   - Necesito buffer para troubleshooting (mínimo 2x tiempo estimado)
+
+### ✅ Lo que SÍ funcionó
+
+1. **Backup pre-migración**
+   - Backup completo permitió restauración full como último recurso
+   - Nunca llegamos a usarlo, pero fue critical safety net
+
+2. **Detección rápida**
+   - Logs centralizados permitieron ver errores en <3min
+   - Restart de app post-migración forzó validación inmediata
+
+3. **Escalación efectiva**
+   - Canal de emergencia activado en 10min
+   - Documentación en tiempo real en incident channel
+
+---
+
+## Action Items
+
+### Inmediatos (Completados)
+
+- [x] Crear checklist de pre-migración con 15 validaciones
+- [x] Documentar dependencias de schema en Miro diagram
+- [x] Escribir test suite para rollback scripts
+
+### Corto plazo (1-2 semanas)
+
+- [ ] Implementar blue-green deployment para DB migrations
+- [ ] Configurar alertas automáticas durante ventanas de mantenimiento
+- [ ] Crear staging environment que replica producción 1:1
+
+### Largo plazo (1-3 meses)
+
+- [ ] Migrar a migrations backward-compatible
+  - Step 1: Añadir columna (nullable)
+  - Step 2: Migrar datos
+  - Step 3: Hacer columna required
+  - Step 4: Eliminar columna vieja
+- [ ] Automatizar rollback testing en CI/CD
+- [ ] Crear "Migration Complexity Score" para evaluar riesgo
+
+---
+
+## Recursos
+
+- [PostgreSQL Foreign Key Dependencies](https://www.postgresql.org/docs/current/ddl-constraints.html)
+- [Blue-Green Deployments for Databases](https://martinfowler.com/bliki/BlueGreenDeployment.html)
+- [Backward Compatible Migrations](https://www.braintreepayments.com/blog/safe-operations-for-high-volume-postgresql/)
+
+---
+
+## Lecciones para el Futuro
+
+> **"Un plan de rollback no probado es solo teatro de seguridad."**
+
+Esta falla me enseñó que:
+1. Rollback scripts son código de producción, no scripts auxiliares
+2. Testing en staging debe incluir TODOS los escenarios (incluyendo rollback)
+3. Complejidad de migración debe dictar tamaño de ventana de mantenimiento, no al revés
+4. Presión de timeline no justifica shortcuts en validación
+
+**Experimento valioso:** Ahora aplico "Rollback-First Development" - escribo y pruebo rollback ANTES de escribir migración forward.
+
+---
+
+**Status:** Closed  
+**Follow-up:** Quarterly review de migration playbook  
+**Postmortem review:** 12 de noviembre, 2024
