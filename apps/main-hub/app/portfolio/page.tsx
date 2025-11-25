@@ -23,14 +23,14 @@ const projects = [
   {
     id: "nexastore",
     slug: "nexastore",
-    titleEN: "NexaStore Engine",
-    titleES: "Motor NexaStore",
-    descEN: "Headless E-commerce Solution. Stripe, CMS Integration & Real-time Inventory.",
-    descES: "Solución E-commerce Headless. Integración Stripe, CMS e Inventario en tiempo real.",
+    titleEN: "NexaStore E-commerce",
+    titleES: "NexaStore E-commerce",
+    descEN: "Luxury tech e-commerce with Gucci-inspired design. Full shopping cart, checkout flow & responsive UI.",
+    descES: "E-commerce de tecnología luxury con diseño inspirado en Gucci. Carrito completo, checkout y UI responsive.",
     year: "2024",
-    stack: ["Next.js", "Stripe API", "Sanity CMS", "PostgreSQL", "Redis"],
+    stack: ["Next.js 16", "React 19", "Zustand", "Tailwind CSS", "TypeScript"],
     image: "/projects/nexastore-hero.png",
-    live: null,
+    live: "https://nexastore.geekslab.tech",
     featured: true,
   },
   {
@@ -144,13 +144,25 @@ export default function PortfolioPage() {
                     </div>
 
                     {/* Links */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-6">
                       <div
                         className="inline-flex items-center gap-2 text-white border-b border-white/20 pb-1 group-hover:border-white transition-colors"
                       >
                         <span className="font-medium">{language === 'en' ? 'View Case Study' : 'Ver Caso de Estudio'}</span>
                         <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                       </div>
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-2 text-emerald-400 border-b border-emerald-400/20 pb-1 hover:border-emerald-400 transition-colors"
+                        >
+                          <span className="font-medium">Live Demo</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
