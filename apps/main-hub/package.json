@@ -8,7 +8,11 @@
     "build:hostinger": "node scripts/build-hostinger.js",
     "start": "next start",
     "lint": "next lint",
-    "preview": "npx serve@latest out"
+    "preview": "npx serve@latest out",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "npx tsx db/seed.ts"
   },
   "dependencies": {
     "@geekslab/ui": "*",
@@ -45,6 +49,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "tailwindcss": "^4",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }
