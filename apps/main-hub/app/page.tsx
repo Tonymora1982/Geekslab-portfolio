@@ -23,6 +23,7 @@ import {
   Scene3D,
   SLABadge,
   SLAPanel,
+  SocialProof,
   SpotlightHero,
   useLanguage,
   CornerAccents,
@@ -176,6 +177,9 @@ export default function Home() {
           <ProjectShowcase />
         </div>
       </section>
+
+      {/* Social Proof / Testimonials */}
+      <SocialProof />
 
       {/* Experiments Section */}
       <ExperimentsSection />

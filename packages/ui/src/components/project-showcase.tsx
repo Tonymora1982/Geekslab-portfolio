@@ -2,9 +2,15 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, TrendingUp, Clock, Users, Zap } from "lucide-react";
 import Link from "next/link";
-import { useLanguage } from "../context/language-context"; // Updated import path
+import { useLanguage } from "../context/language-context";
+
+interface ProjectMetric {
+    label: string;
+    value: string;
+    icon: React.ReactNode;
+}
 
 interface Project {
     id: string;
@@ -14,47 +20,89 @@ interface Project {
     year: string;
     image: string;
     link: string;
+    metrics?: ProjectMetric[];
+    gradient: string;
+    status: "live" | "development" | "completed";
 }
+
+const StatusBadge = ({ status }: { status: Project["status"] }) => {
+    const config = {
+        live: { label: "Live", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
+        development: { label: "In Development", color: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+        completed: { label: "Completed", color: "bg-sky-500/20 text-sky-400 border-sky-500/30" },
+    };
+    return (
+        <span className={`px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full border ${config[status].color}`}>
+            {config[status].label}
+        </span>
+    );
+};
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(containerRef, { amount: 0.35, once: false });
+    const isInView = useInView(containerRef, { amount: 0.25, once: false });
 
     const isEven = index % 2 === 0;
 
     return (
         <section
             ref={containerRef}
-            className="relative min-h-[90vh] flex items-center justify-center py-28 md:py-36"
+            className="relative min-h-[85vh] flex items-center justify-center py-20 md:py-28"
         >
+            {/* Background gradient accent */}
+            <div className={`absolute inset-0 opacity-30 pointer-events-none bg-gradient-to-br ${project.gradient}`} />
+            
             <div className="relative container px-4 mx-auto">
-                <div className={`grid md:grid-cols-2 gap-12 md:gap-24 items-center ${!isEven ? "md:grid-flow-dense" : ""}`}>
+                <div className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${!isEven ? "md:grid-flow-dense" : ""}`}>
                     {/* Text Content */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0.4, y: 40 }}
-                        transition={{ duration: 0.8, delay: 0.1 * index, ease: [0.16, 1, 0.3, 1] }}
-                        className={`space-y-8 ${!isEven ? "md:col-start-2" : ""}`}
+                        initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: isEven ? -40 : 40 }}
+                        transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className={`space-y-6 ${!isEven ? "md:col-start-2" : ""}`}
                     >
                         <div className="space-y-4">
-                            <div className="flex items-center gap-4 text-neutral-500 font-mono text-sm">
-                                <span>0{index + 1}</span>
-                                <span className="h-px w-12 bg-neutral-800" />
-                                <span>{project.year}</span>
+                            <div className="flex items-center gap-4">
+                                <span className="text-5xl md:text-7xl font-bold text-white/10">0{index + 1}</span>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-neutral-500 font-mono text-sm">{project.year}</span>
+                                    <StatusBadge status={project.status} />
+                                </div>
                             </div>
-                            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter text-white">
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white">
                                 {project.title}
                             </h2>
-                            <p className="text-xl text-neutral-400 max-w-md leading-relaxed">
+                            <p className="text-lg text-neutral-400 max-w-lg leading-relaxed">
                                 {project.description}
                             </p>
                         </div>
+
+                        {/* Metrics Grid */}
+                        {project.metrics && (
+                            <div className="grid grid-cols-2 gap-3">
+                                {project.metrics.map((metric, i) => (
+                                    <motion.div
+                                        key={metric.label}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                        transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                                        className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm"
+                                    >
+                                        <div className="flex items-center gap-2 text-neutral-500 mb-1">
+                                            {metric.icon}
+                                            <span className="text-xs uppercase tracking-wider">{metric.label}</span>
+                                        </div>
+                                        <span className="text-2xl font-bold text-white">{metric.value}</span>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        )}
 
                         <div className="flex flex-wrap gap-2">
                             {project.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-sm text-neutral-300"
+                                    className="px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm text-neutral-300 hover:bg-white/10 hover:border-white/20 transition-all"
                                 >
                                     {tag}
                                 </span>
@@ -63,29 +111,51 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
                         <Link
                             href={project.link}
-                            className="inline-flex items-center gap-2 text-white border-b border-white/20 pb-1 hover:border-white transition-colors group"
+                            className="inline-flex items-center gap-3 px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-all group"
                         >
-                            <span className="font-medium">View Project</span>
+                            <span>View Case Study</span>
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                         </Link>
                     </motion.div>
 
                     {/* Image/Visual */}
                     <motion.div
-                        initial={{ opacity: 0, y: 80, scale: 0.96 }}
-                        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0.35, y: 80, scale: 0.96 }}
-                        transition={{ duration: 0.9, delay: 0.2 * index, ease: [0.16, 1, 0.3, 1] }}
-                        whileHover={{ scale: 1.02 }}
-                        className={`relative aspect-[4/3] md:aspect-square rounded-none overflow-hidden bg-neutral-900 border border-white/10 ${!isEven ? "md:col-start-1" : ""}`}
+                        initial={{ opacity: 0, scale: 0.9, y: 60 }}
+                        animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0.2, scale: 0.9, y: 60 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        className={`relative aspect-[4/3] rounded-2xl overflow-hidden ${!isEven ? "md:col-start-1" : ""}`}
                     >
-                        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent z-10" />
-                        <div className="absolute inset-0 border border-white/10 rounded-none" />
-                        <div className="absolute -inset-6 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_60%)] pointer-events-none" />
-                        <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover opacity-60 hover:opacity-80 transition-opacity duration-700"
-                        />
+                        {/* Glowing border effect */}
+                        <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-br ${project.gradient} opacity-50`} />
+                        
+                        <div className="absolute inset-[1px] rounded-2xl bg-neutral-900 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-transparent z-10" />
+                            
+                            {/* Animated grid overlay */}
+                            <div className="absolute inset-0 opacity-20 z-10"
+                                style={{
+                                    backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+                                    backgroundSize: "32px 32px"
+                                }}
+                            />
+                            
+                            <motion.img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover"
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ duration: 0.6 }}
+                            />
+                            
+                            {/* Hover overlay */}
+                            <motion.div 
+                                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8 z-20"
+                            >
+                                <span className="text-white font-medium flex items-center gap-2">
+                                    Explore Project <ArrowUpRight className="w-4 h-4" />
+                                </span>
+                            </motion.div>
+                        </div>
                     </motion.div>
                 </div>
             </div>
@@ -96,48 +166,71 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 export const ProjectShowcase = () => {
     const { t } = useLanguage();
 
-    // TODO: Move data to translations or a separate data file if needed dynamic
     const projects: Project[] = [
         {
             id: "geekslab",
             title: "Geekslab",
             description: t('bento.item1.description'),
-            tags: ["Next.js", "TypeScript", "R&D"],
+            tags: ["Next.js 16", "TypeScript", "Turborepo", "Tailwind v4"],
             year: "2024",
             image: "/images/projects/geekslab.svg",
             link: "/geekslab",
+            gradient: "from-violet-600/20 via-transparent to-fuchsia-600/20",
+            status: "live",
+            metrics: [
+                { label: "Performance", value: "98/100", icon: <Zap className="w-3 h-3" /> },
+                { label: "Load Time", value: "<1.2s", icon: <Clock className="w-3 h-3" /> },
+            ],
         },
         {
             id: "nexastore",
             title: "NexaStore",
             description: t('bento.item2.description'),
-            tags: ["E-commerce", "Stripe", "Headless"],
+            tags: ["E-commerce", "Stripe", "Headless CMS", "GraphQL"],
             year: "2023",
             image: "/images/projects/nexastore.svg",
             link: "/nexastore",
+            gradient: "from-emerald-600/20 via-transparent to-cyan-600/20",
+            status: "completed",
+            metrics: [
+                { label: "Conversion", value: "+18%", icon: <TrendingUp className="w-3 h-3" /> },
+                { label: "Users", value: "12K+", icon: <Users className="w-3 h-3" /> },
+            ],
         },
         {
             id: "qms",
             title: "ISO 13485 QMS",
             description: t('bento.item3.description'),
-            tags: ["MedTech", "Automation", "Compliance"],
+            tags: ["MedTech", "Compliance", "Automation", "Audit Trail"],
             year: "2022",
             image: "/images/projects/qms.svg",
             link: "/qms",
+            gradient: "from-amber-600/20 via-transparent to-orange-600/20",
+            status: "completed",
+            metrics: [
+                { label: "Audit Findings", value: "0", icon: <Zap className="w-3 h-3" /> },
+                { label: "Time Saved", value: "60%", icon: <Clock className="w-3 h-3" /> },
+            ],
         },
         {
             id: "monorepo",
             title: "TurboRepo",
             description: t('bento.item4.description'),
-            tags: ["Micro-frontends", "Architecture", "Scale"],
+            tags: ["Micro-frontends", "CI/CD", "Shared Packages", "DX"],
             year: "2023",
             image: "/images/projects/monorepo.svg",
             link: "/monorepo",
+            gradient: "from-sky-600/20 via-transparent to-indigo-600/20",
+            status: "live",
+            metrics: [
+                { label: "Build Time", value: "-70%", icon: <Zap className="w-3 h-3" /> },
+                { label: "Onboarding", value: "2hrs", icon: <Clock className="w-3 h-3" /> },
+            ],
         },
     ];
 
     return (
-        <div className="relative w-full space-y-24 md:space-y-36">
+        <div className="relative w-full">
             {projects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />
             ))}
