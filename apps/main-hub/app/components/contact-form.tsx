@@ -36,8 +36,9 @@ export const ContactForm = () => {
     setError(null);
 
     try {
-      // TODO: Replace 'YOUR_FORM_ID' with your actual Formspree ID (https://formspree.io/)
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      // Formspree ID from environment variable
+      const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xyzgkpvn';
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -78,7 +78,7 @@ export default function EvidenceLayerPage() {
           <p>
             Sistemas diseñados para transparencia radical. Ver código fuente en{' '}
             <a 
-              href="https://github.com/tu-usuario/portfolio" 
+              href="https://github.com/Tonymora1982/Geekslab-portfolio" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-emerald-400 hover:underline"
