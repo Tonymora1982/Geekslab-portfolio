@@ -15,12 +15,10 @@ import {
   ExperimentLog,
   ExperimentsSection,
   ExplodedView,
-  FloatingShapes,
   GridPattern,
   HackerText,
   InverseApplication,
   ProjectShowcase,
-  Scene3D,
   SLABadge,
   SLAPanel,
   SocialProof,
@@ -42,12 +40,10 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative overflow-hidden font-sans">
       <GridPattern />
-      <FloatingShapes />
       <CornerAccents />
       {/* Hero Section */}
       <section className="h-screen w-full relative">
         <SpotlightHero className="h-full">
-          <Scene3D />
           <div className="container px-4 mx-auto text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -99,16 +95,8 @@ export default function Home() {
         </SpotlightHero>
       </section>
 
-      {/* Exploded View Section */}
-      <section className="relative bg-black py-20 md:py-32 border-t border-white/10">
-        <div className="container px-4 mx-auto pt-10 md:pt-20 text-center mb-16 md:mb-24">
-          <h2 className="text-3xl md:text-6xl font-bold mb-6 tracking-tight">{t('deconstructed.title')}</h2>
-          <p className="text-neutral-500 max-w-2xl mx-auto text-lg md:text-xl">
-            {t('deconstructed.description')}
-          </p>
-        </div>
-        <ExplodedView />
-      </section>
+      {/* Exploded View Section - The Deconstructed Dev */}
+      <ExplodedView />
 
       {/* Experience Section */}
       <section id="experience" className="py-20 md:py-32 border-t border-white/10 bg-black">

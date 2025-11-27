@@ -5,22 +5,13 @@
    ▲ Next.js 16.0.3 (Turbopack)
 
    Creating an optimized production build ...
- ✓ Compiled successfully in 13.4s
+ ✓ Compiled successfully in 14.6s
    Running TypeScript ...
-Failed to compile.
+   Collecting page data using 11 workers ...
 
-./app/page.tsx:347:47
-Type error: Property 'lines' does not exist on type '{ readonly id: "outcomes"; readonly label: "Case studies"; readonly title: "Outcome-first engineering"; readonly description: "Each build is tied to a measurable KPI."; readonly className: "md:col-span-2"; readonly lines: readonly [...]; } | ... 6 more ... | { ...; }'.
-  Property 'lines' does not exist on type '{ readonly id: "stack"; readonly label: "Stack"; readonly title: "Stack that ships"; readonly description: "Tools I reach for when shipping fast without breaking trust."; readonly className: ""; readonly stack: readonly [...]; }'.
-
-[0m [90m 345 |[39m                                     [33m<[39m[33mdiv[39m className[33m=[39m[32m"h-full w-full border border-white/10 rounded-2xl bg-gradient-to-br from-white/5 via-transparent to-white/5 p-6 flex flex-col gap-4"[39m[33m>[39m
- [90m 346 |[39m                                         [33m<[39m[33mp[39m className[33m=[39m[32m"text-xs uppercase tracking-[0.24em] text-neutral-400"[39m[33m>[39m{card[33m.[39mlabel}[33m<[39m[33m/[39m[33mp[39m[33m>[39m
-[31m[1m>[22m[39m[90m 347 |[39m                                         {card[33m.[39mlines [33m&&[39m (
- [90m     |[39m                                               [31m[1m^[22m[39m
- [90m 348 |[39m                                             [33m<[39m[33mul[39m className[33m=[39m[32m"space-y-3"[39m[33m>[39m
- [90m 349 |[39m                                                 {card[33m.[39mlines[33m.[39mmap((line[33m:[39m string) [33m=>[39m (
- [90m 350 |[39m                                                     [33m<[39m[33mli[39m key[33m=[39m{line} className[33m=[39m[32m"flex items-start gap-3 text-sm text-neutral-200 leading-relaxed"[39m[33m>[39m[0m
-Next.js build worker exited with code: 1 and signal: null
+> Build error occurred
+Error: Page "/projects/[id]" is missing "generateStaticParams()" so it cannot be used with "output: export" config.
+    at ignore-listed frames
 npm ERR! Lifecycle script `build` failed with error: 
 npm ERR! Error: command failed 
 npm ERR!   in workspace: @geekslab/portfolio@0.1.0 

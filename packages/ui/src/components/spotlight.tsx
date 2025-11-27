@@ -67,21 +67,22 @@ export const SpotlightHero = ({ children, className = "" }: { children: React.Re
     return (
         <div
             className={cn(
-                "group relative flex items-center justify-center w-full h-full overflow-hidden bg-background",
+                "group relative flex items-center justify-center w-full h-full overflow-hidden",
                 className
             )}
             onMouseMove={handleMouseMove}
         >
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-            <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+            {/* Subtle grid pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
 
+            {/* Mouse follow spotlight effect */}
             <motion.div
                 className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
                 style={{
                     background: useMotionTemplate`
             radial-gradient(
               600px circle at ${mouseX}px ${mouseY}px,
-              rgba(255,255,255,0.1),
+              rgba(255,255,255,0.06),
               transparent 40%
             )
           `,

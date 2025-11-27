@@ -1,0 +1,218 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --factory-dark: #0a0a0f;
+  --factory-darker: #05050a;
+  --factory-accent: #00ff88;
+  --factory-warning: #ffaa00;
+  --factory-danger: #ff4444;
+  --factory-steel: #2a2a3a;
+  --factory-chrome: #4a4a5a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--factory-darker);
+  color: #ffffff;
+  font-family: "JetBrains Mono", monospace;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--factory-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--factory-steel);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--factory-chrome);
+}
+
+/* Canvas Container */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* HUD Overlay */
+.hud-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hud-overlay > * {
+  pointer-events: auto;
+}
+
+/* Glowing Text */
+.glow-text {
+  text-shadow: 
+    0 0 10px var(--factory-accent),
+    0 0 20px var(--factory-accent),
+    0 0 30px var(--factory-accent);
+}
+
+.glow-text-warning {
+  text-shadow: 
+    0 0 10px var(--factory-warning),
+    0 0 20px var(--factory-warning);
+}
+
+.glow-text-danger {
+  text-shadow: 
+    0 0 10px var(--factory-danger),
+    0 0 20px var(--factory-danger);
+}
+
+/* Glass Panel */
+.glass-panel {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: 8px;
+}
+
+.glass-panel-warning {
+  border-color: rgba(255, 170, 0, 0.3);
+}
+
+.glass-panel-danger {
+  border-color: rgba(255, 68, 68, 0.3);
+}
+
+/* Metric Card */
+.metric-card {
+  background: linear-gradient(
+    135deg,
+    rgba(42, 42, 58, 0.6) 0%,
+    rgba(10, 10, 15, 0.8) 100%
+  );
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  border-color: rgba(0, 255, 136, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 255, 136, 0.1);
+}
+
+/* Factory Grid Pattern */
+.factory-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Scan Line Effect */
+.scan-lines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Neon Border Animation */
+@keyframes neon-border {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px var(--factory-accent),
+      inset 0 0 5px rgba(0, 255, 136, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px var(--factory-accent),
+      inset 0 0 10px rgba(0, 255, 136, 0.2);
+  }
+}
+
+.neon-border {
+  animation: neon-border 2s ease-in-out infinite;
+}
+
+/* Commit Status Colors */
+.status-success {
+  color: var(--factory-accent);
+}
+
+.status-warning {
+  color: var(--factory-warning);
+}
+
+.status-error {
+  color: var(--factory-danger);
+}
+
+.status-pending {
+  color: #888899;
+}
+
+/* Loading Spinner */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Data Stream Animation */
+@keyframes data-stream {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.data-stream {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--factory-accent),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: data-stream 2s linear infinite;
+}
