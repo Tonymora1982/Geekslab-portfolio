@@ -17,7 +17,8 @@ const projects = [
     year: "2024",
     stack: ["Next.js 16", "React 19", "TypeScript", "Framer Motion", "Tailwind v4"],
     image: "/projects/geekslab-hero.png",
-    live: "https://geekslab.tech",
+    live: "/geekslab",
+    isInternal: true,
     featured: true,
   },
   {
@@ -91,82 +92,93 @@ export default function PortfolioPage() {
               transition={{ delay: index * 0.2 }}
               className="group relative"
             >
-              <Link href={`/projects/${project.slug}`}>
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                  {/* Project Image */}
-                  <div className={`relative overflow-hidden bg-neutral-900 border border-white/10 aspect-video ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.6 }}
-                      className="w-full h-full"
-                    >
-                      <div className="absolute inset-0 bg-white/5 group-hover:bg-white/10 transition-colors duration-500" />
-                      <div className="absolute inset-0 flex items-center justify-center text-neutral-800 group-hover:text-neutral-700 transition-colors text-6xl font-bold tracking-tighter">
-                        {project.id.toUpperCase()}
-                      </div>
-                      {/* Placeholder for actual image if available */}
-                      {/* <img src={project.image} alt={project.titleEN} className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay" /> */}
-                    </motion.div>
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                {/* Project Image - Clickable */}
+                <Link 
+                  href={`/projects/${project.slug}`}
+                  className={`relative overflow-hidden bg-neutral-900 border border-white/10 aspect-video block ${index % 2 === 1 ? 'md:order-2' : ''}`}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6 }}
+                    className="w-full h-full"
+                  >
+                    <div className="absolute inset-0 bg-white/5 group-hover:bg-white/10 transition-colors duration-500" />
+                    <div className="absolute inset-0 flex items-center justify-center text-neutral-800 group-hover:text-neutral-700 transition-colors text-6xl font-bold tracking-tighter">
+                      {project.id.toUpperCase()}
+                    </div>
+                  </motion.div>
+                </Link>
+
+                {/* Project Info */}
+                <div className={index % 2 === 1 ? 'md:order-1' : ''}>
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="text-sm text-neutral-500 font-mono flex items-center gap-2">
+                      <span className="w-2 h-px bg-neutral-500"></span>
+                      {project.year}
+                    </span>
+                    {project.featured && (
+                      <span className="px-2 py-0.5 border border-white/20 rounded-full text-[10px] text-white uppercase tracking-widest">
+                        Featured
+                      </span>
+                    )}
                   </div>
 
-                  {/* Project Info */}
-                  <div className={index % 2 === 1 ? 'md:order-1' : ''}>
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="text-sm text-neutral-500 font-mono flex items-center gap-2">
-                        <span className="w-2 h-px bg-neutral-500"></span>
-                        {project.year}
-                      </span>
-                      {project.featured && (
-                        <span className="px-2 py-0.5 border border-white/20 rounded-full text-[10px] text-white uppercase tracking-widest">
-                          Featured
-                        </span>
-                      )}
-                    </div>
-
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white group-hover:text-neutral-200 transition-colors tracking-tight">
+                  <Link href={`/projects/${project.slug}`}>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white hover:text-neutral-200 transition-colors tracking-tight cursor-pointer">
                       {language === 'en' ? project.titleEN : project.titleES}
                     </h2>
+                  </Link>
 
-                    <p className="text-lg text-neutral-400 mb-8 leading-relaxed font-light">
-                      {language === 'en' ? project.descEN : project.descES}
-                    </p>
+                  <p className="text-lg text-neutral-400 mb-8 leading-relaxed font-light">
+                    {language === 'en' ? project.descEN : project.descES}
+                  </p>
 
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {project.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 border border-white/10 bg-white/5 text-xs text-neutral-400 font-mono"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-6">
-                      <div
-                        className="inline-flex items-center gap-2 text-white border-b border-white/20 pb-1 group-hover:border-white transition-colors"
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 border border-white/10 bg-white/5 text-xs text-neutral-400 font-mono"
                       >
-                        <span className="font-medium">{language === 'en' ? 'View Case Study' : 'Ver Caso de Estudio'}</span>
-                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      </div>
-                      {project.live && (
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links - Now separate, no nesting */}
+                  <div className="flex gap-6">
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="inline-flex items-center gap-2 text-white border-b border-white/20 pb-1 hover:border-white transition-colors"
+                    >
+                      <span className="font-medium">{language === 'en' ? 'View Case Study' : 'Ver Caso de Estudio'}</span>
+                      <ArrowUpRight className="w-4 h-4 transition-transform hover:-translate-y-0.5 hover:translate-x-0.5" />
+                    </Link>
+                    {project.live && (
+                      (project as any).isInternal ? (
+                        <Link
+                          href={project.live}
+                          className="inline-flex items-center gap-2 text-emerald-400 border-b border-emerald-400/20 pb-1 hover:border-emerald-400 transition-colors"
+                        >
+                          <span className="font-medium">Live Demo</span>
+                          <ExternalLink className="w-4 h-4" />
+                        </Link>
+                      ) : (
                         <a
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
                           className="inline-flex items-center gap-2 text-emerald-400 border-b border-emerald-400/20 pb-1 hover:border-emerald-400 transition-colors"
                         >
                           <span className="font-medium">Live Demo</span>
                           <ExternalLink className="w-4 h-4" />
                         </a>
-                      )}
-                    </div>
+                      )
+                    )}
                   </div>
                 </div>
-              </Link>
+              </div>
             </motion.article>
           ))}
         </div>

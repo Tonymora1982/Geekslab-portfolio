@@ -41,8 +41,9 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative overflow-hidden font-sans">
       <GridPattern />
       <CornerAccents />
-      {/* Hero Section */}
-      <section className="h-screen w-full relative">
+
+      {/* Main Hero Section */}
+      <section id="main-content" className="h-screen w-full relative">
         <SpotlightHero className="h-full">
           <div className="container px-4 mx-auto text-center relative z-10">
             <motion.div
