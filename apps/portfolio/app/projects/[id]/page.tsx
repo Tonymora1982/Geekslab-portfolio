@@ -1,8 +1,15 @@
-"use client";
-
 import { SLABadge, AnimatedButton } from "@geekslab/ui";
 import { ArrowLeft, Github, Globe, Code2, Cpu, Layers } from "lucide-react";
 import Link from "next/link";
+
+// Required for static export with dynamic routes
+export function generateStaticParams() {
+    return [
+        { id: 'geekslab' },
+        { id: 'dashboard' },
+        { id: 'ecommerce' },
+    ];
+}
 
 export default function ProjectDetail({ params }: { params: { id: string } }) {
     // In a real app, fetch data based on params.id
