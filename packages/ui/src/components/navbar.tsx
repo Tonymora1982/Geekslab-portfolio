@@ -19,6 +19,7 @@ export const Navbar = () => {
     const navItems = [
         { name: t('nav.home'), path: "/" },
         { name: t('nav.projects'), path: "/#projects" },
+        { name: t('nav.evidence'), path: "/evidence-layer" },
         { name: t('nav.contact'), path: "/contact" },
     ];
 

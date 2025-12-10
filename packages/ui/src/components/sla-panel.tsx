@@ -71,8 +71,7 @@ export const SLAPanel = () => {
   const fetchSLAData = useCallback(async () => {
     try {
       const response = await fetch('/api/sla-metrics', { 
-        cache: 'no-store',
-        next: { revalidate: 0 }
+        cache: 'no-store'
       });
       
       if (response.ok) {

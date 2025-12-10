@@ -84,7 +84,10 @@ export default function Home() {
               <EcosystemNav t={t} />
 
               <div className="flex flex-wrap items-center justify-center gap-6">
-                <AnimatedButton href="#experiments-lab" variant="primary" className="bg-white text-black hover:bg-neutral-200">
+                <AnimatedButton href="/evidence-layer" variant="primary" className="bg-emerald-500 text-black hover:bg-emerald-400">
+                  🔬 Evidence Layer
+                </AnimatedButton>
+                <AnimatedButton href="#experiments-lab" variant="secondary" className="border-white/20 text-white hover:bg-white/10">
                   {t('hero.cta_experiments')}
                 </AnimatedButton>
                 <AnimatedButton href="#rfc-apply" variant="secondary" className="border-white/20 text-white hover:bg-white/10">

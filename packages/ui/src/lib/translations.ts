@@ -4,6 +4,7 @@ export const translations = {
             home: "Home",
             about: "About",
             projects: "Projects",
+            evidence: "Evidence Layer",
             contact: "Contact",
         },
         hero: {
@@ -207,6 +208,7 @@ export const translations = {
             home: "Inicio",
             about: "Sobre Mí",
             projects: "Proyectos",
+            evidence: "Capa de Evidencia",
             contact: "Contacto",
         },
         hero: {

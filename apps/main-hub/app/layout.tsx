@@ -75,7 +75,41 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
-import { Navbar, SmoothScroll, NoiseOverlay, MagneticCursor, Preloader, LanguageProvider } from "@geekslab/ui";
+import { Navbar, SmoothScroll, NoiseOverlay, MagneticCursor, Preloader, LanguageProvider, ScrollToTop } from "@geekslab/ui";
+
+// JSON-LD Structured Data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Anthony Mora",
+  alternateName: "Tony Mora",
+  url: "https://geekslab.tech",
+  image: "https://geekslab.tech/og",
+  sameAs: [
+    "https://github.com/Tonymora1982",
+    "https://linkedin.com/in/anthonymora",
+  ],
+  jobTitle: "Senior Full Stack Developer",
+  worksFor: {
+    "@type": "Organization",
+    name: "GeeksLab",
+  },
+  description: "Senior Full Stack Developer specializing in Next.js, TypeScript, and high-performance web architectures. Former R&D Engineer with MedTech background.",
+  knowsAbout: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "ISO 13485",
+    "Quality Management Systems",
+    "Medical Device Development",
+  ],
+  alumniOf: {
+    "@type": "Organization",
+    name: "Establishment Labs",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -84,6 +118,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={inter.className}>
         <Preloader />
         <SmoothScroll>
@@ -92,6 +132,7 @@ export default function RootLayout({
           <LanguageProvider>
             <Navbar />
             {children}
+            <ScrollToTop />
           </LanguageProvider>
         </SmoothScroll>
       </body>

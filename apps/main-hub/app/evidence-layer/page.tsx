@@ -8,7 +8,7 @@ export default function EvidenceLayerPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
         
         {/* Hero */}
-        <section className="text-center space-y-4">
+        <section id="hero" className="text-center space-y-4">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
             Recruiter Evidence Layer
           </h1>
@@ -19,7 +19,7 @@ export default function EvidenceLayerPage() {
         </section>
 
         {/* SLA Metrics */}
-        <section className="space-y-6">
+        <section id="sla" className="space-y-6 scroll-mt-24">
           <div className="space-y-2">
             <div className="flex items-center gap-3">
               <span className="text-4xl">📊</span>
@@ -35,7 +35,7 @@ export default function EvidenceLayerPage() {
         </section>
 
         {/* Experiments Log */}
-        <section className="space-y-6">
+        <section id="experiments" className="space-y-6 scroll-mt-24">
           <div className="space-y-2">
             <div className="flex items-center gap-3">
               <span className="text-4xl">🧪</span>
@@ -51,7 +51,7 @@ export default function EvidenceLayerPage() {
         </section>
 
         {/* RFC Application */}
-        <section className="space-y-6">
+        <section id="rfc" className="space-y-6 scroll-mt-24">
           <div className="space-y-2">
             <div className="flex items-center gap-3">
               <span className="text-4xl">📝</span>

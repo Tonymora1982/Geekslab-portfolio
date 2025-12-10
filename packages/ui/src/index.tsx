@@ -32,6 +32,7 @@ export * from "./components/spotlight"; // Exports Spotlight, SpotlightHero
 export * from "./components/inverse-application"; // Exports InverseApplication
 export * from "./components/social-proof"; // Exports SocialProof
 export * from "./components/neofetch-terminal"; // Exports NeofetchTerminal, InteractiveTerminal
+export * from "./components/scroll-to-top"; // Exports ScrollToTop
 export * from "./lib/rfc-scoring"; // Exports RFC Scoring Logic
 
 // Export cn utility
