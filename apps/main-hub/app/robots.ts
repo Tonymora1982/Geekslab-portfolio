@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/', '/_next/'],
       },
     ],
-    sitemap: 'https://geekslab.tech/sitemap.xml',
-    host: 'https://geekslab.tech',
+    sitemap: 'https://www.geekslab.tech/sitemap.xml',
+    host: 'https://www.geekslab.tech',
   };
 }
