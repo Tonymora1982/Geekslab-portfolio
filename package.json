@@ -10,8 +10,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "turbo": "latest",
-    "prettier": "^3.0.0"
+    "@playwright/test": "^1.57.0",
+    "prettier": "^3.0.0",
+    "turbo": "latest"
   },
   "prettier": "@geekslab/config/prettier-preset.js",
   "workspaces": [

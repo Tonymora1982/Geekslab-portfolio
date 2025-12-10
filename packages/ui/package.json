@@ -14,7 +14,7 @@
         "test:coverage": "vitest run --coverage"
     },
     "peerDependencies": {
-        "next": "^16",
+        "next": "^16.0.8",
         "react": "^19",
         "react-dom": "^19"
     },
