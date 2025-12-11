@@ -10,7 +10,30 @@ export const Preloader = () => {
     useEffect(() => {
         // Animate the counter
         const counter = { value: 0 };
+        let animationCompleted = false;
 
+        /**
+         * Triggers the exit animation to slide the preloader out of view.
+         * Sets animationCompleted flag to prevent duplicate triggers.
+         */
+        const triggerExit = () => {
+            if (animationCompleted) return;
+            animationCompleted = true;
+
+            // Force progress to 100% for visual consistency
+            setProgress(100);
+
+            // Exit animation - slide up and hide
+            anime({
+                targets: "#preloader",
+                translateY: "-100%",
+                duration: 1000,
+                easing: "easeOutExpo",
+                complete: () => setIsVisible(false),
+            });
+        };
+
+        // Start the counter animation from 0 to 100
         anime({
             targets: counter,
             value: 100,
@@ -18,17 +41,22 @@ export const Preloader = () => {
             easing: "cubicBezier(0.25, 1, 0.5, 1)",
             round: 1, // No decimals
             update: () => setProgress(counter.value),
-            complete: () => {
-                // Exit animation
-                anime({
-                    targets: "#preloader",
-                    translateY: "-100%",
-                    duration: 1000,
-                    easing: "easeOutExpo",
-                    complete: () => setIsVisible(false),
-                });
-            },
+            complete: triggerExit,
         });
+
+        // Safety timeout: force completion after 3 seconds if animation gets stuck
+        // This fixes the bug where anime.js round:1 can cause the counter to stop at 99.34%
+        const safetyTimeout = setTimeout(() => {
+            if (!animationCompleted) {
+                console.warn("[Preloader] Animation timeout - forcing completion");
+                triggerExit();
+            }
+        }, 3000);
+
+        // Cleanup on unmount
+        return () => {
+            clearTimeout(safetyTimeout);
+        };
     }, []);
 
     if (!isVisible) return null;

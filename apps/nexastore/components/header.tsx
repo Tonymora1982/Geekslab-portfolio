@@ -5,9 +5,10 @@ import { useCartStore } from "@/store/cart";
 import { Search, User, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
+// Navigation menu items - links to product categories and collections
 const navigation = [
   { name: "New Arrivals", href: "/products?new=true" },
-  { name: "Collections", href: "/collections" },
+  { name: "Collections", href: "/products" }, // Redirects to all products (no dedicated collections page)
   { name: "For Him", href: "/products?category=laptops" },
   { name: "For Her", href: "/products?category=wearables" },
   { name: "Gifts", href: "/products?featured=true" },
@@ -35,9 +36,8 @@ export function Header() {
       </div>
 
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-500 ${
-          scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-white"
-        }`}
+        className={`sticky top-0 z-50 w-full transition-all duration-500 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-white"
+          }`}
       >
         {/* Main Navigation */}
         <nav className="border-b border-gray-100">
@@ -122,9 +122,8 @@ export function Header() {
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden fixed inset-0 top-[89px] bg-white z-50 transform transition-transform duration-300 ease-in-out ${
-            mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`lg:hidden fixed inset-0 top-[89px] bg-white z-50 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
         >
           <nav className="p-6 space-y-6">
             {navigation.map((item) => (
