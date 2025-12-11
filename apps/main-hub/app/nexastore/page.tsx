@@ -22,7 +22,7 @@ export default function NexaStorePage() {
                         className="mb-8"
                     >
                         <span className="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-sm font-mono mb-6 text-neutral-300">
-                            nexastore.dev
+                            nexastore.geekslab.tech
                         </span>
                     </motion.div>
 
@@ -36,7 +36,7 @@ export default function NexaStorePage() {
                         <AnimatedButton href="https://github.com/yourusername/nexastore" variant="secondary" className="text-sm border-white/20 text-white hover:bg-white/10">
                             View Code
                         </AnimatedButton>
-                        <AnimatedButton href="https://nexastore.dev" variant="primary" className="text-sm bg-white text-black hover:bg-neutral-200">
+                        <AnimatedButton href="https://nexastore.geekslab.tech" variant="primary" className="text-sm bg-white text-black hover:bg-neutral-200">
                             Live Demo
                         </AnimatedButton>
                     </div>
