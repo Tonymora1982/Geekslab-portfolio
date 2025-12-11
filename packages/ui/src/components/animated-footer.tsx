@@ -19,9 +19,9 @@ export const AnimatedFooter = () => {
                             <a href="mailto:tonymora1982@gmail.com" className="block text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold hover:text-neutral-400 transition-colors tracking-tighter break-all md:break-normal">
                                 tonymora1982@gmail.com
                             </a>
-                            <a 
-                                href="https://wa.me/50670179787" 
-                                target="_blank" 
+                            <a
+                                href="https://wa.me/50670179787"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="block text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold hover:text-emerald-400 transition-colors tracking-tighter"
                             >
@@ -34,29 +34,29 @@ export const AnimatedFooter = () => {
                     <div className="flex flex-col gap-8 lg:justify-between">
                         {/* Social Buttons - Mobile: Stack, Desktop: Row */}
                         <div className="flex flex-wrap gap-3 md:gap-4 lg:justify-end">
-                            <AnimatedButton 
-                                href="https://github.com/Sobgo" 
-                                variant="secondary" 
+                            <AnimatedButton
+                                href="https://github.com/Sobgo"
+                                variant="secondary"
                                 className="border-white/20 flex-1 sm:flex-none min-w-[100px] justify-center"
                             >
                                 GitHub
                             </AnimatedButton>
-                            <AnimatedButton 
-                                href="https://www.linkedin.com/in/anthony-mora-parra-5510b0160/" 
-                                variant="secondary" 
+                            <AnimatedButton
+                                href="https://www.linkedin.com/in/anthony-mora-parra-94941282/"
+                                variant="secondary"
                                 className="border-white/20 flex-1 sm:flex-none min-w-[100px] justify-center"
                             >
                                 LinkedIn
                             </AnimatedButton>
-                            <AnimatedButton 
-                                href="https://wa.me/50670179787" 
-                                variant="secondary" 
+                            <AnimatedButton
+                                href="https://wa.me/50670179787"
+                                variant="secondary"
                                 className="border-white/20 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 flex-1 sm:flex-none min-w-[100px] justify-center"
                             >
                                 WhatsApp
                             </AnimatedButton>
                         </div>
-                        
+
                         {/* Availability Text */}
                         <div className="text-left lg:text-right">
                             <p className="text-lg md:text-xl text-neutral-400 max-w-md lg:ml-auto leading-relaxed">
@@ -84,7 +84,7 @@ export const AnimatedFooter = () => {
                             {t('hero.badge')}
                         </div>
                     </div>
-                    
+
                     {/* Right: Location & Time */}
                     <div className="text-left md:text-right">
                         <span className="text-neutral-400">{t('footer.location')}</span>
