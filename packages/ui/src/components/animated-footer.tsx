@@ -35,7 +35,7 @@ export const AnimatedFooter = () => {
                         {/* Social Buttons - Mobile: Stack, Desktop: Row */}
                         <div className="flex flex-wrap gap-3 md:gap-4 lg:justify-end">
                             <AnimatedButton
-                                href="https://github.com/Sobgo"
+                                href="https://github.com/Tonymora1982"
                                 variant="secondary"
                                 className="border-white/20 flex-1 sm:flex-none min-w-[100px] justify-center"
                             >

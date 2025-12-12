@@ -2,27 +2,17 @@
 > @geekslab/nexastore@0.1.0 build
 > next build
 
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-   ▲ Next.js 16.0.3 (Turbopack)
+   ▲ Next.js 16.0.8 (Turbopack)
 
    Creating an optimized production build ...
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
- ✓ Compiled successfully in 9.7s
+ ✓ Compiled successfully in 12.7s
    Running TypeScript ...
    Collecting page data using 11 workers ...
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
    Generating static pages using 11 workers (0/6) ...
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
    Generating static pages using 11 workers (1/6) 
    Generating static pages using 11 workers (2/6) 
    Generating static pages using 11 workers (4/6) 
- ✓ Generating static pages using 11 workers (6/6) in 1408.6ms
+ ✓ Generating static pages using 11 workers (6/6) in 3.4s
    Finalizing page optimization ...
 
 Route (app)

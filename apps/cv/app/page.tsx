@@ -13,7 +13,7 @@ export default function CVPage() {
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
                         <div>
                             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">
-                                Tony <span className="text-neutral-500">Stark</span>
+                                Anthony <span className="text-neutral-500">Mora</span>
                             </h1>
                             <p className="text-xl text-neutral-400 font-light">
                                 Full Stack Engineer & R&D Specialist
@@ -22,13 +22,13 @@ export default function CVPage() {
                         <div className="flex flex-col items-end gap-4">
                             <SLABadge apiUrl="" />
                             <div className="flex gap-3">
-                                <AnimatedButton href="https://github.com" variant="secondary" className="p-2 border-white/20">
+                                <AnimatedButton href="https://github.com/Tonymora1982" variant="secondary" className="p-2 border-white/20">
                                     <Github className="w-5 h-5" />
                                 </AnimatedButton>
-                                <AnimatedButton href="https://linkedin.com" variant="secondary" className="p-2 border-white/20">
+                                <AnimatedButton href="https://www.linkedin.com/in/anthony-mora-parra-94941282/" variant="secondary" className="p-2 border-white/20">
                                     <Linkedin className="w-5 h-5" />
                                 </AnimatedButton>
-                                <AnimatedButton href="mailto:tony@geekslab.tech" variant="secondary" className="p-2 border-white/20">
+                                <AnimatedButton href="mailto:tonymora1982@gmail.com" variant="secondary" className="p-2 border-white/20">
                                     <Mail className="w-5 h-5" />
                                 </AnimatedButton>
                             </div>
@@ -92,17 +92,24 @@ export default function CVPage() {
                     <div className="space-y-8">
                         <div>
                             <div className="flex justify-between items-baseline mb-2">
-                                <h3 className="text-xl font-bold text-white">Master of Science in Computer Science</h3>
-                                <span className="text-neutral-500 font-mono text-sm">2018 - 2020</span>
+                                <h3 className="text-xl font-bold text-white">Industrial Production Engineering</h3>
+                                <span className="text-neutral-500 font-mono text-sm">2006 - 2011</span>
                             </div>
-                            <div className="text-neutral-400">MIT (Massachusetts Institute of Technology)</div>
+                            <div className="text-neutral-400">Universidad Latina de Costa Rica</div>
                         </div>
                         <div>
                             <div className="flex justify-between items-baseline mb-2">
-                                <h3 className="text-xl font-bold text-white">Bachelor of Science in Engineering</h3>
-                                <span className="text-neutral-500 font-mono text-sm">2014 - 2018</span>
+                                <h3 className="text-xl font-bold text-white">Certified Ethical Hacker (CEH)</h3>
+                                <span className="text-neutral-500 font-mono text-sm">2023</span>
                             </div>
-                            <div className="text-neutral-400">Stanford University</div>
+                            <div className="text-neutral-400">EC-Council</div>
+                        </div>
+                        <div>
+                            <div className="flex justify-between items-baseline mb-2">
+                                <h3 className="text-xl font-bold text-white">Linux Foundation Certified (LFC)</h3>
+                                <span className="text-neutral-500 font-mono text-sm">2024</span>
+                            </div>
+                            <div className="text-neutral-400">Linux Foundation</div>
                         </div>
                     </div>
                 </section>

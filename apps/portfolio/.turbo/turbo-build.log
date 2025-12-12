@@ -2,23 +2,28 @@
 > @geekslab/portfolio@0.1.0 build
 > next build
 
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-   ▲ Next.js 16.0.3 (Turbopack)
+   ▲ Next.js 16.0.8 (Turbopack)
 
    Creating an optimized production build ...
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
- ✓ Compiled successfully in 12.0s
+ ✓ Compiled successfully in 16.9s
    Running TypeScript ...
    Collecting page data using 11 workers ...
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 11 workers (0/6) ...
+   Generating static pages using 11 workers (1/6) 
+   Generating static pages using 11 workers (2/6) 
+   Generating static pages using 11 workers (4/6) 
+ ✓ Generating static pages using 11 workers (6/6) in 2.5s
+   Finalizing page optimization ...
 
-> Build error occurred
-Error: Page "/projects/[id]" is missing "generateStaticParams()" so it cannot be used with "output: export" config.
-    at ignore-listed frames
-npm ERR! Lifecycle script `build` failed with error: 
-npm ERR! Error: command failed 
-npm ERR!   in workspace: @geekslab/portfolio@0.1.0 
-npm ERR!   at location: E:\Portfolio\apps\portfolio 
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ● /projects/[id]
+  ├ /projects/geekslab
+  ├ /projects/dashboard
+  └ /projects/ecommerce
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

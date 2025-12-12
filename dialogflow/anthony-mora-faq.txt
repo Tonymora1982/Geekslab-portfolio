@@ -1,0 +1,100 @@
+# Anthony Mora Parra - Professional FAQ for Recruiters
+
+## About Anthony Mora
+
+Q: Who is Anthony Mora?
+A: Anthony Mora Parra is a Principal R&D Engineer and Full-Stack Developer with 13+ years of experience in medical device industry and modern software development. He is the founder of GeeksLab.tech, a software company based in Costa Rica.
+
+Q: What is Anthony's current role?
+A: Anthony currently works as Technical Administrative Support at Instituto Nacional de Seguros (INS) in Costa Rica while running his freelance software development business GeeksLab.tech.
+
+Q: Where is Anthony located?
+A: Anthony is based in Costa Rica (GMT-6 timezone), which provides excellent alignment with US business hours.
+
+Q: Is Anthony available for remote work?
+A: Yes, Anthony works 100% remote and has extensive experience with async communication, ADRs, OpenAPI contracts, feature flags, automated tests, and weekly increments with clear handoff.
+
+## Technical Skills
+
+Q: What programming languages does Anthony know?
+A: Anthony is proficient in JavaScript, TypeScript, Python, SQL, HTML, CSS, and has experience with Java.
+
+Q: What frameworks does Anthony work with?
+A: Anthony specializes in Next.js (versions 14-16), React 19, Node.js, and has experience with modern full-stack development including Tailwind CSS, Framer Motion, and Drizzle ORM.
+
+Q: What databases does Anthony use?
+A: Anthony works with PostgreSQL, and has experience with database migrations, Drizzle ORM, and data validation.
+
+Q: Does Anthony have DevOps experience?
+A: Yes, Anthony has experience with CI/CD pipelines, Vercel deployments, GitHub Actions, feature flags, automated testing, and telemetry with 99.9% uptime track record.
+
+Q: What is Anthony's tech stack?
+A: Full-Stack: Next.js 16, React 19, TypeScript, Node.js, PostgreSQL, Tailwind CSS, Framer Motion. DevOps: Vercel, GitHub Actions, CI/CD. R&D: ISO 13485, Lean Manufacturing, Six Sigma.
+
+## Experience and Achievements
+
+Q: How many years of experience does Anthony have?
+A: Anthony has 13+ years of combined experience in R&D engineering, manufacturing, and software development.
+
+Q: What are Anthony's key achievements?
+A: Key achievements include: 15% improvement in production efficiency, 25% reduction in quality control time, 98% safety compliance leading teams of 12+ people, 100% project delivery success rate over 6+ years, ~30% reduction in CLS and ~12% improvement in funnel conversion through A/B testing.
+
+Q: What is Anthony's ROI impact?
+A: Anthony has documented $500K+ in cumulative process savings through optimization and automation projects.
+
+Q: Has Anthony worked with regulated industries?
+A: Yes, Anthony has 6+ years of experience in ISO 13485 regulated medical device manufacturing at Establishment Labs, including experimental testing, prototyping, design verification, and technical documentation.
+
+## Education and Certifications
+
+Q: What is Anthony's education?
+A: Anthony has a Diploma in Computer Science from UNED (completed 2024), is 95% complete with Computer Engineering degree at UNED (only final thesis pending), and is pursuing Electronic Engineering at UTN.
+
+Q: What certifications does Anthony have?
+A: Current certifications: ISO 13485 (Medical Device Quality Management), Lean Manufacturing (Process Optimization), Six Sigma Green Belt (Statistical Quality Control). Planned: LFCS (Q2 2025), CEH (Q3 2025), OSCP (Q1 2026).
+
+## Work Arrangements and Rates
+
+Q: What are Anthony's hourly rates?
+A: R&D Leadership: $35-55/hour ($4,800-7,200/month), Software Development: $25-40/hour ($3,200-5,500/month), Hybrid Consulting: $30-45/hour ($4,000-6,000/month). Costa Rica base rates offer 50-70% savings vs US rates.
+
+Q: What is Anthony's availability?
+A: Anthony is available for remote contract work, freelance projects, and full-time opportunities. Timezone is GMT-6 with excellent alignment for US business hours.
+
+Q: Does Anthony work with international clients?
+A: Yes, Anthony has built and shipped products for EU/LATAM clients with CI/CD, previews, and telemetry systems.
+
+## Projects and Portfolio
+
+Q: What projects has Anthony built?
+A: Notable projects include: GeeksLab.tech corporate platform (100/100 security score, multi-domain architecture), Professional CV System at cv.geekslab.tech, Technical Portfolio at portfolio.geekslab.tech, NexaStore e-commerce demo, and various client projects.
+
+Q: Where can I see Anthony's work?
+A: Visit www.geekslab.tech for the main portfolio, cv.geekslab.tech for the professional CV, and github.com/Tonymora1982 for code repositories.
+
+Q: Does Anthony have a security-focused approach?
+A: Yes, Anthony's platforms achieve 100/100 security scores with enterprise-level certification, 13 security headers, and complete enterprise protection.
+
+## Contact Information
+
+Q: How can I contact Anthony?
+A: Email: tonymora1982@gmail.com, Website: www.geekslab.tech, LinkedIn: linkedin.com/in/anthony-mora-parra-94941282, Phone/WhatsApp: +506 7017 9787
+
+Q: How can I schedule an interview with Anthony?
+A: You can reach out via email at tonymora1982@gmail.com or through the contact form at www.geekslab.tech/contact. Anthony typically responds within 24 hours.
+
+## Company Information
+
+Q: What is GeeksLab?
+A: GeeksLab (GeeksLab.tech) is a software company founded by Anthony Mora, based in Costa Rica. It provides R&D leadership, software development, and hybrid consulting services to international clients.
+
+Q: What services does GeeksLab offer?
+A: GeeksLab offers: Full-stack web development (Next.js, React, Node.js), R&D engineering consulting, Process optimization and automation, Technical documentation under ISO standards, and hybrid tech/manufacturing consulting.
+
+## Languages
+
+Q: What languages does Anthony speak?
+A: Anthony is fluent in Spanish (native) and English (professional working proficiency).
+
+Q: Can Anthony work with English-speaking teams?
+A: Yes, Anthony has extensive experience working with international teams in English, including async communication, technical documentation, and client presentations.

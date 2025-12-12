@@ -33,7 +33,7 @@ export default function QMSPage() {
                     />
 
                     <div className="flex justify-center gap-6 mt-8">
-                        <AnimatedButton href="https://github.com/yourusername/qms" variant="secondary" className="text-sm border-white/20 text-white hover:bg-white/10">
+                        <AnimatedButton href="https://github.com/Tonymora1982/Geekslab-portfolio" variant="secondary" className="text-sm border-white/20 text-white hover:bg-white/10">
                             View Code
                         </AnimatedButton>
                         <AnimatedButton href="#" variant="primary" className="text-sm bg-white text-black hover:bg-neutral-200 cursor-not-allowed opacity-80">
