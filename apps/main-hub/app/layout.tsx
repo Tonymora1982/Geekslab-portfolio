@@ -127,7 +127,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Preloader />
         <SmoothScroll>
-          <NoiseOverlay />
+          {/* NoiseOverlay removed - was causing severe visual issues */}
           <MagneticCursor />
           <LanguageProvider>
             <Navbar />
