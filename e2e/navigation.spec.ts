@@ -27,29 +27,32 @@ test.describe('Portfolio Navigation Tests', () => {
       console.log('✅ Single navbar rendered');
     });
 
-    test('should navigate to Projects from hero CTA', async ({ page }) => {
+    test('should navigate to Projects from hero link', async ({ page }) => {
       await page.goto('/', { waitUntil: 'domcontentloaded' });
 
-      const viewWork = page.getByRole('link', { name: /view work/i });
-      await expect(viewWork).toBeVisible();
-      await viewWork.click();
+      // Click on Projects link in hero
+      const projectsLink = page.getByRole('link', { name: /projects/i }).first();
+      await expect(projectsLink).toBeVisible();
+      await projectsLink.click();
 
-      // Confirmar que la sección Projects es visible
+      // Confirm Projects section is visible
       await expect(page.locator('#projects')).toBeVisible();
 
-      console.log('✅ Hero CTA scrolls to Projects');
+      console.log('✅ Hero Projects link scrolls to section');
     });
 
-    test('should navigate to Contact from hero CTA', async ({ page }) => {
+    test('should have Contact Me mailto link in hero', async ({ page }) => {
       await page.goto('/', { waitUntil: 'domcontentloaded' });
 
-      const getInTouch = page.getByRole('link', { name: /get in touch/i });
-      await expect(getInTouch).toBeVisible();
-      await getInTouch.click();
+      // Contact Me is a mailto link, verify it exists with correct href
+      const contactLink = page.getByRole('link', { name: /contact me/i });
+      await expect(contactLink).toBeVisible();
 
-      await expect(page.locator('#contact')).toBeVisible();
+      // Verify it's a mailto link
+      const href = await contactLink.getAttribute('href');
+      expect(href).toContain('mailto:');
 
-      console.log('✅ Hero CTA scrolls to Contact');
+      console.log('✅ Contact Me mailto link exists in hero');
     });
   });
 
