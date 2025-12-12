@@ -201,6 +201,28 @@ export const translations = {
                 adjust: "40-69: Scope/risk adjustment required.",
                 reject: "<40: Technical rejection, I suggest alternatives.",
             },
+        },
+        evidenceLayer: {
+            hero: {
+                title: "Recruiter Evidence Layer",
+                description: "Three systems to demonstrate expertise, experimentation, and transparency. Not just words — real data, documented failures, explicit criteria.",
+            },
+            sla: {
+                title: "SLA Metrics",
+                description: "Real-time metrics for uptime, latency, and error rate. Connected to Vercel Analytics with fallback to realistic simulated data. Updates every 30 seconds.",
+            },
+            experiments: {
+                title: "Experiments Log",
+                description: "Record of real experiments with methodology, results, and learnings. Includes 3 valuable failures with complete postmortems. Each experiment is reproducible.",
+            },
+            rfcApplication: {
+                title: "Inverse RFC Application",
+                description: "Inverse application system: companies apply to work with you. Automatic scoring based on autonomy (25pts), stack (20pts), timeline (20pts), budget (15pts), experimentation (15pts), and compliance (5pts).",
+                calibrationNote: "Criteria calibrated based on 8 years in manufacturing + transition to software",
+            },
+            footer: {
+                note: "Systems designed for radical transparency. View source code on",
+            },
         }
     },
     es: {
@@ -404,6 +426,28 @@ export const translations = {
                 accept: "≥70: Acepto y propongo Sprint 0 inmediato.",
                 adjust: "40-69: Requiere ajustes de scope/riesgo.",
                 reject: "<40: Rechazo técnico, sugiero alternativas.",
+            },
+        },
+        evidenceLayer: {
+            hero: {
+                title: "Capa de Evidencia para Reclutadores",
+                description: "Tres sistemas para demostrar expertise, experimentación y transparencia. No solo palabras — datos reales, fallas documentadas, criterios explícitos.",
+            },
+            sla: {
+                title: "Métricas SLA",
+                description: "Métricas en tiempo real de uptime, latencia y tasa de error. Conectado a Vercel Analytics con fallback a datos simulados realistas. Actualización cada 30 segundos.",
+            },
+            experiments: {
+                title: "Bitácora de Experimentos",
+                description: "Registro de experimentos reales con metodología, resultados y aprendizajes. Incluye 3 fallas valiosas con postmortems completos. Cada experimento es reproducible.",
+            },
+            rfcApplication: {
+                title: "Solicitud RFC Inversa",
+                description: "Sistema de aplicación inversa: las empresas aplican para trabajar contigo. Scoring automático basado en autonomía (25pts), stack (20pts), timeline (20pts), presupuesto (15pts), experimentación (15pts) y compliance (5pts).",
+                calibrationNote: "Criterios calibrados según 8 años en manufactura + transición a software",
+            },
+            footer: {
+                note: "Sistemas diseñados para transparencia radical. Ver código fuente en",
             },
         }
     }
