@@ -117,7 +117,7 @@ export default function AboutPage() {
                                 and CI/CD pipelines—because I believe in building things right from the start.
                             </p>
                             <div className="flex flex-wrap gap-2 mt-4">
-                                <Tag>Next.js 15</Tag>
+                                <Tag>Next.js 16</Tag>
                                 <Tag>React 19</Tag>
                                 <Tag>TypeScript</Tag>
                                 <Tag>Turborepo</Tag>

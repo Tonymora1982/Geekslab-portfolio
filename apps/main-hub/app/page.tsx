@@ -39,10 +39,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              {/* Value Proposition - 5 seconds */}
+              {/* Value Proposition - Direct, memorable */}
               <div className="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
                 <span className="text-emerald-400 text-sm font-medium">
-                  Senior Full-Stack (Next.js/TS) + MedTech/ISO 13485 → Production-Grade Software
+                  13 years in regulated environments → audit-ready code in production
                 </span>
               </div>
 
@@ -52,9 +52,23 @@ export default function Home() {
               </h1>
 
               {/* Title + Availability */}
-              <p className="text-xl md:text-2xl text-neutral-300 mb-6">
+              <p className="text-xl md:text-2xl text-neutral-300 mb-4">
                 Full Stack Developer · <span className="text-emerald-400">Available Now</span>
               </p>
+
+              {/* Personal voice - Only I could say this */}
+              <p className="text-neutral-500 text-sm max-w-xl mx-auto mb-8 italic">
+                "I spent years building medical devices where a bug could hurt someone.
+                Now I build software with the same paranoia—and it shows in the code."
+              </p>
+
+              {/* Production Proof Block - Verifiable metrics */}
+              <div className="flex flex-wrap justify-center gap-6 text-sm mb-8 py-4 border-y border-white/10">
+                <ProofMetric value="26" label="E2E Tests" />
+                <ProofMetric value="0" label="TS Errors" />
+                <ProofMetric value="<200ms" label="LCP" />
+                <ProofMetric value="ISO 13485" label="Mindset" />
+              </div>
 
               {/* Availability details */}
               <div className="flex flex-wrap justify-center gap-4 text-sm text-neutral-400 mb-8">
@@ -66,17 +80,17 @@ export default function Home() {
                 </span>
               </div>
 
-              {/* Recruiter CTAs */}
+              {/* CTAs - Working links only */}
               <div className="flex flex-wrap justify-center gap-4 mb-8">
                 <AnimatedButton
-                  href="/anthony-mora-cv.pdf"
+                  href="https://www.linkedin.com/in/anthony-mora-parra-94941282/"
                   variant="primary"
                   className="bg-white text-black hover:bg-neutral-200 px-6 py-3"
                 >
-                  <Download className="w-4 h-4 mr-2" /> Download CV
+                  <Linkedin className="w-4 h-4 mr-2" /> View LinkedIn
                 </AnimatedButton>
                 <AnimatedButton
-                  href="mailto:tonymora1982@gmail.com?subject=Opportunity%20for%20Anthony%20Mora&body=Hi%20Anthony%2C%0A%0AI%20found%20your%20portfolio%20and%20wanted%20to%20discuss..."
+                  href="mailto:tonymora1982@gmail.com?subject=Opportunity%20for%20Anthony%20Mora&body=Hi%20Anthony%2C%0A%0AI%20found%20your%20portfolio%20and%20I'd%20like%20to%20discuss%20a%20potential%20opportunity.%0A%0ARole%3A%20%0ACompany%3A%20%0ATimeline%3A%20%0A%0AThanks!"
                   variant="secondary"
                   className="border-white/20 px-6 py-3"
                 >
@@ -84,16 +98,16 @@ export default function Home() {
                 </AnimatedButton>
               </div>
 
-              {/* Social proof links */}
+              {/* Quick links */}
               <div className="flex justify-center gap-6 text-neutral-500">
                 <a href="https://github.com/Tonymora1982" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1 text-sm">
                   <Github className="w-4 h-4" /> GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/anthony-mora-parra-94941282/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1 text-sm">
-                  <Linkedin className="w-4 h-4" /> LinkedIn
-                </a>
                 <a href="#projects" className="hover:text-white transition-colors flex items-center gap-1 text-sm">
                   <FileText className="w-4 h-4" /> Projects
+                </a>
+                <a href="/evidence-layer" className="hover:text-emerald-400 transition-colors flex items-center gap-1 text-sm text-emerald-500">
+                  <ChevronRight className="w-4 h-4" /> Production Proof
                 </a>
               </div>
             </motion.div>
@@ -124,7 +138,7 @@ export default function Home() {
                   traceability from concept to production, and zero tolerance for "it works on my machine."
                 </p>
                 <p className="text-lg text-neutral-300 leading-relaxed">
-                  Now I build production-grade web applications with <strong className="text-white">Next.js 15, React 19, and TypeScript</strong>.
+                  Now I build production-grade web applications with <strong className="text-white">Next.js 16, React 19, and TypeScript</strong>.
                   I bring the same rigor: CI/CD pipelines, Playwright E2E testing, observability, and code that's audit-ready.
                 </p>
 
@@ -169,7 +183,7 @@ export default function Home() {
                   title="Full Stack Developer"
                   company="GeeksLab (Freelance)"
                   period="2024 — Present"
-                  description="Building production web apps with Next.js 15, React 19, TypeScript. Monorepo architecture, CI/CD, Playwright testing."
+                  description="Building production web apps with Next.js 16, React 19, TypeScript. Monorepo architecture, CI/CD, Playwright testing."
                   tags={["Next.js", "TypeScript", "React", "Vercel"]}
                   isCurrent
                 />
@@ -229,10 +243,10 @@ export default function Home() {
               <ProjectCard
                 title="NexaStore"
                 subtitle="E-commerce Platform"
-                description="Full-stack e-commerce with Next.js 15. Product catalog, cart management, Stripe-ready checkout flow."
+                description="Full-stack e-commerce with Next.js 16. Product catalog, cart management, Stripe-ready checkout flow."
                 problem="Needed a demo e-commerce that showcases modern React patterns and production practices."
                 result="Deployed to Vercel with <200ms LCP, mobile-first responsive design."
-                tags={["Next.js 15", "React 19", "TypeScript", "Tailwind"]}
+                tags={["Next.js 16", "React 19", "TypeScript", "Tailwind"]}
                 liveUrl="https://nexastore.geekslab.tech"
                 codeUrl="https://github.com/Tonymora1982/Geekslab-portfolio/tree/main/apps/nexastore"
               />
@@ -311,7 +325,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <SkillGroup
                 title="Frontend"
-                skills={["React 19", "Next.js 15", "TypeScript", "Tailwind CSS"]}
+                skills={["React 19", "Next.js 16", "TypeScript", "Tailwind CSS"]}
               />
               <SkillGroup
                 title="Backend"
@@ -530,5 +544,17 @@ function SkillGroup({ title, skills }: { title: string; skills: string[] }) {
         ))}
       </ul>
     </motion.div>
+  );
+}
+
+/**
+ * Proof Metric Component - Shows verifiable metrics in hero
+ */
+function ProofMetric({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="text-center">
+      <span className="text-xl font-bold text-white">{value}</span>
+      <span className="block text-xs text-neutral-500">{label}</span>
+    </div>
   );
 }
