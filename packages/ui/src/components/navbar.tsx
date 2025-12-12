@@ -5,68 +5,81 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
 import { Menu, X } from "lucide-react";
-import { useState, useRef } from "react";
-import anime from "animejs";
-import { LanguageToggle } from "./language-toggle";
-import { useLanguage } from "../context/language-context";
+import { useState } from "react";
 
+/**
+ * Navbar Component
+ * 
+ * Clean, minimal navigation for single-page portfolio.
+ * - Scroll-based navigation on homepage
+ * - Standard links on other pages
+ * - Mobile hamburger menu
+ */
 export const Navbar = () => {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
-    const navRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-    const { t } = useLanguage();
+    const isHome = pathname === "/";
 
-    const navItems = [
-        { name: t('nav.home'), path: "/" },
-        { name: t('nav.projects'), path: "/#projects" },
-        { name: t('nav.evidence'), path: "/evidence-layer" },
-        { name: t('nav.contact'), path: "/contact" },
+    // Navigation items - scroll sections on homepage, regular links elsewhere
+    const navItems = isHome ? [
+        { name: "About", path: "#about" },
+        { name: "Experience", path: "#experience" },
+        { name: "Projects", path: "#projects" },
+        { name: "Contact", path: "#contact" },
+    ] : [
+        { name: "Home", path: "/" },
+        { name: "Projects", path: "/#projects" },
+        { name: "Contact", path: "/#contact" },
     ];
 
-    const handleMouseEnter = (index: number) => {
-        if (navRefs.current[index]) {
-            anime({
-                targets: navRefs.current[index],
-                scale: 1.05,
-                color: "#ffffff",
-                duration: 400,
-                easing: "easeOutExpo"
-            });
-        }
-    };
-
-    const handleMouseLeave = (index: number) => {
-        if (navRefs.current[index]) {
-            anime({
-                targets: navRefs.current[index],
-                scale: 1,
-                color: "#737373", // neutral-500
-                duration: 400,
-                easing: "easeOutExpo"
-            });
+    // Handle smooth scrolling for hash links
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+        if (path.startsWith("#")) {
+            e.preventDefault();
+            const element = document.querySelector(path);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+            setIsOpen(false);
+        } else {
+            setIsOpen(false);
         }
     };
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-            <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
-                    {/* Logo */}
-                    <Link href="/" className="text-2xl font-bold text-white tracking-tighter">
-                        AMP
+            <div className="max-w-4xl mx-auto px-4">
+                <div className="flex items-center justify-between h-16">
+                    {/* Logo/Name */}
+                    <Link
+                        href="/"
+                        className="text-lg font-bold text-white tracking-tight hover:text-emerald-400 transition-colors"
+                    >
+                        Anthony Mora
                     </Link>
 
-                    {/* Menu Button (All Screens) */}
-                    <div className="flex items-center gap-4">
-                        <LanguageToggle />
-                        <button
-                            className="p-2 text-neutral-400 hover:text-white transition-colors"
-                            onClick={() => setIsOpen(!isOpen)}
-                            aria-label="Toggle menu"
-                        >
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-8">
+                        {navItems.map((item) => (
+                            <a
+                                key={item.path}
+                                href={item.path}
+                                onClick={(e) => handleClick(e, item.path)}
+                                className="text-sm text-neutral-400 hover:text-white transition-colors"
+                            >
+                                {item.name}
+                            </a>
+                        ))}
                     </div>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className="md:hidden p-2 text-neutral-400 hover:text-white transition-colors"
+                        onClick={() => setIsOpen(!isOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {isOpen ? <X size={20} /> : <Menu size={20} />}
+                    </button>
                 </div>
             </div>
 
@@ -74,24 +87,21 @@ export const Navbar = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="md:hidden absolute top-24 left-0 right-0 bg-black border-b border-white/10 p-4"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:hidden bg-black border-b border-white/10"
                     >
-                        <div className="flex flex-col gap-4">
+                        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col gap-4">
                             {navItems.map((item) => (
-                                <Link
+                                <a
                                     key={item.path}
                                     href={item.path}
-                                    className={cn(
-                                        "text-xl font-bold transition-colors hover:text-white",
-                                        pathname === item.path ? "text-white" : "text-neutral-500"
-                                    )}
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={(e) => handleClick(e, item.path)}
+                                    className="text-lg text-neutral-400 hover:text-white transition-colors"
                                 >
                                     {item.name}
-                                </Link>
+                                </a>
                             ))}
                         </div>
                     </motion.div>

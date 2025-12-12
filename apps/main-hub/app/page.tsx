@@ -1,186 +1,448 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Terminal, Code2, Cpu, Globe } from "lucide-react";
-import {
-  AnimatedButton,
-  AnimatedFooter,
-  AnimatedHeroText,
-  AnimatedSkillBadge,
-  AnimatedWords,
-  BentoGrid,
-  BentoGridItem,
-  DecoderText,
-  EcosystemNav,
-  ExperimentLog,
-  ExperimentsSection,
-  ExplodedView,
-  GridPattern,
-  HackerText,
-  InverseApplication,
-  ProjectShowcase,
-  SLABadge,
-  SLAPanel,
-  SocialProof,
-  SpotlightHero,
-  useLanguage,
-  CornerAccents,
-  ExperienceTimeline
-} from "@geekslab/ui";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { Github, Linkedin, Mail, MapPin, Phone, ExternalLink, ArrowDown, ChevronRight } from "lucide-react";
+import { AnimatedFooter, AnimatedButton, Navbar } from "@geekslab/ui";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+/**
+ * GeeksLab Portfolio - Single Page Narrative
+ * 
+ * Design Philosophy:
+ * - Clean, minimal, Brittany Chiang-inspired layout
+ * - Single cohesive narrative flow
+ * - Premium feel without being pretentious
+ * - Mobile-first, accessible
+ * 
+ * Sections:
+ * 1. Hero - First impression
+ * 2. About - The story
+ * 3. Experience - Timeline
+ * 4. Projects - Featured work
+ * 5. Skills - Quick glance
+ * 6. Contact - CTA
+ */
 
 export default function Home() {
-  const { t } = useLanguage();
-  const skills = [
-    { category: "Core Engineering", skills: ["C#", "Python", "SQL", "Linux (LFC)"] },
-    { category: "Modern Web", skills: ["Next.js", "React", "TypeScript", "Tailwind"] },
-    { category: "Security & Ops", skills: ["Cybersecurity (CEH)", "Docker", "CI/CD", "Git"] },
-    { category: "Professional", skills: ["R&D Management", "ISO 13485", "Agile", "English B2+"] },
-  ];
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative overflow-hidden font-sans">
-      <GridPattern />
-      <CornerAccents />
+    <>
+      {/* Progress indicator */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[2px] bg-emerald-500 origin-left z-[100]"
+        style={{ scaleX }}
+      />
 
-      {/* Main Hero Section */}
-      <section id="main-content" className="h-screen w-full relative">
-        <SpotlightHero className="h-full">
-          <div className="container px-4 mx-auto text-center relative z-10">
+      <Navbar />
+
+      <main className="bg-black text-white min-h-screen">
+
+        {/* ===== HERO SECTION ===== */}
+        <section id="hero" className="min-h-screen flex items-center justify-center px-4 relative">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-5xl mx-auto flex flex-col items-center"
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="flex items-center gap-4 mb-8">
-                <div className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-mono text-neutral-300">
-                  v2.0.0-beta
-                </div>
-                <SLABadge />
-              </div>
-              <div className="mb-8 leading-tight">
-                <AnimatedHeroText
-                  text={t('hero.title')}
-                  className="text-5xl md:text-8xl font-bold tracking-tight block mb-2"
-                  delay={0}
-                />
-                <div className="text-5xl md:text-8xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-neutral-200 to-neutral-500 block">
-                  <DecoderText text={t('hero.highlight')} delay={200} />
-                </div>
-              </div>
+              {/* Name */}
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6">
+                Anthony Mora
+              </h1>
 
-              <div className="text-xl md:text-2xl text-neutral-400 mb-12 leading-relaxed max-w-3xl mx-auto font-light">
-                <AnimatedWords
-                  words={t('hero.description').split(' ')}
-                  delay={2500}
-                />
-              </div>
+              {/* Title */}
+              <p className="text-xl md:text-2xl text-emerald-400 font-medium mb-8">
+                Full Stack Developer
+              </p>
 
-              <div className="w-full flex flex-col items-center gap-6 mb-10">
-                <SLAPanel />
-              </div>
+              {/* Tagline */}
+              <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+                From medical devices to digital products.{" "}
+                <span className="text-white">13 years building systems where failure isn't an option.</span>
+              </p>
 
-              {/* Ecosystem Navigation */}
-              <EcosystemNav t={t} />
-
-              <div className="flex flex-wrap items-center justify-center gap-6">
-                <AnimatedButton href="/evidence-layer" variant="primary" className="bg-emerald-500 text-black hover:bg-emerald-400">
-                  🔬 Evidence Layer
+              {/* CTAs */}
+              <div className="flex flex-wrap justify-center gap-4 mb-16">
+                <AnimatedButton
+                  href="#projects"
+                  variant="primary"
+                  className="bg-white text-black hover:bg-neutral-200 px-6 py-3"
+                >
+                  View Work
                 </AnimatedButton>
-                <AnimatedButton href="#experiments-lab" variant="secondary" className="border-white/20 text-white hover:bg-white/10">
-                  {t('hero.cta_experiments')}
+                <AnimatedButton
+                  href="#contact"
+                  variant="secondary"
+                  className="border-white/20 px-6 py-3"
+                >
+                  Get in Touch
                 </AnimatedButton>
-                <AnimatedButton href="#rfc-apply" variant="secondary" className="border-white/20 text-white hover:bg-white/10">
-                  {t('hero.cta_apply')}
-                </AnimatedButton>
+              </div>
+
+              {/* Social links */}
+              <div className="flex justify-center gap-6">
+                <SocialLink href="https://github.com/Tonymora1982" icon={<Github className="w-5 h-5" />} label="GitHub" />
+                <SocialLink href="https://www.linkedin.com/in/anthony-mora-parra-94941282/" icon={<Linkedin className="w-5 h-5" />} label="LinkedIn" />
+                <SocialLink href="mailto:tonymora1982@gmail.com" icon={<Mail className="w-5 h-5" />} label="Email" />
               </div>
             </motion.div>
           </div>
-        </SpotlightHero>
-      </section>
 
-      {/* Exploded View Section - The Deconstructed Dev */}
-      <ExplodedView />
-
-      {/* Experience Section */}
-      <section id="experience" className="py-20 md:py-32 border-t border-white/10 bg-black">
-        <div className="container px-4 mx-auto">
+          {/* Scroll indicator */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 md:mb-24 text-center"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-6xl font-bold mb-6 tracking-tight">{t('experience.title')}</h2>
-            <p className="text-neutral-500 max-w-xl mx-auto text-lg md:text-xl">
-              {t('experience.subtitle')}
-            </p>
+            <ArrowDown className="w-5 h-5 text-neutral-500 animate-bounce" />
           </motion.div>
-          <ExperienceTimeline />
-        </div>
-      </section>
+        </section>
 
-      {/* Experiment Log */}
-      <ExperimentLog />
+        {/* ===== ABOUT SECTION ===== */}
+        <section id="about" className="py-24 md:py-32 px-4 border-t border-white/10">
+          <div className="max-w-4xl mx-auto">
+            <SectionHeader title="About" />
 
-      {/* Skills Section */}
-      <section className="w-full relative z-10 bg-black py-32 md:py-48 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl md:text-7xl font-bold text-white mb-24 tracking-tighter">
-            {t('skills.title')}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {skills.map((group, index) => (
-              <motion.div
-                key={group.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="p-8 rounded-none border-l border-white/20 hover:border-white/60 transition-colors pl-8"
-              >
-                <h3 className="text-xl font-bold mb-8 text-white tracking-tight uppercase">
-                  <HackerText text={
-                    index === 0 ? t('skills.categories.core') :
-                      index === 1 ? t('skills.categories.web') :
-                        index === 2 ? t('skills.categories.ops') :
-                          t('skills.categories.pro')
-                  } />
-                </h3>
-                <ul className="space-y-4">
-                  {group.skills.map((skill, i) => (
-                    <li key={skill} className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
-                      <HackerText text={skill} className="font-mono text-lg tracking-tight" />
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+            <div className="grid md:grid-cols-3 gap-12">
+              <div className="md:col-span-2 space-y-6">
+                <p className="text-lg text-neutral-300 leading-relaxed">
+                  I'm a developer with an unconventional path. Started designing orthodontic solutions at
+                  <strong className="text-white"> Align Technology</strong>, then spent 6 years at
+                  <strong className="text-white"> Establishment Labs</strong> building medical devices—from
+                  R&D technician to Production Supervisor.
+                </p>
+                <p className="text-lg text-neutral-300 leading-relaxed">
+                  That background taught me what <span className="text-emerald-400">regulated environments</span> demand:
+                  documentation that survives FDA audits, traceability from concept to production,
+                  and processes where "works on my machine" doesn't exist.
+                </p>
+                <p className="text-lg text-neutral-300 leading-relaxed">
+                  Now I bring that same discipline to building web applications with
+                  <strong className="text-white"> Next.js, React, and TypeScript</strong>.
+                </p>
+              </div>
+
+              <div className="space-y-4 text-sm">
+                <InfoItem icon={<MapPin className="w-4 h-4" />} text="Costa Rica" />
+                <InfoItem icon={<Mail className="w-4 h-4" />} text="tonymora1982@gmail.com" />
+                <InfoItem icon={<Phone className="w-4 h-4" />} text="+506 7017-9787" />
+                <div className="pt-4 border-t border-white/10">
+                  <p className="text-neutral-500 mb-2">Education</p>
+                  <p className="text-white">B.S. Computer Engineering</p>
+                  <p className="text-neutral-400 text-xs">UNED · In Progress</p>
+                </div>
+                <div className="pt-4 border-t border-white/10">
+                  <p className="text-neutral-500 mb-2">Languages</p>
+                  <p className="text-white">Spanish (Native)</p>
+                  <p className="text-white">English (B2+)</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="min-h-screen w-full relative z-10 bg-neutral-950 py-32 md:py-48 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl md:text-7xl font-bold text-white mb-24 tracking-tighter">
-            {t('bento.title')}
-          </h2>
-          <ProjectShowcase />
-        </div>
-      </section>
+        {/* ===== EXPERIENCE SECTION ===== */}
+        <section id="experience" className="py-24 md:py-32 px-4 bg-neutral-950 border-t border-white/10">
+          <div className="max-w-4xl mx-auto">
+            <SectionHeader title="Experience" />
 
-      {/* Social Proof / Testimonials */}
-      <SocialProof />
+            <div className="space-y-8">
+              <ExperienceItem
+                title="Full Stack Developer"
+                company="GeeksLab"
+                type="Freelance"
+                period="2024 — Present"
+                description="Building production web apps with Next.js 15, React 19, TypeScript. Monorepo architecture with Turborepo."
+                isCurrent
+              />
+              <ExperienceItem
+                title="Administrative Assistant"
+                company="INS (Instituto Nacional de Seguros)"
+                period="May 2025 — Present"
+                description="Administrative operations and process optimization."
+                isCurrent
+              />
+              <ExperienceItem
+                title="Production Supervisor"
+                company="Establishment Labs"
+                period="Sep 2024 — Apr 2025"
+                description="Led production operations ensuring Safety, Quality, and compliance with ISO 13485."
+              />
+              <ExperienceItem
+                title="R&D Jr. Engineer"
+                company="Establishment Labs"
+                period="Sep 2021 — Oct 2023"
+                description="Design verification, prototyping, FDA/ISO compliance documentation for Class III medical devices."
+              />
+              <ExperienceItem
+                title="R&D Technician"
+                company="Establishment Labs"
+                period="Jan 2020 — Sep 2021"
+                description="Experimental testing and technical studies for products under development."
+              />
+              <ExperienceItem
+                title="CAD Designer"
+                company="Align Technology"
+                period="Mar 2017 — Mar 2018"
+                description="Designed patient-specific orthodontic solutions using treatment optimization software."
+              />
+            </div>
 
-      {/* Experiments Section */}
-      <ExperimentsSection />
+            <div className="mt-12 text-center">
+              <AnimatedButton href="/cv" variant="secondary" className="border-white/20">
+                View Full Resume <ChevronRight className="w-4 h-4 ml-1" />
+              </AnimatedButton>
+            </div>
+          </div>
+        </section>
 
-      {/* Inverse Application Form */}
-      <InverseApplication />
+        {/* ===== PROJECTS SECTION ===== */}
+        <section id="projects" className="py-24 md:py-32 px-4 border-t border-white/10">
+          <div className="max-w-4xl mx-auto">
+            <SectionHeader title="Projects" />
 
-      {/* Footer */}
-      < AnimatedFooter />
-    </main >
+            <div className="grid md:grid-cols-2 gap-8">
+              <ProjectCard
+                title="NexaStore"
+                description="Full-stack e-commerce platform with Next.js 15, Stripe integration, and real-time inventory."
+                tags={["Next.js", "React", "Stripe", "Tailwind"]}
+                liveUrl="https://nexastore.geekslab.tech"
+                codeUrl="https://github.com/Tonymora1982/Geekslab-portfolio/tree/main/apps/nexastore"
+              />
+              <ProjectCard
+                title="ISO 13485 QMS"
+                description="Quality Management System for medical device compliance. Automated traceability matrix and audit trails."
+                tags={["Python", "SQL", "Docker", "React"]}
+                caseStudyUrl="/qms"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ===== SKILLS SECTION ===== */}
+        <section id="skills" className="py-24 md:py-32 px-4 bg-neutral-950 border-t border-white/10">
+          <div className="max-w-4xl mx-auto">
+            <SectionHeader title="Skills" />
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <SkillGroup
+                title="Frontend"
+                skills={["React", "Next.js", "TypeScript", "Tailwind CSS"]}
+              />
+              <SkillGroup
+                title="Backend"
+                skills={["Node.js", "Python", "SQL", "C#"]}
+              />
+              <SkillGroup
+                title="DevOps"
+                skills={["Docker", "Linux", "Git", "CI/CD"]}
+              />
+              <SkillGroup
+                title="Domain"
+                skills={["R&D Processes", "ISO 13485", "FDA Compliance", "Agile"]}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ===== CONTACT SECTION ===== */}
+        <section id="contact" className="py-24 md:py-32 px-4 border-t border-white/10">
+          <div className="max-w-2xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">
+                Let's Build Something
+              </h2>
+              <p className="text-lg text-neutral-400 mb-8">
+                Available for freelance projects and full-time opportunities.
+                <br />
+                <span className="text-neutral-500">Costa Rica · UTC-6</span>
+              </p>
+
+              <AnimatedButton
+                href="mailto:tonymora1982@gmail.com"
+                variant="primary"
+                className="bg-emerald-500 text-black hover:bg-emerald-400 px-8 py-4 text-lg"
+              >
+                tonymora1982@gmail.com
+              </AnimatedButton>
+
+              <div className="flex justify-center gap-6 mt-8">
+                <SocialLink href="https://github.com/Tonymora1982" icon={<Github className="w-5 h-5" />} label="GitHub" />
+                <SocialLink href="https://www.linkedin.com/in/anthony-mora-parra-94941282/" icon={<Linkedin className="w-5 h-5" />} label="LinkedIn" />
+                <SocialLink href="https://wa.me/50670179787" icon={<Phone className="w-5 h-5" />} label="WhatsApp" />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <AnimatedFooter />
+      </main>
+    </>
+  );
+}
+
+/* ===== COMPONENTS ===== */
+
+/**
+ * Section Header Component
+ */
+function SectionHeader({ title }: { title: string }) {
+  return (
+    <motion.h2
+      className="text-sm font-mono uppercase tracking-widest text-emerald-400 mb-12"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+    >
+      {title}
+    </motion.h2>
+  );
+}
+
+/**
+ * Social Link Component
+ */
+function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-neutral-400 hover:text-white transition-colors"
+      aria-label={label}
+    >
+      {icon}
+    </a>
+  );
+}
+
+/**
+ * Info Item Component
+ */
+function InfoItem({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <div className="flex items-center gap-2 text-neutral-400">
+      {icon}
+      <span>{text}</span>
+    </div>
+  );
+}
+
+/**
+ * Experience Item Component
+ */
+interface ExperienceItemProps {
+  title: string;
+  company: string;
+  type?: string;
+  period: string;
+  description: string;
+  isCurrent?: boolean;
+}
+
+function ExperienceItem({ title, company, type, period, description, isCurrent }: ExperienceItemProps) {
+  return (
+    <motion.div
+      className="group grid md:grid-cols-[200px_1fr] gap-4"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      <div className={`font-mono text-sm ${isCurrent ? 'text-emerald-400' : 'text-neutral-500'}`}>
+        {period}
+      </div>
+      <div>
+        <h3 className="text-lg font-medium text-white group-hover:text-emerald-400 transition-colors">
+          {title}
+          {type && <span className="text-neutral-500 font-normal"> · {type}</span>}
+        </h3>
+        <p className="text-neutral-400">{company}</p>
+        <p className="text-neutral-500 text-sm mt-2">{description}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+/**
+ * Project Card Component
+ */
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  tags: string[];
+  liveUrl?: string;
+  codeUrl?: string;
+  caseStudyUrl?: string;
+}
+
+function ProjectCard({ title, description, tags, liveUrl, codeUrl, caseStudyUrl }: ProjectCardProps) {
+  return (
+    <motion.div
+      className="group p-6 bg-neutral-900/50 border border-white/10 rounded-lg hover:border-emerald-500/50 transition-colors"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+        {title}
+      </h3>
+      <p className="text-neutral-400 text-sm mb-4">{description}</p>
+
+      <div className="flex flex-wrap gap-2 mb-4">
+        {tags.map(tag => (
+          <span key={tag} className="px-2 py-1 text-xs bg-white/5 rounded text-neutral-400">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="flex gap-4 text-sm">
+        {liveUrl && (
+          <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+            <ExternalLink className="w-4 h-4" /> Live
+          </a>
+        )}
+        {codeUrl && (
+          <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white flex items-center gap-1">
+            <Github className="w-4 h-4" /> Code
+          </a>
+        )}
+        {caseStudyUrl && (
+          <Link href={caseStudyUrl} className="text-neutral-400 hover:text-white flex items-center gap-1">
+            <ChevronRight className="w-4 h-4" /> Case Study
+          </Link>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+/**
+ * Skill Group Component
+ */
+function SkillGroup({ title, skills }: { title: string; skills: string[] }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      <h3 className="text-sm font-medium text-white mb-4">{title}</h3>
+      <ul className="space-y-2">
+        {skills.map(skill => (
+          <li key={skill} className="text-neutral-400 text-sm hover:text-white transition-colors">
+            {skill}
+          </li>
+        ))}
+      </ul>
+    </motion.div>
   );
 }
