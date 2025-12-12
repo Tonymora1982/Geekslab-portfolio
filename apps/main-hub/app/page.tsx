@@ -48,8 +48,13 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
+              {/* Brand */}
+              <p className="text-sm font-mono text-neutral-500 uppercase tracking-widest mb-4">
+                GeeksLab
+              </p>
+
               {/* Name */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4">
                 Anthony Mora
               </h1>
 

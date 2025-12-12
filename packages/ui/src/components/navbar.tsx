@@ -55,7 +55,7 @@ export const Navbar = () => {
                         href="/"
                         className="text-lg font-bold text-white tracking-tight hover:text-emerald-400 transition-colors"
                     >
-                        Anthony Mora
+                        GeeksLab
                     </Link>
 
                     {/* Desktop Navigation */}
