@@ -2,37 +2,79 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "../lib/utils";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { Menu, X, Circle } from "lucide-react";
+import { useState, useEffect } from "react";
 
 /**
- * Navbar Component
+ * Enhanced Navbar Component
  * 
- * Clean, minimal navigation for single-page portfolio.
- * - Scroll-based navigation on homepage
- * - Standard links on other pages
- * - Mobile hamburger menu
+ * Premium navigation with:
+ * - Active section indicator (tracks scroll position)
+ * - Underline hover animation
+ * - Hide on scroll down, show on scroll up
+ * - Availability status badge
+ * - Smooth mobile menu
  */
 export const Navbar = () => {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState("");
+    const [hidden, setHidden] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const isHome = pathname === "/";
 
-    // Navigation items - scroll sections on homepage, regular links elsewhere
+    const { scrollY } = useScroll();
+
+    // Hide navbar on scroll down, show on scroll up
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        if (latest > previous && latest > 150) {
+            setHidden(true);
+        } else {
+            setHidden(false);
+        }
+        setScrolled(latest > 50);
+    });
+
+    // Track active section based on scroll position
+    useEffect(() => {
+        if (!isHome) return;
+
+        const sections = ["hero", "about", "experience", "projects", "skills", "contact"];
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
+                    }
+                });
+            },
+            { rootMargin: "-50% 0px -50% 0px" }
+        );
+
+        sections.forEach((id) => {
+            const element = document.getElementById(id);
+            if (element) observer.observe(element);
+        });
+
+        return () => observer.disconnect();
+    }, [isHome]);
+
+    // Navigation items
     const navItems = isHome ? [
-        { name: "About", path: "#about" },
-        { name: "Experience", path: "#experience" },
-        { name: "Projects", path: "#projects" },
-        { name: "Contact", path: "#contact" },
+        { name: "About", path: "#about", section: "about" },
+        { name: "Experience", path: "#experience", section: "experience" },
+        { name: "Projects", path: "#projects", section: "projects" },
+        { name: "Contact", path: "#contact", section: "contact" },
     ] : [
-        { name: "Home", path: "/" },
-        { name: "Projects", path: "/#projects" },
-        { name: "Contact", path: "/#contact" },
+        { name: "Home", path: "/", section: "" },
+        { name: "Projects", path: "/#projects", section: "" },
+        { name: "Contact", path: "/#contact", section: "" },
     ];
 
-    // Handle smooth scrolling for hash links
+    // Handle smooth scrolling
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
         if (path.startsWith("#")) {
             e.preventDefault();
@@ -47,29 +89,51 @@ export const Navbar = () => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-            <div className="max-w-4xl mx-auto px-4">
+        <motion.nav
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+                    ? "bg-black/90 backdrop-blur-lg border-b border-white/10"
+                    : "bg-transparent"
+                }`}
+            animate={{ y: hidden ? -100 : 0 }}
+            transition={{ duration: 0.3 }}
+        >
+            <div className="max-w-5xl mx-auto px-6">
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo/Name */}
-                    <Link
-                        href="/"
-                        className="text-lg font-bold text-white tracking-tight hover:text-emerald-400 transition-colors"
-                    >
-                        GeeksLab
+
+                    {/* Logo + Status */}
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <span className="text-lg font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+                            GeeksLab
+                        </span>
+                        {/* Availability indicator */}
+                        <span className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                            <Circle className="w-2 h-2 fill-emerald-400 text-emerald-400 animate-pulse" />
+                            <span className="text-[10px] text-emerald-400 font-medium uppercase tracking-wider">
+                                Available
+                            </span>
+                        </span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-8">
+                    <div className="hidden md:flex items-center gap-1">
                         {navItems.map((item) => (
-                            <a
+                            <NavLink
                                 key={item.path}
                                 href={item.path}
+                                isActive={activeSection === item.section}
                                 onClick={(e) => handleClick(e, item.path)}
-                                className="text-sm text-neutral-400 hover:text-white transition-colors"
                             >
                                 {item.name}
-                            </a>
+                            </NavLink>
                         ))}
+
+                        {/* CTA Button */}
+                        <a
+                            href="mailto:tonymora1982@gmail.com?subject=Project%20Inquiry"
+                            className="ml-4 px-4 py-2 text-sm font-medium bg-emerald-500 text-black rounded-lg hover:bg-emerald-400 transition-colors"
+                        >
+                            Hire Me
+                        </a>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -78,7 +142,12 @@ export const Navbar = () => {
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
                     >
-                        {isOpen ? <X size={20} /> : <Menu size={20} />}
+                        <motion.div
+                            animate={{ rotate: isOpen ? 90 : 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            {isOpen ? <X size={24} /> : <Menu size={24} />}
+                        </motion.div>
                     </button>
                 </div>
             </div>
@@ -90,23 +159,83 @@ export const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-black border-b border-white/10"
+                        transition={{ duration: 0.3 }}
+                        className="md:hidden bg-black/95 backdrop-blur-lg border-b border-white/10"
                     >
-                        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col gap-4">
-                            {navItems.map((item) => (
-                                <a
+                        <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col gap-2">
+                            {navItems.map((item, index) => (
+                                <motion.a
                                     key={item.path}
                                     href={item.path}
                                     onClick={(e) => handleClick(e, item.path)}
-                                    className="text-lg text-neutral-400 hover:text-white transition-colors"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className={`text-2xl font-medium py-2 transition-colors ${activeSection === item.section
+                                            ? "text-emerald-400"
+                                            : "text-neutral-400 hover:text-white"
+                                        }`}
                                 >
                                     {item.name}
-                                </a>
+                                </motion.a>
                             ))}
+
+                            {/* Mobile CTA */}
+                            <motion.a
+                                href="mailto:tonymora1982@gmail.com?subject=Project%20Inquiry"
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: navItems.length * 0.1 }}
+                                className="mt-4 px-6 py-3 text-center text-lg font-medium bg-emerald-500 text-black rounded-lg"
+                            >
+                                Hire Me
+                            </motion.a>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </nav>
+        </motion.nav>
     );
 };
+
+/**
+ * NavLink Component - Individual nav item with underline animation
+ */
+function NavLink({
+    href,
+    isActive,
+    onClick,
+    children
+}: {
+    href: string;
+    isActive: boolean;
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+    children: React.ReactNode;
+}) {
+    return (
+        <a
+            href={href}
+            onClick={onClick}
+            className="relative px-4 py-2 text-sm transition-colors group"
+        >
+            <span className={isActive ? "text-white" : "text-neutral-400 group-hover:text-white"}>
+                {children}
+            </span>
+
+            {/* Underline indicator */}
+            <motion.span
+                className="absolute bottom-0 left-4 right-4 h-0.5 bg-emerald-400 rounded-full"
+                initial={false}
+                animate={{
+                    scaleX: isActive ? 1 : 0,
+                    opacity: isActive ? 1 : 0
+                }}
+                transition={{ duration: 0.2 }}
+                style={{ originX: 0.5 }}
+            />
+
+            {/* Hover underline */}
+            <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-white/20 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+        </a>
+    );
+}
