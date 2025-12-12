@@ -32,15 +32,15 @@ export default function Home() {
       <main className="bg-black text-white min-h-screen pt-16">
 
         {/* ===== HERO SECTION ===== */}
-        <section id="hero" className="min-h-[90vh] flex items-center justify-center px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
+        <section id="hero" className="min-h-[90vh] flex items-center justify-center px-4 relative spotlight-emerald">
+          <div className="max-w-4xl mx-auto text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               {/* Value Proposition - Direct, memorable */}
-              <div className="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
+              <div className="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6 glow-emerald">
                 <span className="text-emerald-400 text-sm font-medium">
                   13 years in regulated environments → audit-ready code in production
                 </span>
@@ -63,7 +63,7 @@ export default function Home() {
               </p>
 
               {/* Production Proof Block - Verifiable metrics */}
-              <div className="flex flex-wrap justify-center gap-6 text-sm mb-8 py-4 border-y border-white/10">
+              <div className="flex flex-wrap justify-center gap-8 text-sm mb-8 py-6 border-y border-emerald-500/20 bg-gradient-emerald rounded-lg">
                 <ProofMetric value="26" label="E2E Tests" />
                 <ProofMetric value="0" label="TS Errors" />
                 <ProofMetric value="<200ms" label="LCP" />
@@ -481,7 +481,7 @@ interface ProjectCardProps {
 function ProjectCard({ title, subtitle, description, problem, result, tags, liveUrl, codeUrl, caseStudyUrl }: ProjectCardProps) {
   return (
     <motion.div
-      className="group p-6 bg-neutral-900/50 border border-white/10 rounded-lg hover:border-emerald-500/50 transition-colors"
+      className="group p-6 bg-neutral-900/50 border border-white/10 rounded-lg hover-glow transition-all duration-300"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
