@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { DialogflowChat } from "@/components/dialogflow-chat";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -135,6 +136,13 @@ export default function RootLayout({
             <ScrollToTop />
           </LanguageProvider>
         </SmoothScroll>
+
+        {/* Dialogflow Messenger Chatbot Integration */}
+        <DialogflowChat
+          agentId="c5c3e09c-f873-4644-8b57-95749196aded"
+          chatTitle="GeeksLab Assistant"
+          languageCode="en"
+        />
       </body>
     </html>
   );
