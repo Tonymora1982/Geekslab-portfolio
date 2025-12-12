@@ -25,7 +25,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'cd apps/main-hub && npm run dev',
+    command: 'npm --prefix apps/main-hub run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: true,
     timeout: 180 * 1000,
