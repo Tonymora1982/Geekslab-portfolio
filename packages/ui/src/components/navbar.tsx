@@ -91,8 +91,8 @@ export const Navbar = () => {
     return (
         <motion.nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                    ? "bg-black/90 backdrop-blur-lg border-b border-white/10"
-                    : "bg-transparent"
+                ? "bg-black/90 backdrop-blur-lg border-b border-white/10"
+                : "bg-transparent"
                 }`}
             animate={{ y: hidden ? -100 : 0 }}
             transition={{ duration: 0.3 }}
@@ -114,8 +114,8 @@ export const Navbar = () => {
                         </span>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-1">
+                    {/* Desktop Navigation - Hidden on mobile, visible on md+ */}
+                    <div className="desktop-nav items-center gap-1">
                         {navItems.map((item) => (
                             <NavLink
                                 key={item.path}
@@ -172,8 +172,8 @@ export const Navbar = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.1 }}
                                     className={`text-2xl font-medium py-2 transition-colors ${activeSection === item.section
-                                            ? "text-emerald-400"
-                                            : "text-neutral-400 hover:text-white"
+                                        ? "text-emerald-400"
+                                        : "text-neutral-400 hover:text-white"
                                         }`}
                                 >
                                     {item.name}

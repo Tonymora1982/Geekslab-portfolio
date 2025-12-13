@@ -119,6 +119,18 @@
   }
 }
 
+/* === NAVBAR MOBILE FIX === */
+/* Explicit responsive class for desktop navigation - fixes Tailwind v4 issue */
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
 /* === VISUAL UTILITIES === */
 
 /* Glass panel effect */
