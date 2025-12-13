@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, MouseEvent } from "react";
+import { useEffect, useRef, useState, MouseEvent } from "react";
 import anime from "animejs/lib/anime.es.js";
 
 interface AnimatedButtonProps {
@@ -24,8 +24,14 @@ export const AnimatedButton = ({
 }: AnimatedButtonProps) => {
     const buttonRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
     const magneticStrength = 0.3;
+    const [reduceMotion, setReduceMotion] = useState(false);
+
+    useEffect(() => {
+        setReduceMotion(window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false);
+    }, []);
 
     const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+        if (reduceMotion) return;
         if (!buttonRef.current) return;
 
         const rect = buttonRef.current.getBoundingClientRect();
@@ -43,6 +49,7 @@ export const AnimatedButton = ({
     };
 
     const handleMouseEnter = () => {
+        if (reduceMotion) return;
         if (!buttonRef.current) return;
 
         anime({
@@ -54,6 +61,7 @@ export const AnimatedButton = ({
     };
 
     const handleMouseLeave = () => {
+        if (reduceMotion) return;
         if (!buttonRef.current) return;
 
         anime({
@@ -69,13 +77,14 @@ export const AnimatedButton = ({
     const handleClick = (e: MouseEvent<HTMLElement>) => {
         if (!buttonRef.current) return;
 
-        // Click animation
-        anime({
-            targets: buttonRef.current,
-            scale: [1.05, 0.95, 1],
-            duration: 400,
-            easing: "easeOutElastic(1, .8)",
-        });
+        if (!reduceMotion) {
+            anime({
+                targets: buttonRef.current,
+                scale: [1.05, 0.95, 1],
+                duration: 400,
+                easing: "easeOutElastic(1, .8)",
+            });
+        }
 
         if (onClick) {
             onClick();

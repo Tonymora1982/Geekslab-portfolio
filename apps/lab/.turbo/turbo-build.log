@@ -6,6 +6,16 @@ npm WARN ignoring workspace config at E:\Portfolio\apps\lab/.npmrc
   ▲ Next.js 14.2.29
 
    Creating an optimized production build ...
+Found 1 warning while optimizing generated CSS:
+
+[2m│   }[22m
+[2m│ }[22m
+[2m│[22m @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+[2m┆[22m        [33m[2m^--[22m @import rules must precede all rules aside from @charset and @layer statements[39m
+[2m┆[22m
+[2m│ :root {[22m
+[2m│   --factory-dark: #0a0a0f;[22m
+
  ✓ Compiled successfully
    Linting and checking validity of types ...
    Collecting page data ...

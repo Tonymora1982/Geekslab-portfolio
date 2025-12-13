@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { DialogflowChat } from "@/components/dialogflow-chat";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
+const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -76,7 +78,7 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
-import { Navbar, SmoothScroll, NoiseOverlay, MagneticCursor, Preloader, LanguageProvider, ScrollToTop } from "@geekslab/ui";
+import { Navbar, SmoothScroll, Preloader, LanguageProvider, ScrollToTop } from "@geekslab/ui";
 
 // JSON-LD Structured Data
 const jsonLd = {
@@ -125,11 +127,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={inter.className}>
-        <Preloader />
+      <body className={`${inter.className} ${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
+        <Preloader mode="never" />
         <SmoothScroll>
           {/* NoiseOverlay removed - was causing severe visual issues */}
-          <MagneticCursor />
           <LanguageProvider>
             <Navbar />
             {children}

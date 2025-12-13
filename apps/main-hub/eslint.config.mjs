@@ -1,16 +1,18 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import geekslabConfig from "@geekslab/config/eslint.config.js";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 
-const eslintConfig = defineConfig([
-  ...geekslabConfig,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
-]);
+const eslintConfig = [
+  ...nextCoreWebVitals,
+  {
+    ignores: [
+      ".turbo/**",
+    ],
+  },
+  {
+    rules: {
+      "react-hooks/set-state-in-effect": "warn",
+      "react-hooks/static-components": "warn",
+    },
+  },
+];
 
 export default eslintConfig;

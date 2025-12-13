@@ -6,7 +6,7 @@
     "dev": "next dev --port 3011",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-three/drei": "^9.117.0",

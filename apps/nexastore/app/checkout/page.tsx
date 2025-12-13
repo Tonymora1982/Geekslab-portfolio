@@ -18,6 +18,7 @@ export default function CheckoutPage() {
   const { items, getTotalPrice, clearCart } = useCartStore();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +28,7 @@ export default function CheckoutPage() {
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     setIsProcessing(false);
+    setOrderId(Math.random().toString(36).substring(2, 8).toUpperCase());
     setIsComplete(true);
     clearCart();
   };
@@ -48,7 +50,7 @@ export default function CheckoutPage() {
               with your order details.
             </p>
             <p className="text-sm text-gray-500 mb-8">
-              Order #NX-{Math.random().toString(36).substring(2, 8).toUpperCase()}
+              Order #NX-{orderId ?? "------"}
             </p>
             <Link
               href="/products"

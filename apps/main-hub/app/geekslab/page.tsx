@@ -5,6 +5,7 @@ import { NoiseOverlay, MagneticCursor } from "@geekslab/ui";
 import { Navbar } from "@geekslab/ui";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Terminal, Code2, Cpu, Zap } from "lucide-react";
+import Link from "next/link";
 
 export default function GeekslabPage() {
     const { t } = useLanguage();
@@ -86,13 +87,13 @@ export default function GeekslabPage() {
                             <Github className="w-4 h-4" />
                             <span>{t('geekslabPage.demo.git')}</span>
                         </a>
-                        <a
+                        <Link
                             href="/"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-black font-mono font-bold rounded hover:bg-green-400 transition-colors"
                         >
                             <span>{t('geekslabPage.demo.explore')}</span>
                             <ExternalLink className="w-4 h-4" />
-                        </a>
+                        </Link>
                     </motion.div>
                 </div>
             </section>

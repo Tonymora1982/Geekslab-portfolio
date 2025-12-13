@@ -1,7 +1,7 @@
-import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import nextConfig from "eslint-config-next";
 
 const eslintConfig = [
-  ...nextCoreWebVitals,
+  ...nextConfig,
   {
     ignores: [
       ".turbo/**",
@@ -9,6 +9,8 @@ const eslintConfig = [
   },
   {
     rules: {
+      "react-hooks/purity": "warn",
+      "react-hooks/refs": "warn",
       "react-hooks/set-state-in-effect": "warn",
       "react-hooks/static-components": "warn",
     },

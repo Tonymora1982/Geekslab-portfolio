@@ -26,7 +26,7 @@ export default function Home() {
     <>
       {/* Progress indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-emerald-500 origin-left z-[100]"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-emerald-400/70 origin-left z-[100]"
         style={{ scaleX }}
       />
 
@@ -35,7 +35,7 @@ export default function Home() {
         {/* ===== HERO SECTION - CINEMATIC REDESIGN ===== */}
         <section id="hero" className="min-h-screen flex flex-col justify-center px-4 relative overflow-hidden">
           {/* Subtle gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/20 via-black to-black pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/10 via-black to-black pointer-events-none" />
 
           <div className="max-w-6xl mx-auto w-full relative z-10">
             {/* Staggered headline animation */}
@@ -45,32 +45,32 @@ export default function Home() {
               transition={{ duration: 0.3 }}
               className="mb-6"
             >
-              <span className="inline-flex items-center gap-2 text-emerald-400 text-sm font-mono tracking-wider uppercase">
-                <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono uppercase tracking-[0.35em] text-neutral-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80" />
                 {t('homepage.hero.availability')}
               </span>
             </motion.div>
 
-            {/* Main headline - MASSIVE typography */}
-            <div className="overflow-hidden mb-4">
+            {/* Main headline - distinctive, less generic */}
+            <div className="overflow-hidden mb-3">
               <motion.h1
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[clamp(3rem,12vw,9rem)] font-bold tracking-tighter leading-[0.9]"
+                className="font-display text-[clamp(3.25rem,10vw,7.25rem)] font-semibold tracking-[-0.045em] leading-[0.92]"
               >
-                <span className="block text-white">Full Stack</span>
+                <span className="block text-white">Anthony Mora</span>
               </motion.h1>
             </div>
             <div className="overflow-hidden mb-8">
-              <motion.h1
+              <motion.h2
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[clamp(3rem,12vw,9rem)] font-bold tracking-tighter leading-[0.9]"
+                transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="font-display text-[clamp(1.5rem,4.2vw,3.25rem)] font-medium tracking-[-0.02em] leading-[1.05] text-neutral-500"
               >
-                <span className="block text-neutral-600">Developer.</span>
-              </motion.h1>
+                Full-stack engineer.
+              </motion.h2>
             </div>
 
             {/* Value proposition - clean and direct */}
@@ -78,7 +78,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl md:text-2xl text-neutral-400 max-w-2xl mb-12 leading-relaxed"
+              className="text-lg md:text-xl text-neutral-400 max-w-2xl mb-12 leading-relaxed"
             >
               {t('homepage.hero.valueProposition')}
               <span className="text-white"> — {t('homepage.hero.quote')}</span>
@@ -124,7 +124,7 @@ export default function Home() {
                 <span className="text-neutral-500">{t('homepage.metrics.tsErrors')}</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-bold text-emerald-400">ISO</span>
+                <span className="text-3xl font-bold text-emerald-300">ISO</span>
                 <span className="text-neutral-500">{t('homepage.metrics.auditReady')}</span>
               </div>
               <div className="flex items-center gap-3">
@@ -141,12 +141,12 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.5 }}
           >
-            <ArrowDown className="w-5 h-5 text-neutral-600 animate-bounce" />
+            <ArrowDown className="w-5 h-5 text-neutral-600/80" />
           </motion.div>
         </section>
 
         {/* ===== ABOUT SECTION ===== */}
-        <section id="about" className="py-32 px-4 border-t border-white/10">
+        <section id="about" className="py-24 px-4 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
             <SectionHeader title={t('homepage.about.title')} />
 
@@ -154,7 +154,7 @@ export default function Home() {
               <div className="md:col-span-2 space-y-6">
                 <p className="text-lg text-neutral-300 leading-relaxed">
                   {t('homepage.about.intro')} <strong className="text-white">{t('homepage.about.companyHighlight')}</strong> {t('homepage.about.introEnd')}
-                  <span className="text-emerald-400"> {t('homepage.about.requirementsHighlight')}</span>{t('homepage.about.requirementsDesc')}
+                  <span className="text-emerald-300"> {t('homepage.about.requirementsHighlight')}</span>{t('homepage.about.requirementsDesc')}
                 </p>
                 <p className="text-lg text-neutral-300 leading-relaxed">
                   {t('homepage.about.currentWork')} <strong className="text-white">{t('homepage.about.techHighlight')}</strong>{t('homepage.about.currentWorkEnd')}
@@ -194,7 +194,7 @@ export default function Home() {
 
             {/* Software Development */}
             <div className="mb-12">
-              <h3 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">{t('homepage.experience.software')}</h3>
+              <h3 className="text-xs font-mono text-neutral-400 uppercase tracking-[0.35em] mb-6">{t('homepage.experience.software')}</h3>
               <div className="space-y-6">
                 <ExperienceItem
                   title="Lead Full Stack Engineer"
@@ -260,7 +260,7 @@ export default function Home() {
         </section >
 
         {/* ===== PROJECTS SECTION ===== */}
-        <section id="projects" className="py-32 px-4 border-t border-white/10">
+        <section id="projects" className="py-24 px-4 border-t border-white/10">
           <div className="max-w-5xl mx-auto">
             <SectionHeader title={t('homepage.projects.title')} />
 
@@ -287,12 +287,12 @@ export default function Home() {
             </div>
 
             {/* Evidence Layer CTA */}
-            <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
+            <div className="p-6 bg-white/5 border border-white/10 rounded-lg">
               <h3 className="text-lg font-bold text-white mb-2">{t('homepage.projects.productionProofTitle')}</h3>
               <p className="text-neutral-400 text-sm mb-4">
                 {t('homepage.projects.productionProofDesc')}
               </p>
-              <AnimatedButton href="/evidence-layer" variant="secondary" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10">
+              <AnimatedButton href="/evidence-layer" variant="secondary" className="border-white/20 text-white hover:border-emerald-400/40 hover:bg-white/10">
                 {t('homepage.projects.viewEvidenceLayer')} <ChevronRight className="w-4 h-4 ml-1" />
               </AnimatedButton>
             </div>
@@ -308,21 +308,21 @@ export default function Home() {
               <div>
                 <h3 className="text-white font-medium mb-4">{t('homepage.services.scope')}</h3>
                 <ul className="space-y-2 text-neutral-400 text-sm">
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.0')}</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.1')}</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.2')}</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.3')}</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.4')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.scopeItems.0')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.scopeItems.1')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.scopeItems.2')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.scopeItems.3')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.scopeItems.4')}</li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-white font-medium mb-4">{t('homepage.services.howIWork')}</h3>
                 <ul className="space-y-2 text-neutral-400 text-sm">
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.0')}</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.1')}</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.2')}</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.3')}</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.4')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.howItems.0')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.howItems.1')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.howItems.2')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.howItems.3')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-300/80" /> {t('homepage.services.howItems.4')}</li>
                 </ul>
               </div>
             </div>
@@ -387,14 +387,14 @@ export default function Home() {
                 <AnimatedButton
                   href="mailto:tonymora1982@gmail.com?subject=Project%20Inquiry%20for%20Anthony%20Mora&body=Hi%20Anthony%2C%0A%0AProject%3A%20%0ATimeline%3A%20%0ABudget%3A%20%0AStack%20preferences%3A%20%0A%0AThanks!"
                   variant="primary"
-                  className="bg-emerald-500 text-black hover:bg-emerald-400 px-8 py-4"
+                  className="bg-white text-black hover:bg-neutral-200 px-8 py-4"
                 >
                   <Mail className="w-5 h-5 mr-2" /> {t('homepage.contact.startConversation')}
                 </AnimatedButton>
               </div>
 
               <div className="text-neutral-500 text-sm mb-8">
-                <p>{t('homepage.contact.emailDirectly')} <a href="mailto:tonymora1982@gmail.com" className="text-white hover:text-emerald-400">tonymora1982@gmail.com</a></p>
+                <p>{t('homepage.contact.emailDirectly')} <a href="mailto:tonymora1982@gmail.com" className="text-white hover:text-emerald-300">tonymora1982@gmail.com</a></p>
                 <p className="mt-2">{t('homepage.contact.overlapInfo')}</p>
               </div>
 
@@ -418,7 +418,7 @@ export default function Home() {
 function SectionHeader({ title }: { title: string }) {
   return (
     <motion.h2
-      className="text-sm font-mono uppercase tracking-widest text-emerald-400 mb-12"
+      className="text-xs font-mono uppercase tracking-[0.35em] text-neutral-400 mb-10 before:content-[''] before:inline-block before:h-px before:w-8 before:bg-emerald-400/40 before:mr-3 before:align-middle"
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
@@ -468,11 +468,11 @@ function ExperienceItem({ title, company, period, description, tags, isCurrent }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
-      <div className={`font-mono text-sm ${isCurrent ? 'text-emerald-400' : 'text-neutral-500'}`}>
+      <div className={`font-mono text-sm ${isCurrent ? 'text-emerald-300' : 'text-neutral-500'}`}>
         {period}
       </div>
       <div>
-        <h3 className="text-lg font-medium text-white group-hover:text-emerald-400 transition-colors">
+        <h3 className="font-display text-lg font-medium text-white transition-colors">
           {title}
         </h3>
         <p className="text-neutral-400">{company}</p>
@@ -512,7 +512,7 @@ function ProjectCard({ title, subtitle, description, problem, result, tags, live
       viewport={{ once: true }}
     >
       <p className="text-xs text-neutral-500 uppercase tracking-widest mb-2">{subtitle}</p>
-      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+      <h3 className="font-display text-xl font-semibold tracking-tight text-white mb-3 transition-colors">
         {title}
       </h3>
       <p className="text-neutral-400 text-sm mb-4">{description}</p>
@@ -520,7 +520,7 @@ function ProjectCard({ title, subtitle, description, problem, result, tags, live
       {(problem || result) && (
         <div className="space-y-2 mb-4 text-xs">
           {problem && <p className="text-neutral-500"><strong className="text-neutral-400">Problem:</strong> {problem}</p>}
-          {result && <p className="text-neutral-500"><strong className="text-emerald-400">Result:</strong> {result}</p>}
+          {result && <p className="text-neutral-500"><strong className="text-emerald-300">Result:</strong> {result}</p>}
         </div>
       )}
 
@@ -534,7 +534,7 @@ function ProjectCard({ title, subtitle, description, problem, result, tags, live
 
       <div className="flex gap-4 text-sm">
         {liveUrl && (
-          <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+          <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-300 hover:text-emerald-200 flex items-center gap-1">
             <ExternalLink className="w-4 h-4" /> Live
           </a>
         )}

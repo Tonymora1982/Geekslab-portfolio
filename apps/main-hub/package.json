@@ -7,7 +7,7 @@
     "build": "next build",
     "build:hostinger": "node scripts/build-hostinger.js",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "preview": "npx serve@latest out",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",

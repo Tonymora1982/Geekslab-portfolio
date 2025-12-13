@@ -1,77 +1,115 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import anime from "animejs/lib/anime.es.js";
 
-export const Preloader = () => {
+type PreloaderMode = "always" | "session" | "never";
+
+export const Preloader = ({
+    mode = "session",
+    storageKey = "geekslab_preloader_seen_v1",
+    durationMs = 900,
+}: {
+    mode?: PreloaderMode;
+    storageKey?: string;
+    durationMs?: number;
+}) => {
     const [progress, setProgress] = useState(0);
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(mode !== "never");
+    const rootRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Animate the counter
+        if (mode === "never") {
+            setIsVisible(false);
+            return;
+        }
+
+        const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+        if (reduceMotion) {
+            setIsVisible(false);
+            return;
+        }
+
+        if (mode === "session") {
+            try {
+                if (sessionStorage.getItem(storageKey) === "1") {
+                    setIsVisible(false);
+                    return;
+                }
+                sessionStorage.setItem(storageKey, "1");
+            } catch {
+                // If storage is blocked, fall back to showing once.
+            }
+        }
+
+        setIsVisible(true);
+
         const counter = { value: 0 };
-        let animationCompleted = false;
+        let finished = false;
 
-        /**
-         * Triggers the exit animation to slide the preloader out of view.
-         * Sets animationCompleted flag to prevent duplicate triggers.
-         */
         const triggerExit = () => {
-            if (animationCompleted) return;
-            animationCompleted = true;
+            if (finished) return;
+            finished = true;
 
-            // Force progress to 100% for visual consistency
             setProgress(100);
 
-            // Exit animation - slide up and hide
+            if (!rootRef.current) {
+                setIsVisible(false);
+                return;
+            }
+
             anime({
-                targets: "#preloader",
-                translateY: "-100%",
-                duration: 1000,
-                easing: "easeOutExpo",
+                targets: rootRef.current,
+                opacity: [1, 0],
+                translateY: [0, -12],
+                duration: 450,
+                easing: "easeOutQuad",
                 complete: () => setIsVisible(false),
             });
         };
 
-        // Start the counter animation from 0 to 100
-        anime({
+        const progressAnimation = anime({
             targets: counter,
             value: 100,
-            duration: 2000,
-            easing: "cubicBezier(0.25, 1, 0.5, 1)",
-            round: 1, // No decimals
+            duration: durationMs,
+            easing: "easeOutCubic",
+            round: 1,
             update: () => setProgress(counter.value),
             complete: triggerExit,
         });
 
-        // Safety timeout: force completion after 3 seconds if animation gets stuck
-        // This fixes the bug where anime.js round:1 can cause the counter to stop at 99.34%
-        const safetyTimeout = setTimeout(() => {
-            if (!animationCompleted) {
-                console.warn("[Preloader] Animation timeout - forcing completion");
-                triggerExit();
-            }
-        }, 3000);
+        const safetyTimeout = setTimeout(triggerExit, durationMs + 1000);
 
-        // Cleanup on unmount
         return () => {
             clearTimeout(safetyTimeout);
+            progressAnimation.pause();
         };
-    }, []);
+    }, [durationMs, mode, storageKey]);
 
     if (!isVisible) return null;
 
     return (
         <div
-            id="preloader"
-            className="fixed inset-0 z-10000 flex items-end justify-end bg-black p-8 md:p-16"
+            ref={rootRef}
+            className="fixed inset-0 z-[10000] flex items-end justify-start bg-black px-6 py-8 md:px-12 md:py-12"
+            aria-hidden="true"
         >
-            <div className="flex flex-col items-end">
-                <div className="text-[12rem] md:text-[20rem] font-bold leading-none text-white tracking-tighter">
-                    {progress}%
+            <div className="w-full max-w-sm space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.35em] text-neutral-500">
+                    <span className="text-neutral-300">GeeksLab</span>
+                    <span>Loading</span>
                 </div>
-                <div className="text-neutral-500 font-mono text-sm uppercase tracking-widest mt-4">
-                    System Initializing...
+
+                <div className="h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
+                    <div
+                        className="h-full bg-white/70"
+                        style={{ width: `${progress}%` }}
+                    />
+                </div>
+
+                <div className="flex items-center justify-between">
+                    <div className="text-sm font-mono text-neutral-300">{progress}%</div>
+                    <div className="text-xs text-neutral-500">Initializing UI…</div>
                 </div>
             </div>
         </div>

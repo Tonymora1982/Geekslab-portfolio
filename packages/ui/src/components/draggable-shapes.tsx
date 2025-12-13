@@ -29,20 +29,17 @@ const Sticker = ({ children, className, delay = 0 }: { children: React.ReactNode
             }}
             initial={{ opacity: 0, scale: 0, rotate: -180 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ 
-                type: "spring", 
-                stiffness: 100,
-                damping: 15,
-                duration: 0.8, 
-                delay 
-            }}
             animate={{
                 y: [0, -20, 0, -15, 0],
                 x: [0, 10, 0, -10, 0],
                 rotate: [0, 5, 0, -5, 0],
             }}
-            // @ts-ignore
             transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 15,
+                duration: 0.8,
+                delay,
                 y: {
                     duration: 8 + delay * 2,
                     repeat: Infinity,
@@ -101,19 +98,16 @@ export const DraggableShapes = () => {
                     }}
                     initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
                     whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                    transition={{ 
-                        type: "spring", 
-                        stiffness: 120,
-                        damping: 18,
-                        duration: 1.2
-                    }}
                     animate={{
                         y: [0, -25, 0, -15, 0],
                         x: [0, 12, 0, -12, 0],
                         rotate: [0, 3, 0, -3, 0],
                     }}
-                    // @ts-ignore
                     transition={{
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 18,
+                        duration: 1.2,
                         y: {
                             duration: 14,
                             repeat: Infinity,
@@ -169,20 +163,17 @@ export const DraggableShapes = () => {
                     }}
                     initial={{ opacity: 0, scale: 0.5, rotate: 90 }}
                     whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                    transition={{ 
-                        type: "spring", 
-                        stiffness: 120,
-                        damping: 18,
-                        duration: 1.2,
-                        delay: 0.3
-                    }}
                     animate={{
                         y: [0, -20, 0, -10, 0],
                         x: [0, -15, 0, 15, 0],
                         rotate: [0, -4, 0, 4, 0],
                     }}
-                    // @ts-ignore
                     transition={{
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 18,
+                        duration: 1.2,
+                        delay: 0.3,
                         y: {
                             duration: 12,
                             repeat: Infinity,

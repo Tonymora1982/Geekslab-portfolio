@@ -1,13 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import anime from "animejs";
 
 export const MagneticCursor = () => {
     const cursorRef = useRef<HTMLDivElement>(null);
     const followerRef = useRef<HTMLDivElement>(null);
+    const [enabled, setEnabled] = useState(false);
 
     useEffect(() => {
+        const finePointer = window.matchMedia?.("(pointer: fine)")?.matches ?? false;
+        const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+        setEnabled(finePointer && !reduceMotion);
+    }, []);
+
+    useEffect(() => {
+        if (!enabled) return;
         if (!cursorRef.current || !followerRef.current) return;
 
         const cursor = cursorRef.current;
@@ -63,11 +71,13 @@ export const MagneticCursor = () => {
         return () => {
             window.removeEventListener("mousemove", moveCursor);
             interactiveElements.forEach((el) => {
-                el.removeEventListener("mouseenter", handleUnhover);
+                el.removeEventListener("mouseenter", handleHover);
                 el.removeEventListener("mouseleave", handleUnhover);
             });
         };
-    }, []);
+    }, [enabled]);
+
+    if (!enabled) return null;
 
     return (
         <>

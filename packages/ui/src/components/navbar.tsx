@@ -109,9 +109,9 @@ export const Navbar = () => {
                             GeeksLab
                         </span>
                         {/* Availability indicator */}
-                        <span className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                            <Circle className="w-2 h-2 fill-emerald-400 text-emerald-400 animate-pulse" />
-                            <span className="text-[10px] text-emerald-400 font-medium uppercase tracking-wider">
+                        <span className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                            <Circle className="w-2 h-2 fill-emerald-400/80 text-emerald-400/80" />
+                            <span className="text-[10px] text-neutral-300 font-medium uppercase tracking-wider">
                                 {language === 'es' ? 'Disponible' : 'Available'}
                             </span>
                         </span>
@@ -135,7 +135,7 @@ export const Navbar = () => {
                         {/* CTA Button */}
                         <a
                             href="mailto:tonymora1982@gmail.com?subject=Project%20Inquiry"
-                            className="ml-4 px-4 py-2 text-sm font-medium bg-emerald-500 text-black rounded-lg hover:bg-emerald-400 transition-colors"
+                            className="ml-4 px-4 py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-neutral-200 transition-colors"
                         >
                             Hire Me
                         </a>
@@ -177,7 +177,7 @@ export const Navbar = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.1 }}
                                     className={`text-2xl font-medium py-2 transition-colors ${activeSection === item.section
-                                        ? "text-emerald-400"
+                                        ? "text-emerald-300"
                                         : "text-neutral-400 hover:text-white"
                                         }`}
                                 >
@@ -195,7 +195,7 @@ export const Navbar = () => {
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: navItems.length * 0.1 }}
-                                className="mt-4 px-6 py-3 text-center text-lg font-medium bg-emerald-500 text-black rounded-lg"
+                                className="mt-4 px-6 py-3 text-center text-lg font-medium bg-white text-black rounded-lg hover:bg-neutral-200 transition-colors"
                             >
                                 Hire Me
                             </motion.a>
@@ -233,7 +233,7 @@ function NavLink({
 
             {/* Underline indicator */}
             <motion.span
-                className="absolute bottom-0 left-4 right-4 h-0.5 bg-emerald-400 rounded-full"
+                className="absolute bottom-0 left-4 right-4 h-0.5 bg-emerald-400/60 rounded-full"
                 initial={false}
                 animate={{
                     scaleX: isActive ? 1 : 0,

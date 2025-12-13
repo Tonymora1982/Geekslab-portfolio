@@ -64,7 +64,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
         </div>
         
         <p className="text-neutral-300 leading-relaxed mb-6 text-sm md:text-base">
-            "{testimonial.quote}"
+            &ldquo;{testimonial.quote}&rdquo;
         </p>
         
         <div className="flex items-center gap-4">

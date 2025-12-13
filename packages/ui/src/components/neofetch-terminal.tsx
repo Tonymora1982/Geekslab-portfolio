@@ -403,7 +403,7 @@ Soft:      R&D Management, Agile, English B2+`,
           <div className="w-3 h-3 rounded-full bg-yellow-500" />
           <div className="w-3 h-3 rounded-full bg-green-500" />
         </div>
-        <span className="ml-4 text-neutral-400">Interactive Terminal — Type 'help'</span>
+        <span className="ml-4 text-neutral-400">Interactive Terminal — Type “help”</span>
       </div>
       
       <div className="p-4 h-64 overflow-y-auto">

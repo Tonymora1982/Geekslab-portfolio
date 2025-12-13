@@ -3,6 +3,7 @@ import { CartDrawer } from "@/components/cart-drawer";
 import { ProductCard } from "@/components/product-card";
 import { products, categories } from "@/lib/products";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "All Products | NexaStore",
@@ -67,7 +68,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
                   <h3 className="font-semibold text-white mb-4">Categories</h3>
                   <div className="space-y-2">
-                    <a
+                    <Link
                       href="/products"
                       className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
                         !selectedCategory
@@ -76,9 +77,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
                       }`}
                     >
                       All Products
-                    </a>
+                    </Link>
                     {categories.map((category) => (
-                      <a
+                      <Link
                         key={category.id}
                         href={`/products?category=${category.id}`}
                         className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
@@ -89,7 +90,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
                       >
                         <span>{category.icon}</span>
                         {category.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -166,12 +167,12 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
               {filteredProducts.length === 0 ? (
                 <div className="text-center py-16">
                   <p className="text-gray-400 text-lg">No products found</p>
-                  <a
+                  <Link
                     href="/products"
                     className="mt-4 inline-flex text-purple-400 hover:text-purple-300"
                   >
                     View all products
-                  </a>
+                  </Link>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
