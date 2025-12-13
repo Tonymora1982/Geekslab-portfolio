@@ -32,83 +32,104 @@ export default function Home() {
 
       <main className="bg-black text-white min-h-screen pt-16">
 
-        {/* ===== HERO SECTION ===== */}
-        <section id="hero" className="min-h-[90vh] flex items-center justify-center px-4 relative spotlight-emerald">
-          <div className="max-w-4xl mx-auto text-center relative z-10">
+        {/* ===== HERO SECTION - CINEMATIC REDESIGN ===== */}
+        <section id="hero" className="min-h-screen flex flex-col justify-center px-4 relative overflow-hidden">
+          {/* Subtle gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/20 via-black to-black pointer-events-none" />
+
+          <div className="max-w-6xl mx-auto w-full relative z-10">
+            {/* Staggered headline animation */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="mb-6"
             >
-              {/* Value Proposition - Direct, memorable */}
-              <div className="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6 glow-emerald">
-                <span className="text-emerald-400 text-sm font-medium">
-                  {t('homepage.hero.valueProposition')}
-                </span>
+              <span className="inline-flex items-center gap-2 text-emerald-400 text-sm font-mono tracking-wider uppercase">
+                <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                {t('homepage.hero.availability')}
+              </span>
+            </motion.div>
+
+            {/* Main headline - MASSIVE typography */}
+            <div className="overflow-hidden mb-4">
+              <motion.h1
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[clamp(3rem,12vw,9rem)] font-bold tracking-tighter leading-[0.9]"
+              >
+                <span className="block text-white">Full Stack</span>
+              </motion.h1>
+            </div>
+            <div className="overflow-hidden mb-8">
+              <motion.h1
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[clamp(3rem,12vw,9rem)] font-bold tracking-tighter leading-[0.9]"
+              >
+                <span className="block text-neutral-600">Developer.</span>
+              </motion.h1>
+            </div>
+
+            {/* Value proposition - clean and direct */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-xl md:text-2xl text-neutral-400 max-w-2xl mb-12 leading-relaxed"
+            >
+              {t('homepage.hero.valueProposition')}
+              <span className="text-white"> — {t('homepage.hero.quote')}</span>
+            </motion.p>
+
+            {/* CTA row - prominent and clean */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-wrap gap-4 mb-16"
+            >
+              <AnimatedButton
+                href="mailto:tonymora1982@gmail.com?subject=Opportunity%20for%20Anthony%20Mora"
+                variant="primary"
+                className="bg-white text-black hover:bg-neutral-200 px-8 py-4 text-lg font-semibold"
+              >
+                {t('homepage.hero.contactMe')}
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </AnimatedButton>
+              <AnimatedButton
+                href="#projects"
+                variant="secondary"
+                className="border-white/20 hover:border-white/40 px-8 py-4 text-lg"
+              >
+                {t('homepage.hero.projects')}
+              </AnimatedButton>
+            </motion.div>
+
+            {/* Metrics strip - subtle proof */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex flex-wrap gap-x-12 gap-y-4 text-sm border-t border-white/10 pt-8"
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-3xl font-bold text-white">39</span>
+                <span className="text-neutral-500">{t('homepage.metrics.e2eTests')}</span>
               </div>
-
-              {/* Name */}
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">
-                Anthony Mora
-              </h1>
-
-              {/* Title + Availability */}
-              <p className="text-xl md:text-2xl text-neutral-300 mb-4">
-                {t('homepage.hero.title')} · <span className="text-emerald-400">{t('homepage.hero.availability')}</span>
-              </p>
-
-              {/* Personal voice - Only I could say this */}
-              <p className="text-neutral-500 text-sm max-w-xl mx-auto mb-8 italic">
-                {t('homepage.hero.quote')}
-              </p>
-
-              {/* Production Proof Block - Verifiable metrics */}
-              <div className="flex flex-wrap justify-center gap-8 text-sm mb-8 py-6 border-y border-emerald-500/20 bg-gradient-emerald rounded-lg">
-                <ProofMetric value="39" label={t('homepage.metrics.e2eTests')} />
-                <ProofMetric value="0" label={t('homepage.metrics.tsErrors')} />
-                <ProofMetric value="CWV" label={t('homepage.metrics.performance')} />
-                <ProofMetric value="ISO 13485" label={t('homepage.metrics.auditReady')} />
+              <div className="flex items-center gap-3">
+                <span className="text-3xl font-bold text-white">0</span>
+                <span className="text-neutral-500">{t('homepage.metrics.tsErrors')}</span>
               </div>
-
-              {/* Availability details */}
-              <div className="flex flex-wrap justify-center gap-4 text-sm text-neutral-400 mb-8">
-                <span className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" /> {t('homepage.hero.timezone')}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" /> {t('homepage.hero.workType')}
-                </span>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl font-bold text-emerald-400">ISO</span>
+                <span className="text-neutral-500">{t('homepage.metrics.auditReady')}</span>
               </div>
-
-              {/* CTAs - Working links only */}
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
-                <AnimatedButton
-                  href="https://www.linkedin.com/in/anthony-mora-parra-94941282/"
-                  variant="primary"
-                  className="bg-white text-black hover:bg-neutral-200 px-6 py-3"
-                >
-                  <Linkedin className="w-4 h-4 mr-2" /> {t('homepage.hero.viewLinkedIn')}
-                </AnimatedButton>
-                <AnimatedButton
-                  href="mailto:tonymora1982@gmail.com?subject=Opportunity%20for%20Anthony%20Mora&body=Hi%20Anthony%2C%0A%0AI%20found%20your%20portfolio%20and%20I'd%20like%20to%20discuss%20a%20potential%20opportunity.%0A%0ARole%3A%20%0ACompany%3A%20%0ATimeline%3A%20%0A%0AThanks!"
-                  variant="secondary"
-                  className="border-white/20 px-6 py-3"
-                >
-                  <Mail className="w-4 h-4 mr-2" /> {t('homepage.hero.contactMe')}
-                </AnimatedButton>
-              </div>
-
-              {/* Quick links */}
-              <div className="flex justify-center gap-6 text-neutral-500">
-                <a href="https://github.com/Tonymora1982" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1 text-sm">
-                  <Github className="w-4 h-4" /> {t('homepage.hero.github')}
-                </a>
-                <a href="#projects" className="hover:text-white transition-colors flex items-center gap-1 text-sm">
-                  <FileText className="w-4 h-4" /> {t('homepage.hero.projects')}
-                </a>
-                <a href="/evidence-layer" className="hover:text-emerald-400 transition-colors flex items-center gap-1 text-sm text-emerald-500">
-                  <ChevronRight className="w-4 h-4" /> {t('homepage.hero.productionProof')}
-                </a>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl font-bold text-white">5+</span>
+                <span className="text-neutral-500">{t('homepage.metrics.years')}</span>
               </div>
             </motion.div>
           </div>
@@ -118,14 +139,14 @@ export default function Home() {
             className="absolute bottom-8 left-1/2 -translate-x-1/2"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.5 }}
+            transition={{ delay: 1.2, duration: 0.5 }}
           >
-            <ArrowDown className="w-5 h-5 text-neutral-500 animate-bounce" />
+            <ArrowDown className="w-5 h-5 text-neutral-600 animate-bounce" />
           </motion.div>
         </section>
 
         {/* ===== ABOUT SECTION ===== */}
-        <section id="about" className="py-24 px-4 border-t border-white/10">
+        <section id="about" className="py-32 px-4 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
             <SectionHeader title={t('homepage.about.title')} />
 
@@ -164,10 +185,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section >
 
         {/* ===== EXPERIENCE SECTION ===== */}
-        <section id="experience" className="py-24 px-4 bg-neutral-950 border-t border-white/10">
+        < section id="experience" className="py-24 px-4 bg-neutral-950 border-t border-white/10" >
           <div className="max-w-4xl mx-auto">
             <SectionHeader title={t('homepage.experience.title')} />
 
@@ -236,11 +257,11 @@ export default function Home() {
               {t('homepage.experience.currentNote')}
             </p>
           </div>
-        </section>
+        </section >
 
         {/* ===== PROJECTS SECTION ===== */}
-        <section id="projects" className="py-24 px-4 border-t border-white/10">
-          <div className="max-w-4xl mx-auto">
+        <section id="projects" className="py-32 px-4 border-t border-white/10">
+          <div className="max-w-5xl mx-auto">
             <SectionHeader title={t('homepage.projects.title')} />
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -276,10 +297,10 @@ export default function Home() {
               </AnimatedButton>
             </div>
           </div>
-        </section>
+        </section >
 
         {/* ===== WHAT I DELIVER ===== */}
-        <section id="services" className="py-24 px-4 bg-neutral-950 border-t border-white/10">
+        < section id="services" className="py-24 px-4 bg-neutral-950 border-t border-white/10" >
           <div className="max-w-4xl mx-auto">
             <SectionHeader title={t('homepage.services.title')} />
 
@@ -319,10 +340,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section >
 
         {/* ===== SKILLS SECTION ===== */}
-        <section id="skills" className="py-24 px-4 border-t border-white/10">
+        < section id="skills" className="py-24 px-4 border-t border-white/10" >
           <div className="max-w-4xl mx-auto">
             <SectionHeader title={t('homepage.skills.title')} />
 
@@ -345,10 +366,10 @@ export default function Home() {
               />
             </div>
           </div>
-        </section>
+        </section >
 
         {/* ===== CONTACT SECTION ===== */}
-        <section id="contact" className="py-24 px-4 bg-neutral-950 border-t border-white/10">
+        < section id="contact" className="py-24 px-4 bg-neutral-950 border-t border-white/10" >
           <div className="max-w-2xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -384,10 +405,10 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-        </section>
+        </section >
 
         <AnimatedFooter />
-      </main>
+      </main >
     </>
   );
 }

@@ -243,6 +243,7 @@ export const translations = {
                 tsErrors: "TS Errors",
                 performance: "Performance",
                 auditReady: "Audit-ready",
+                years: "Years Experience",
             },
             about: {
                 title: "About",
