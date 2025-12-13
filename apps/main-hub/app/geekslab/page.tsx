@@ -1,12 +1,14 @@
 "use client";
 
-import { AnimatedHeroText, AnimatedButton, NeofetchTerminal } from "@geekslab/ui";
+import { AnimatedHeroText, AnimatedButton, NeofetchTerminal, useLanguage } from "@geekslab/ui";
 import { NoiseOverlay, MagneticCursor } from "@geekslab/ui";
 import { Navbar } from "@geekslab/ui";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Terminal, Code2, Cpu, Zap } from "lucide-react";
 
 export default function GeekslabPage() {
+    const { t } = useLanguage();
+
     return (
         <main className="min-h-screen bg-black text-white selection:bg-green-400 selection:text-black relative overflow-hidden font-sans">
             <NoiseOverlay />
@@ -16,7 +18,7 @@ export default function GeekslabPage() {
             {/* Interactive Neofetch Demo Hero */}
             <section className="min-h-screen w-full flex flex-col justify-center relative px-4 pt-20">
                 <div className="absolute inset-0 bg-gradient-to-b from-green-950/20 via-black/80 to-black z-[1]" />
-                
+
                 <div className="max-w-5xl mx-auto w-full z-10">
                     {/* Header Badge */}
                     <motion.div
@@ -27,7 +29,7 @@ export default function GeekslabPage() {
                     >
                         <span className="inline-flex items-center gap-2 py-1 px-4 rounded-full bg-green-500/10 border border-green-500/30 text-sm font-mono text-green-400">
                             <Terminal className="w-4 h-4" />
-                            Interactive Demo
+                            {t('geekslabPage.demo.badge')}
                         </span>
                     </motion.div>
 
@@ -37,7 +39,7 @@ export default function GeekslabPage() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <NeofetchTerminal 
+                        <NeofetchTerminal
                             showMatrixBg={false}
                             autoStart={true}
                             className="shadow-2xl shadow-green-500/20"
@@ -57,7 +59,7 @@ export default function GeekslabPage() {
                             { icon: Zap, label: "Performance", value: "99/100" },
                             { icon: Terminal, label: "CLI", value: "Interactive" },
                         ].map((stat, i) => (
-                            <div 
+                            <div
                                 key={stat.label}
                                 className="bg-black/50 backdrop-blur border border-green-500/20 rounded p-4 text-center"
                             >
@@ -75,20 +77,20 @@ export default function GeekslabPage() {
                         transition={{ delay: 1 }}
                         className="flex flex-wrap justify-center gap-4 mt-8"
                     >
-                        <a 
-                            href="https://github.com/Tonymora1982/Geekslab-portfolio" 
+                        <a
+                            href="https://github.com/Tonymora1982/Geekslab-portfolio"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-6 py-3 border border-green-500/50 text-green-400 font-mono rounded hover:bg-green-500/10 transition-all hover:border-green-400"
                         >
                             <Github className="w-4 h-4" />
-                            <span>git clone</span>
+                            <span>{t('geekslabPage.demo.git')}</span>
                         </a>
-                        <a 
+                        <a
                             href="/"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-black font-mono font-bold rounded hover:bg-green-400 transition-colors"
                         >
-                            <span>./explore_site.sh</span>
+                            <span>{t('geekslabPage.demo.explore')}</span>
                             <ExternalLink className="w-4 h-4" />
                         </a>
                     </motion.div>
@@ -104,16 +106,16 @@ export default function GeekslabPage() {
                     {/* Project Info Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                         <div className="border-l-2 border-green-500/50 pl-6">
-                            <h3 className="text-sm text-green-400 uppercase tracking-widest mb-2 font-mono">Role</h3>
-                            <p className="text-xl font-light text-white">Lead Developer & Architect</p>
+                            <h3 className="text-sm text-green-400 uppercase tracking-widest mb-2 font-mono">{t('geekslabPage.projectDetails.role')}</h3>
+                            <p className="text-xl font-light text-white">{t('geekslabPage.projectDetails.roleValue')}</p>
                         </div>
                         <div className="border-l-2 border-green-500/50 pl-6">
-                            <h3 className="text-sm text-green-400 uppercase tracking-widest mb-2 font-mono">Timeline</h3>
-                            <p className="text-xl font-light text-white">2024 — Present</p>
+                            <h3 className="text-sm text-green-400 uppercase tracking-widest mb-2 font-mono">{t('geekslabPage.projectDetails.timeline')}</h3>
+                            <p className="text-xl font-light text-white">{t('geekslabPage.projectDetails.timelineValue')}</p>
                         </div>
                         <div className="border-l-2 border-green-500/50 pl-6">
-                            <h3 className="text-sm text-green-400 uppercase tracking-widest mb-2 font-mono">Core Tech</h3>
-                            <p className="text-xl font-light text-white">Next.js 16, React 19, Turborepo</p>
+                            <h3 className="text-sm text-green-400 uppercase tracking-widest mb-2 font-mono">{t('geekslabPage.projectDetails.coreTech')}</h3>
+                            <p className="text-xl font-light text-white">{t('geekslabPage.projectDetails.coreTechValue')}</p>
                         </div>
                     </div>
                 </div>
@@ -129,12 +131,10 @@ export default function GeekslabPage() {
                             viewport={{ once: true }}
                         >
                             <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-                                <span className="text-green-400">#</span> The Challenge
+                                <span className="text-green-400">#</span> {t('geekslabPage.engineering.challengeTitle').replace('# ', '')}
                             </h2>
                             <p className="text-neutral-400 text-lg leading-relaxed">
-                                Modern web development is often constrained by "safe" choices. GeeksLab was born from a necessity to break things.
-                                I needed a sandbox to test high-performance architectures, experimental UI patterns (like this portfolio),
-                                and bleeding-edge libraries before deploying them to production client environments.
+                                {t('geekslabPage.engineering.challengeDesc')}
                             </p>
                         </motion.div>
 
@@ -145,24 +145,23 @@ export default function GeekslabPage() {
                             transition={{ delay: 0.2 }}
                         >
                             <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-                                <span className="text-green-400">#</span> The Architecture
+                                <span className="text-green-400">#</span> {t('geekslabPage.engineering.architectureTitle').replace('# ', '')}
                             </h2>
                             <p className="text-neutral-400 text-lg leading-relaxed mb-6">
-                                Built on a <strong className="text-green-400">Monorepo</strong> structure using Turborepo, 
-                                allowing shared UI libraries across multiple internal tools.
+                                {t('geekslabPage.engineering.architectureDesc')}
                             </p>
                             <ul className="space-y-4 border-l-2 border-green-500/30 pl-6">
                                 <li className="text-neutral-300">
-                                    <strong className="text-green-400 block mb-1 font-mono">→ Zero-Runtime CSS</strong>
-                                    Using Tailwind v4 for maximum performance.
+                                    <strong className="text-green-400 block mb-1 font-mono">{t('geekslabPage.engineering.zeroRuntime')}</strong>
+                                    {t('geekslabPage.engineering.zeroRuntimeDesc')}
                                 </li>
                                 <li className="text-neutral-300">
-                                    <strong className="text-green-400 block mb-1 font-mono">→ React Server Components</strong>
-                                    Next.js 16 App Router with streaming and suspense.
+                                    <strong className="text-green-400 block mb-1 font-mono">{t('geekslabPage.engineering.rsc')}</strong>
+                                    {t('geekslabPage.engineering.rscDesc')}
                                 </li>
                                 <li className="text-neutral-300">
-                                    <strong className="text-green-400 block mb-1 font-mono">→ Edge Computing</strong>
-                                    Middleware logic on Vercel Edge for sub-millisecond routing.
+                                    <strong className="text-green-400 block mb-1 font-mono">{t('geekslabPage.engineering.edge')}</strong>
+                                    {t('geekslabPage.engineering.edgeDesc')}
                                 </li>
                             </ul>
                         </motion.div>
@@ -195,7 +194,7 @@ export default function GeekslabPage() {
                                 <p className="text-green-500">✓ 5 packages built successfully</p>
                             </div>
                         </div>
-                        
+
                         {/* Stats Grid */}
                         <div className="grid grid-cols-2 gap-4">
                             <div className="bg-neutral-950 border border-green-500/20 p-4 rounded">
@@ -216,7 +215,7 @@ export default function GeekslabPage() {
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <p className="text-green-400/60 mb-4 font-mono text-sm">cd ../next_project</p>
                     <AnimatedButton href="/nexastore" variant="primary" className="text-4xl md:text-6xl font-bold text-white hover:text-green-400 transition-colors bg-transparent">
-                        NexaStore Engine →
+                        {t('geekslabPage.nextProject')}
                     </AnimatedButton>
                 </div>
             </section>

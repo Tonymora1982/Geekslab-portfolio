@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, Phone, ExternalLink, ArrowDown, ChevronRight, Download, Calendar, Clock, FileText } from "lucide-react";
-import { AnimatedFooter, AnimatedButton } from "@geekslab/ui";
+import { AnimatedFooter, AnimatedButton, useLanguage } from "@geekslab/ui";
 import Link from "next/link";
 
 /**
@@ -20,6 +20,7 @@ import Link from "next/link";
 export default function Home() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const { t } = useLanguage();
 
   return (
     <>
@@ -42,7 +43,7 @@ export default function Home() {
               {/* Value Proposition - Direct, memorable */}
               <div className="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6 glow-emerald">
                 <span className="text-emerald-400 text-sm font-medium">
-                  13 years in regulated environments → audit-ready code in production
+                  {t('homepage.hero.valueProposition')}
                 </span>
               </div>
 
@@ -53,30 +54,29 @@ export default function Home() {
 
               {/* Title + Availability */}
               <p className="text-xl md:text-2xl text-neutral-300 mb-4">
-                Full Stack Developer · <span className="text-emerald-400">Available Now</span>
+                {t('homepage.hero.title')} · <span className="text-emerald-400">{t('homepage.hero.availability')}</span>
               </p>
 
               {/* Personal voice - Only I could say this */}
               <p className="text-neutral-500 text-sm max-w-xl mx-auto mb-8 italic">
-                "I spent years building medical devices where a bug could hurt someone.
-                Now I build software with the same paranoia—and it shows in the code."
+                {t('homepage.hero.quote')}
               </p>
 
               {/* Production Proof Block - Verifiable metrics */}
               <div className="flex flex-wrap justify-center gap-8 text-sm mb-8 py-6 border-y border-emerald-500/20 bg-gradient-emerald rounded-lg">
-                <ProofMetric value="39" label="E2E Tests" />
-                <ProofMetric value="0" label="TS Errors" />
-                <ProofMetric value="CWV" label="Performance" />
-                <ProofMetric value="ISO 13485" label="Audit-ready" />
+                <ProofMetric value="39" label={t('homepage.metrics.e2eTests')} />
+                <ProofMetric value="0" label={t('homepage.metrics.tsErrors')} />
+                <ProofMetric value="CWV" label={t('homepage.metrics.performance')} />
+                <ProofMetric value="ISO 13485" label={t('homepage.metrics.auditReady')} />
               </div>
 
               {/* Availability details */}
               <div className="flex flex-wrap justify-center gap-4 text-sm text-neutral-400 mb-8">
                 <span className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" /> GMT-6 (Costa Rica)
+                  <Clock className="w-4 h-4" /> {t('homepage.hero.timezone')}
                 </span>
                 <span className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" /> Full-time Remote / Contract
+                  <Calendar className="w-4 h-4" /> {t('homepage.hero.workType')}
                 </span>
               </div>
 
@@ -87,27 +87,27 @@ export default function Home() {
                   variant="primary"
                   className="bg-white text-black hover:bg-neutral-200 px-6 py-3"
                 >
-                  <Linkedin className="w-4 h-4 mr-2" /> View LinkedIn
+                  <Linkedin className="w-4 h-4 mr-2" /> {t('homepage.hero.viewLinkedIn')}
                 </AnimatedButton>
                 <AnimatedButton
                   href="mailto:tonymora1982@gmail.com?subject=Opportunity%20for%20Anthony%20Mora&body=Hi%20Anthony%2C%0A%0AI%20found%20your%20portfolio%20and%20I'd%20like%20to%20discuss%20a%20potential%20opportunity.%0A%0ARole%3A%20%0ACompany%3A%20%0ATimeline%3A%20%0A%0AThanks!"
                   variant="secondary"
                   className="border-white/20 px-6 py-3"
                 >
-                  <Mail className="w-4 h-4 mr-2" /> Contact Me
+                  <Mail className="w-4 h-4 mr-2" /> {t('homepage.hero.contactMe')}
                 </AnimatedButton>
               </div>
 
               {/* Quick links */}
               <div className="flex justify-center gap-6 text-neutral-500">
                 <a href="https://github.com/Tonymora1982" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1 text-sm">
-                  <Github className="w-4 h-4" /> GitHub
+                  <Github className="w-4 h-4" /> {t('homepage.hero.github')}
                 </a>
                 <a href="#projects" className="hover:text-white transition-colors flex items-center gap-1 text-sm">
-                  <FileText className="w-4 h-4" /> Projects
+                  <FileText className="w-4 h-4" /> {t('homepage.hero.projects')}
                 </a>
                 <a href="/evidence-layer" className="hover:text-emerald-400 transition-colors flex items-center gap-1 text-sm text-emerald-500">
-                  <ChevronRight className="w-4 h-4" /> Production Proof
+                  <ChevronRight className="w-4 h-4" /> {t('homepage.hero.productionProof')}
                 </a>
               </div>
             </motion.div>
@@ -127,26 +127,22 @@ export default function Home() {
         {/* ===== ABOUT SECTION ===== */}
         <section id="about" className="py-24 px-4 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
-            <SectionHeader title="About" />
+            <SectionHeader title={t('homepage.about.title')} />
 
             <div className="grid md:grid-cols-3 gap-12">
               <div className="md:col-span-2 space-y-6">
                 <p className="text-lg text-neutral-300 leading-relaxed">
-                  I'm a Senior Engineer with a specialized background. Spent <strong className="text-white">6+ years at Establishment Labs</strong> building
-                  Class III medical devices—from R&D to Production Leadership. That background taught me what
-                  <span className="text-emerald-400"> regulated environments demand</span>: documentation that survives FDA audits,
-                  traceability from concept to production, and zero tolerance for "it works on my machine."
+                  {t('homepage.about.intro')} <strong className="text-white">{t('homepage.about.companyHighlight')}</strong> {t('homepage.about.introEnd')}
+                  <span className="text-emerald-400"> {t('homepage.about.requirementsHighlight')}</span>{t('homepage.about.requirementsDesc')}
                 </p>
                 <p className="text-lg text-neutral-300 leading-relaxed">
-                  Now I build production-grade web applications with <strong className="text-white">Next.js 16, React 19, and TypeScript</strong>.
-                  I bring the same rigor: CI/CD pipelines, Playwright E2E testing, observability, and code that's audit-ready.
+                  {t('homepage.about.currentWork')} <strong className="text-white">{t('homepage.about.techHighlight')}</strong>{t('homepage.about.currentWorkEnd')}
                 </p>
 
                 {/* English proof */}
                 <div className="p-4 bg-white/5 rounded-lg border border-white/10">
                   <p className="text-sm text-neutral-400">
-                    <strong className="text-white">English (B2+):</strong> Daily async communication, written updates,
-                    PR reviews, technical documentation—all in English. EU/US timezone overlap (4-6 hrs daily).
+                    <strong className="text-white">{t('homepage.about.englishProof')}</strong> {t('homepage.about.englishDesc')}
                   </p>
                 </div>
               </div>
@@ -156,12 +152,12 @@ export default function Home() {
                 <InfoItem icon={<Mail className="w-4 h-4" />} text="tonymora1982@gmail.com" />
                 <InfoItem icon={<Phone className="w-4 h-4" />} text="+506 7017-9787" />
                 <div className="pt-4 border-t border-white/10">
-                  <p className="text-neutral-500 mb-2">Education</p>
-                  <p className="text-white">B.S. Computer Engineering</p>
-                  <p className="text-neutral-400 text-xs">UNED · In Progress (TFG pending)</p>
+                  <p className="text-neutral-500 mb-2">{t('homepage.about.education')}</p>
+                  <p className="text-white">{t('homepage.about.degree')}</p>
+                  <p className="text-neutral-400 text-xs">{t('homepage.about.university')}</p>
                 </div>
                 <div className="pt-4 border-t border-white/10">
-                  <p className="text-neutral-500 mb-2">Certifications</p>
+                  <p className="text-neutral-500 mb-2">{t('homepage.about.certifications')}</p>
                   <p className="text-neutral-300 text-xs">CEH · LFC (In Progress)</p>
                   <p className="text-neutral-300 text-xs">Yale Medical Software</p>
                 </div>
@@ -173,11 +169,11 @@ export default function Home() {
         {/* ===== EXPERIENCE SECTION ===== */}
         <section id="experience" className="py-24 px-4 bg-neutral-950 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
-            <SectionHeader title="Experience" />
+            <SectionHeader title={t('homepage.experience.title')} />
 
             {/* Software Development */}
             <div className="mb-12">
-              <h3 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">Software Development</h3>
+              <h3 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">{t('homepage.experience.software')}</h3>
               <div className="space-y-6">
                 <ExperienceItem
                   title="Lead Full Stack Engineer"
@@ -201,7 +197,7 @@ export default function Home() {
             {/* Operations / MedTech - Contextualized */}
             <div>
               <h3 className="text-sm font-mono text-neutral-500 uppercase tracking-widest mb-6">
-                MedTech / Operations <span className="text-neutral-600">(Domain Expertise)</span>
+                {t('homepage.experience.medtech')} <span className="text-neutral-600">{t('homepage.experience.domainExpertise')}</span>
               </h3>
               <div className="space-y-6">
                 <ExperienceItem
@@ -237,7 +233,7 @@ export default function Home() {
 
             {/* Note about current role */}
             <p className="mt-8 text-xs text-neutral-600 italic">
-              * Currently driving automation initiatives at INS while leading GeeksLab.
+              {t('homepage.experience.currentNote')}
             </p>
           </div>
         </section>
@@ -245,7 +241,7 @@ export default function Home() {
         {/* ===== PROJECTS SECTION ===== */}
         <section id="projects" className="py-24 px-4 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
-            <SectionHeader title="Selected Work" />
+            <SectionHeader title={t('homepage.projects.title')} />
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <ProjectCard
@@ -271,12 +267,12 @@ export default function Home() {
 
             {/* Evidence Layer CTA */}
             <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
-              <h3 className="text-lg font-bold text-white mb-2">Production Proof</h3>
+              <h3 className="text-lg font-bold text-white mb-2">{t('homepage.projects.productionProofTitle')}</h3>
               <p className="text-neutral-400 text-sm mb-4">
-                See real metrics, documented postmortems, and engineering RFCs. Not just "it works"—evidence that it ships and runs.
+                {t('homepage.projects.productionProofDesc')}
               </p>
               <AnimatedButton href="/evidence-layer" variant="secondary" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10">
-                View Evidence Layer <ChevronRight className="w-4 h-4 ml-1" />
+                {t('homepage.projects.viewEvidenceLayer')} <ChevronRight className="w-4 h-4 ml-1" />
               </AnimatedButton>
             </div>
           </div>
@@ -285,34 +281,34 @@ export default function Home() {
         {/* ===== WHAT I DELIVER ===== */}
         <section id="services" className="py-24 px-4 bg-neutral-950 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
-            <SectionHeader title="What I Deliver" />
+            <SectionHeader title={t('homepage.services.title')} />
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <div>
-                <h3 className="text-white font-medium mb-4">Scope</h3>
+                <h3 className="text-white font-medium mb-4">{t('homepage.services.scope')}</h3>
                 <ul className="space-y-2 text-neutral-400 text-sm">
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> MVP Development (0 → 1)</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> Feature Development & Refactoring</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> Performance Optimization</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> API Integrations</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> Testing & QA Automation</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.0')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.1')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.2')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.3')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.scopeItems.4')}</li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-white font-medium mb-4">How I Work</h3>
+                <h3 className="text-white font-medium mb-4">{t('homepage.services.howIWork')}</h3>
                 <ul className="space-y-2 text-neutral-400 text-sm">
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> Clear planning before code</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> Weekly async updates</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> Defined acceptance criteria</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> CI/CD from day one</li>
-                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> Documentation as deliverable</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.0')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.1')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.2')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.3')}</li>
+                  <li className="flex items-center gap-2"><ChevronRight className="w-4 h-4 text-emerald-400" /> {t('homepage.services.howItems.4')}</li>
                 </ul>
               </div>
             </div>
 
             {/* Credibility */}
             <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-              <h4 className="text-white font-medium mb-2">Engineering Practices</h4>
+              <h4 className="text-white font-medium mb-2">{t('homepage.services.practices')}</h4>
               <div className="flex flex-wrap gap-3 text-xs">
                 <span className="px-2 py-1 bg-white/5 rounded text-neutral-400">CI/CD</span>
                 <span className="px-2 py-1 bg-white/5 rounded text-neutral-400">Playwright E2E</span>
@@ -328,23 +324,23 @@ export default function Home() {
         {/* ===== SKILLS SECTION ===== */}
         <section id="skills" className="py-24 px-4 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
-            <SectionHeader title="Tech Stack" />
+            <SectionHeader title={t('homepage.skills.title')} />
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <SkillGroup
-                title="Frontend"
+                title={t('homepage.skills.frontend')}
                 skills={["React 19", "Next.js 16", "TypeScript", "Tailwind CSS"]}
               />
               <SkillGroup
-                title="Backend"
+                title={t('homepage.skills.backend')}
                 skills={["Node.js", "Python", "SQL", "REST APIs"]}
               />
               <SkillGroup
-                title="DevOps"
+                title={t('homepage.skills.devops')}
                 skills={["Docker", "Linux", "Git", "Vercel"]}
               />
               <SkillGroup
-                title="Testing"
+                title={t('homepage.skills.testing')}
                 skills={["Playwright", "Jest", "E2E", "TDD"]}
               />
             </div>
@@ -360,10 +356,10 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
-                Let's Talk
+                {t('homepage.contact.title')}
               </h2>
               <p className="text-lg text-neutral-400 mb-8">
-                Have a project? Need a developer? Tell me your constraints (timeline, budget, stack) and let's see if we're a fit.
+                {t('homepage.contact.description')}
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -372,13 +368,13 @@ export default function Home() {
                   variant="primary"
                   className="bg-emerald-500 text-black hover:bg-emerald-400 px-8 py-4"
                 >
-                  <Mail className="w-5 h-5 mr-2" /> Start a Conversation
+                  <Mail className="w-5 h-5 mr-2" /> {t('homepage.contact.startConversation')}
                 </AnimatedButton>
               </div>
 
               <div className="text-neutral-500 text-sm mb-8">
-                <p>Or email directly: <a href="mailto:tonymora1982@gmail.com" className="text-white hover:text-emerald-400">tonymora1982@gmail.com</a></p>
-                <p className="mt-2">Costa Rica · GMT-6 · 4-6 hrs daily overlap with EU/US</p>
+                <p>{t('homepage.contact.emailDirectly')} <a href="mailto:tonymora1982@gmail.com" className="text-white hover:text-emerald-400">tonymora1982@gmail.com</a></p>
+                <p className="mt-2">{t('homepage.contact.overlapInfo')}</p>
               </div>
 
               <div className="flex justify-center gap-6">

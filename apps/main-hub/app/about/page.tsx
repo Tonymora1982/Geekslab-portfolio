@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AnimatedButton, AnimatedFooter, Navbar } from "@geekslab/ui";
+import { AnimatedButton, AnimatedFooter, Navbar, useLanguage } from "@geekslab/ui";
 import { ArrowRight, Calendar, MapPin, Briefcase, GraduationCap, Code, Target } from "lucide-react";
 
 /**
@@ -11,6 +11,8 @@ import { ArrowRight, Calendar, MapPin, Briefcase, GraduationCap, Code, Target } 
  * providing the narrative that connects the portfolio pieces together.
  */
 export default function AboutPage() {
+    const { t } = useLanguage();
+
     return (
         <>
             <Navbar />
@@ -24,16 +26,16 @@ export default function AboutPage() {
                             transition={{ duration: 0.8 }}
                         >
                             <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm mb-6">
-                                The Story
+                                {t('aboutPage.hero.badge')}
                             </span>
                             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-                                From Medical Devices
+                                {t('aboutPage.hero.title1')}
                                 <br />
-                                <span className="text-neutral-500">to Digital Products</span>
+                                <span className="text-neutral-500">{t('aboutPage.hero.title2')}</span>
                             </h1>
                             <p className="text-xl text-neutral-400 max-w-2xl leading-relaxed">
-                                13 years building systems where failure isn't an option taught me one thing:
-                                <strong className="text-white"> the discipline of the operating room applies perfectly to shipping software.</strong>
+                                {t('aboutPage.hero.description')}
+                                <strong className="text-white">{t('aboutPage.hero.descriptionStrong')}</strong>
                             </p>
                         </motion.div>
                     </div>
@@ -43,26 +45,22 @@ export default function AboutPage() {
                 <section className="py-20 px-4 border-t border-white/10">
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-2xl font-bold mb-12 uppercase tracking-wider text-neutral-500">
-                            The Journey
+                            {t('aboutPage.journey.title')}
                         </h2>
 
                         {/* Chapter 1: The Foundation */}
                         <JourneyChapter
                             icon={<Briefcase className="w-5 h-5" />}
-                            period="2017 — 2023"
-                            title="The MedTech Years"
-                            company="Establishment Labs & Align Technology"
+                            period={t('aboutPage.journey.chapter1.period')}
+                            title={t('aboutPage.journey.chapter1.title')}
+                            company={t('aboutPage.journey.chapter1.company')}
                             delay={0}
                         >
                             <p className="text-neutral-400 mb-4">
-                                Started as a CAD Designer at Align Technology, designing orthodontic solutions
-                                patient by patient. Moved to Establishment Labs where I grew from R&D Technician
-                                to Jr. Engineer to Production Supervisor.
+                                {t('aboutPage.journey.chapter1.p1')}
                             </p>
                             <p className="text-neutral-400 mb-4">
-                                In those years I learned what <strong className="text-white">regulated environments</strong> demand:
-                                documentation that can withstand FDA audits, traceability from concept to
-                                production, and processes where "good enough" doesn't exist.
+                                {t('aboutPage.journey.chapter1.p2')} <strong className="text-white">{t('aboutPage.journey.chapter1.p2strong')}</strong>{t('aboutPage.journey.chapter1.p2end')}
                             </p>
                             <div className="flex flex-wrap gap-2 mt-4">
                                 <Tag>ISO 13485</Tag>
@@ -75,20 +73,16 @@ export default function AboutPage() {
                         {/* Chapter 2: The Transition */}
                         <JourneyChapter
                             icon={<GraduationCap className="w-5 h-5" />}
-                            period="2022 — 2024"
-                            title="The Pivot"
-                            company="UNED + Self-Study"
+                            period={t('aboutPage.journey.chapter2.period')}
+                            title={t('aboutPage.journey.chapter2.title')}
+                            company={t('aboutPage.journey.chapter2.company')}
                             delay={0.2}
                         >
                             <p className="text-neutral-400 mb-4">
-                                While working full-time, I earned a Diploma in Computer Science from UNED
-                                and started a Bachelor's in Computer Engineering. But the real learning
-                                happened building projects.
+                                {t('aboutPage.journey.chapter2.p1')}
                             </p>
                             <p className="text-neutral-400 mb-4">
-                                I discovered that my R&D mindset—<strong className="text-white">hypothesis, test, iterate, document</strong>—translated
-                                directly to software development. The same discipline that helped me
-                                pass ISO audits now helps me write maintainable code.
+                                {t('aboutPage.journey.chapter2.p2')}<strong className="text-white">{t('aboutPage.journey.chapter2.p2strong')}</strong>{t('aboutPage.journey.chapter2.p2end')}
                             </p>
                             <div className="flex flex-wrap gap-2 mt-4">
                                 <Tag>Computer Engineering (B.S.)</Tag>
@@ -100,21 +94,17 @@ export default function AboutPage() {
                         {/* Chapter 3: The Now */}
                         <JourneyChapter
                             icon={<Code className="w-5 h-5" />}
-                            period="2024 — Present"
-                            title="Building Digital Products"
-                            company="GeeksLab (Freelance)"
+                            period={t('aboutPage.journey.chapter3.period')}
+                            title={t('aboutPage.journey.chapter3.title')}
+                            company={t('aboutPage.journey.chapter3.company')}
                             delay={0.4}
                             isCurrent
                         >
                             <p className="text-neutral-400 mb-4">
-                                Now I build production-grade web applications with Next.js, React, and TypeScript.
-                                I bring the <strong className="text-white">rigor of medical device development</strong> to
-                                every project: clear documentation, systematic testing, and code reviews
-                                that would make an auditor proud.
+                                {t('aboutPage.journey.chapter3.p1')}<strong className="text-white">{t('aboutPage.journey.chapter3.p1strong')}</strong>{t('aboutPage.journey.chapter3.p1end')}
                             </p>
                             <p className="text-neutral-400 mb-4">
-                                This portfolio itself is a monorepo with 5 apps, shared component libraries,
-                                and CI/CD pipelines—because I believe in building things right from the start.
+                                {t('aboutPage.journey.chapter3.p2')}
                             </p>
                             <div className="flex flex-wrap gap-2 mt-4">
                                 <Tag>Next.js 16</Tag>
@@ -131,20 +121,20 @@ export default function AboutPage() {
                 <section className="py-20 px-4 bg-neutral-950 border-t border-white/10">
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-2xl font-bold mb-12 uppercase tracking-wider text-neutral-500">
-                            What I Bring
+                            {t('aboutPage.whatIBring.title')}
                         </h2>
                         <div className="grid md:grid-cols-3 gap-8">
                             <ValueCard
-                                title="R&D Discipline"
-                                description="Years of documenting every decision for FDA auditors translated into clean, self-documenting code and thorough PRs."
+                                title={t('aboutPage.whatIBring.card1.title')}
+                                description={t('aboutPage.whatIBring.card1.description')}
                             />
                             <ValueCard
-                                title="Systems Thinking"
-                                description="Medical devices taught me to see the full picture—from user needs to manufacturing constraints. I apply that to software architecture."
+                                title={t('aboutPage.whatIBring.card2.title')}
+                                description={t('aboutPage.whatIBring.card2.description')}
                             />
                             <ValueCard
-                                title="Quality Obsession"
-                                description="In MedTech, 'it works' isn't enough. I bring that same standard to every feature: it has to be tested, documented, and maintainable."
+                                title={t('aboutPage.whatIBring.card3.title')}
+                                description={t('aboutPage.whatIBring.card3.description')}
                             />
                         </div>
                     </div>
@@ -154,29 +144,29 @@ export default function AboutPage() {
                 <section className="py-20 px-4 border-t border-white/10">
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-2xl font-bold mb-8 uppercase tracking-wider text-neutral-500">
-                            Currently
+                            {t('aboutPage.currently.title')}
                         </h2>
                         <div className="space-y-4 text-neutral-400">
                             <p className="flex items-center gap-3">
                                 <Target className="w-5 h-5 text-emerald-400" />
-                                <span>Building freelance projects with Next.js and React</span>
+                                <span>{t('aboutPage.currently.item1')}</span>
                             </p>
                             <p className="flex items-center gap-3">
                                 <GraduationCap className="w-5 h-5 text-blue-400" />
-                                <span>Finishing B.S. in Computer Engineering (TFG pending)</span>
+                                <span>{t('aboutPage.currently.item2')}</span>
                             </p>
                             <p className="flex items-center gap-3">
                                 <MapPin className="w-5 h-5 text-yellow-400" />
-                                <span>Based in Costa Rica, available for remote work (EU/LATAM timezone overlap)</span>
+                                <span>{t('aboutPage.currently.item3')}</span>
                             </p>
                         </div>
 
                         <div className="mt-12 flex gap-4">
                             <AnimatedButton href="/cv" variant="primary" className="bg-white text-black hover:bg-neutral-200">
-                                View Full CV <ArrowRight className="w-4 h-4 ml-2" />
+                                {t('aboutPage.currently.viewCV')} <ArrowRight className="w-4 h-4 ml-2" />
                             </AnimatedButton>
                             <AnimatedButton href="/contact" variant="secondary" className="border-white/20">
-                                Get in Touch
+                                {t('aboutPage.currently.getInTouch')}
                             </AnimatedButton>
                         </div>
                     </div>

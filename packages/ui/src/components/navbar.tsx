@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, Circle } from "lucide-react";
 import { useState, useEffect } from "react";
+import { LanguageToggle } from "./language-toggle";
+import { useLanguage } from "../context/language-context";
 
 /**
  * Enhanced Navbar Component
@@ -23,6 +25,7 @@ export const Navbar = () => {
     const [hidden, setHidden] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const isHome = pathname === "/";
+    const { language, t } = useLanguage();
 
     const { scrollY } = useScroll();
 
@@ -64,14 +67,14 @@ export const Navbar = () => {
 
     // Navigation items
     const navItems = isHome ? [
-        { name: "About", path: "#about", section: "about" },
-        { name: "Experience", path: "#experience", section: "experience" },
-        { name: "Projects", path: "#projects", section: "projects" },
-        { name: "Contact", path: "#contact", section: "contact" },
+        { name: t('nav.about'), path: "#about", section: "about" },
+        { name: language === 'es' ? "Experiencia" : "Experience", path: "#experience", section: "experience" },
+        { name: t('nav.projects'), path: "#projects", section: "projects" },
+        { name: t('nav.contact'), path: "#contact", section: "contact" },
     ] : [
-        { name: "Home", path: "/", section: "" },
-        { name: "Projects", path: "/#projects", section: "" },
-        { name: "Contact", path: "/#contact", section: "" },
+        { name: t('nav.home'), path: "/", section: "" },
+        { name: t('nav.projects'), path: "/#projects", section: "" },
+        { name: t('nav.contact'), path: "/#contact", section: "" },
     ];
 
     // Handle smooth scrolling
@@ -109,13 +112,13 @@ export const Navbar = () => {
                         <span className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
                             <Circle className="w-2 h-2 fill-emerald-400 text-emerald-400 animate-pulse" />
                             <span className="text-[10px] text-emerald-400 font-medium uppercase tracking-wider">
-                                Available
+                                {language === 'es' ? 'Disponible' : 'Available'}
                             </span>
                         </span>
                     </Link>
 
-                    {/* Desktop Navigation - Hidden on mobile, visible on md+ */}
-                    <div className="desktop-nav items-center gap-1">
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-1">
                         {navItems.map((item) => (
                             <NavLink
                                 key={item.path}
@@ -126,6 +129,8 @@ export const Navbar = () => {
                                 {item.name}
                             </NavLink>
                         ))}
+
+                        <LanguageToggle />
 
                         {/* CTA Button */}
                         <a
@@ -179,6 +184,10 @@ export const Navbar = () => {
                                     {item.name}
                                 </motion.a>
                             ))}
+
+                            <div className="mt-4">
+                                <LanguageToggle />
+                            </div>
 
                             {/* Mobile CTA */}
                             <motion.a

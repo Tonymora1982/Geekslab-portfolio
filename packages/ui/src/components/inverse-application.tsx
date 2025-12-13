@@ -11,8 +11,10 @@ import {
 } from '../lib/rfc-scoring';
 import { CheckCircle2, XCircle, AlertCircle, ChevronDown, ArrowRight, ArrowLeft } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { useLanguage } from '../context/language-context';
 
 export function InverseApplication() {
+    const { language } = useLanguage();
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState<Partial<ApplicationForm>>({
         stack: [],
@@ -110,8 +112,14 @@ export function InverseApplication() {
     return (
         <div id="rfc-apply" className="w-full max-w-4xl mx-auto space-y-8 p-6 bg-zinc-950/50 border border-white/10 rounded-2xl backdrop-blur-sm">
             <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-white mb-2">Aplica para colaborar</h2>
-                <p className="text-zinc-400">Proceso de selección inversa para proyectos de alto impacto</p>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                    {language === 'es' ? 'Aplica para colaborar' : 'Apply to collaborate'}
+                </h3>
+                <p className="text-zinc-400">
+                    {language === 'es'
+                        ? 'Proceso de selección inversa para proyectos de alto impacto'
+                        : 'Inverse selection process for high-impact projects'}
+                </p>
             </div>
 
             <AnimatePresence mode="wait">

@@ -9,6 +9,8 @@ export const LanguageToggle = () => {
     return (
         <button
             onClick={toggleLanguage}
+            data-testid="language-toggle"
+            aria-label="Language toggle"
             className="relative px-3 py-1 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-100 dark:bg-neutral-900 text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors overflow-hidden"
         >
             <span className="relative z-10 flex items-center gap-2">

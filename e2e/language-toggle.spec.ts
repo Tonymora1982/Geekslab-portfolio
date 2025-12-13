@@ -14,21 +14,44 @@ test.describe('Bilingual Language Toggle Tests', () => {
      * The toggle is typically a button containing "EN" and "ES" text
      */
     async function toggleLanguage(page: Page): Promise<void> {
-        // Look for the language toggle button (contains EN/ES text)
-        const languageToggle = page.locator('button:has-text("EN"):has-text("ES")');
+        // Ensure navbar is not hidden due to "hide on scroll" behavior
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.waitForTimeout(150);
+
+        const previous = await page.evaluate(() => localStorage.getItem('language') || 'en');
+
+        const toggles = page.getByTestId('language-toggle');
 
         // Ensure toggle is visible (may need to open mobile menu first)
-        if (!(await languageToggle.isVisible())) {
+        if (!(await toggles.first().isVisible().catch(() => false))) {
             const menuButton = page.locator('button[aria-label="Toggle menu"]');
-            if (await menuButton.isVisible()) {
+            if (await menuButton.isVisible().catch(() => false)) {
                 await menuButton.click();
-                await page.waitForTimeout(500);
+                await page.waitForTimeout(300);
             }
         }
 
-        await expect(languageToggle).toBeVisible();
-        await languageToggle.click();
-        await page.waitForTimeout(300); // Wait for text to update
+        // Click the first visible toggle (desktop or mobile menu)
+        let clicked = false;
+        const count = await toggles.count();
+        for (let i = 0; i < count; i++) {
+            const candidate = toggles.nth(i);
+            if (await candidate.isVisible().catch(() => false)) {
+                await candidate.scrollIntoViewIfNeeded();
+                await candidate.click();
+                clicked = true;
+                break;
+            }
+        }
+
+        expect(clicked).toBe(true);
+
+        // Wait until the persisted language value changes
+        await page.waitForFunction(
+            (prev) => (localStorage.getItem('language') || 'en') !== prev,
+            previous,
+            { timeout: 5000 }
+        );
     }
 
     /**
@@ -101,7 +124,6 @@ test.describe('Bilingual Language Toggle Tests', () => {
             const isInitiallySpanish = footerText?.includes('Contáctame') || footerText?.includes('derechos reservados');
 
             await toggleLanguage(page);
-            await page.waitForTimeout(300);
 
             const newFooterText = await footer.textContent();
             const isNowSpanish = newFooterText?.includes('Contáctame') || newFooterText?.includes('derechos reservados');
@@ -181,7 +203,7 @@ test.describe('Bilingual Language Toggle Tests', () => {
             await page.goto('/evidence-layer#rfc', { waitUntil: 'domcontentloaded' });
 
             const rfcSection = page.locator('#rfc');
-            const title = rfcSection.locator('h2');
+            const title = rfcSection.locator('h2').first();
 
             const initialTitle = await title.textContent();
 
@@ -274,11 +296,18 @@ test.describe('Bilingual Language Toggle Tests', () => {
             // Toggle to get a known state
             await toggleLanguage(page);
 
-            const navTextAfterToggle = await page.locator('nav').textContent();
-            const isSpanishAfterToggle = isSpanishText(navTextAfterToggle || '');
+            const expectedLang = await page.evaluate(() => localStorage.getItem('language') || 'en');
+            const isSpanishAfterToggle = expectedLang === 'es';
 
             // Navigate to Evidence Layer
             await page.goto('/evidence-layer', { waitUntil: 'domcontentloaded' });
+
+            // Wait for UI to hydrate and reflect the persisted language
+            if (isSpanishAfterToggle) {
+                await expect(page.locator('nav')).toContainText(/Disponible|Inicio|Proyectos|Contacto|Sobre/i);
+            } else {
+                await expect(page.locator('nav')).toContainText(/Available|Home|Projects|Contact|About/i);
+            }
 
             // Verify language persisted
             const evidenceNavText = await page.locator('nav').textContent();
@@ -297,7 +326,7 @@ test.describe('Bilingual Language Toggle Tests', () => {
             const heroTitle = await page.locator('h1').textContent();
             const slaTitle = await page.locator('#sla h2').textContent();
             const experimentsTitle = await page.locator('#experiments h2').textContent();
-            const rfcTitle = await page.locator('#rfc h2').textContent();
+            const rfcTitle = await page.locator('#rfc h2').first().textContent();
 
             // Check if all are in the same language
             const heroIsEnglish = heroTitle?.includes('Recruiter');

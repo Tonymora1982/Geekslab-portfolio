@@ -76,6 +76,54 @@ test.describe('Portfolio Navigation Tests', () => {
       console.log('✅ Navbar has navigation links');
     });
 
+    test('should have Hire Me CTA mailto link', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+      // Desktop CTA if visible
+      const desktopHireMe = page.getByRole('link', { name: /hire me/i });
+      if (await desktopHireMe.isVisible().catch(() => false)) {
+        const href = await desktopHireMe.getAttribute('href');
+        expect(href).toContain('mailto:');
+        console.log('✅ Desktop Hire Me mailto link exists');
+        return;
+      }
+
+      // Otherwise open mobile menu and validate CTA
+      const menuButton = page.locator('button[aria-label="Toggle menu"]');
+      if (await menuButton.isVisible()) {
+        await menuButton.click();
+        await page.waitForTimeout(300);
+      }
+
+      const mobileHireMe = page.getByRole('link', { name: /hire me/i });
+      await expect(mobileHireMe).toBeVisible();
+      const href = await mobileHireMe.getAttribute('href');
+      expect(href).toContain('mailto:');
+
+      console.log('✅ Mobile Hire Me mailto link exists');
+    });
+
+    test('should show language toggle in navbar', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+      const languageToggle = page.getByTestId('language-toggle');
+
+      // It should be visible either on desktop or inside mobile menu
+      if (await languageToggle.isVisible().catch(() => false)) {
+        console.log('✅ Language toggle visible (desktop)');
+        return;
+      }
+
+      const menuButton = page.locator('button[aria-label="Toggle menu"]');
+      if (await menuButton.isVisible()) {
+        await menuButton.click();
+        await page.waitForTimeout(300);
+      }
+
+      await expect(languageToggle).toBeVisible();
+      console.log('✅ Language toggle visible (mobile menu)');
+    });
+
     test('should navigate via navbar', async ({ page }) => {
       await page.goto('/', { waitUntil: 'domcontentloaded' });
 
