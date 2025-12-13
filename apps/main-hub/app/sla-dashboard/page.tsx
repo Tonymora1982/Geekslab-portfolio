@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Navbar } from "@geekslab/ui";
+import { Navbar, useLanguage } from "@geekslab/ui";
 import { AnimatedFooter } from "@geekslab/ui";
 import { SLABadge } from "@geekslab/ui";
 import { motion } from "framer-motion";
@@ -17,6 +17,7 @@ interface SLAData {
 
 export default function SLADashboard() {
     const [data, setData] = useState<SLAData | null>(null);
+    const { t } = useLanguage();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,10 +40,10 @@ export default function SLADashboard() {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
                     <div>
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
-                            System Status
+                            {t('slaDashboard.title')}
                         </h1>
                         <p className="text-neutral-400 max-w-xl">
-                            Real-time performance metrics and health status of the Geekslab Ecosystem.
+                            {t('slaDashboard.description')}
                         </p>
                     </div>
                     <SLABadge className="text-sm px-4 py-2" />
@@ -57,7 +58,7 @@ export default function SLADashboard() {
                         className="p-6 rounded-2xl bg-neutral-900/50 border border-white/10"
                     >
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-neutral-400 font-mono text-sm">UPTIME</h3>
+                            <h3 className="text-neutral-400 font-mono text-sm">{t('slaDashboard.uptime').toUpperCase()}</h3>
                             <Activity className="text-emerald-500 w-5 h-5" />
                         </div>
                         <div className="text-4xl font-bold tracking-tight mb-2">
@@ -74,7 +75,7 @@ export default function SLADashboard() {
                         className="p-6 rounded-2xl bg-neutral-900/50 border border-white/10"
                     >
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-neutral-400 font-mono text-sm">LATENCY</h3>
+                            <h3 className="text-neutral-400 font-mono text-sm">{t('slaDashboard.latency').toUpperCase()}</h3>
                             <Clock className="text-blue-500 w-5 h-5" />
                         </div>
                         <div className="text-4xl font-bold tracking-tight mb-2">
@@ -91,7 +92,7 @@ export default function SLADashboard() {
                         className="p-6 rounded-2xl bg-neutral-900/50 border border-white/10"
                     >
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-neutral-400 font-mono text-sm">ERROR RATE</h3>
+                            <h3 className="text-neutral-400 font-mono text-sm">{t('slaDashboard.errorRate').toUpperCase()}</h3>
                             <AlertTriangle className="text-yellow-500 w-5 h-5" />
                         </div>
                         <div className="text-4xl font-bold tracking-tight mb-2">
@@ -103,7 +104,7 @@ export default function SLADashboard() {
 
                 {/* System Components Status */}
                 <div className="border-t border-white/10 pt-12">
-                    <h2 className="text-2xl font-bold mb-8">Component Status</h2>
+                    <h2 className="text-2xl font-bold mb-8">{t('slaDashboard.status')}</h2>
                     <div className="space-y-4">
                         {[
                             { name: "Main Hub API", status: "Operational" },

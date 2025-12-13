@@ -1,11 +1,13 @@
 "use client";
 
-import { AnimatedHeroText, AnimatedButton } from "@geekslab/ui";
+import { AnimatedHeroText, AnimatedButton, useLanguage } from "@geekslab/ui";
 import { NoiseOverlay, MagneticCursor } from "@geekslab/ui";
 import { Navbar } from "@geekslab/ui";
 import { motion } from "framer-motion";
 
 export default function QMSPage() {
+    const { t } = useLanguage();
+
     return (
         <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative overflow-hidden font-sans">
             <NoiseOverlay />
@@ -22,7 +24,7 @@ export default function QMSPage() {
                         className="mb-8"
                     >
                         <span className="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-sm font-mono mb-6 text-neutral-300">
-                            qms.medtech
+                            {t('qmsPage.hero.badge')}
                         </span>
                     </motion.div>
 
@@ -34,7 +36,7 @@ export default function QMSPage() {
 
                     <div className="flex justify-center gap-6 mt-8">
                         <AnimatedButton href="https://github.com/Tonymora1982/Geekslab-portfolio" variant="secondary" className="text-sm border-white/20 text-white hover:bg-white/10">
-                            View Code
+                            {t('qmsPage.hero.viewDocs')}
                         </AnimatedButton>
                         <AnimatedButton href="#" variant="primary" className="text-sm bg-white text-black hover:bg-neutral-200 cursor-not-allowed opacity-80">
                             Private Repo (Demo Only)
@@ -43,16 +45,16 @@ export default function QMSPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12 border-t border-white/10 pt-12">
                         <div>
-                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">Role</h3>
-                            <p className="text-xl font-light">R&D Lead & Developer</p>
+                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">{t('qmsPage.hero.role')}</h3>
+                            <p className="text-xl font-light">{t('qmsPage.hero.roleValue')}</p>
                         </div>
                         <div>
-                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">Timeline</h3>
-                            <p className="text-xl font-light">2022 — 2023</p>
+                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">{t('qmsPage.hero.timeline')}</h3>
+                            <p className="text-xl font-light">{t('qmsPage.hero.timelineValue')}</p>
                         </div>
                         <div>
-                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">Core Tech</h3>
-                            <p className="text-xl font-light">Python, SQL, Docker, React</p>
+                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">{t('qmsPage.hero.coreTech')}</h3>
+                            <p className="text-xl font-light">{t('qmsPage.hero.coreTechValue')}</p>
                         </div>
                     </div>
                 </div>
@@ -67,11 +69,9 @@ export default function QMSPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">The Context</h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">{t('qmsPage.problem.title')}</h2>
                             <p className="text-neutral-400 text-lg leading-relaxed">
-                                In the Medical Device industry, <strong>Traceability</strong> is not optional—it's the law.
-                                Managing thousands of requirements, risks, and test cases in Excel was a recipe for disaster.
-                                We needed a system that could enforce ISO 13485 compliance programmatically.
+                                {t('qmsPage.problem.description')}
                             </p>
                         </motion.div>
 
@@ -81,22 +81,22 @@ export default function QMSPage() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
                         >
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">The System</h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">{t('qmsPage.solution.title')}</h2>
                             <p className="text-neutral-400 text-lg leading-relaxed mb-6">
-                                I architected a custom Quality Management System (QMS) dashboard that links Design Inputs to Validation Outputs automatically.
+                                {t('qmsPage.solution.description')}
                             </p>
                             <ul className="space-y-4 border-l border-white/20 pl-6">
                                 <li className="text-neutral-300">
-                                    <strong className="text-white block mb-1">Automated Traceability Matrix</strong>
-                                    Python scripts parse design documents and generate real-time coverage reports.
+                                    <strong className="text-white block mb-1">{t('qmsPage.solution.autoLink')}</strong>
+                                    {t('qmsPage.solution.autoLinkDesc')}
                                 </li>
                                 <li className="text-neutral-300">
-                                    <strong className="text-white block mb-1">Audit-Ready Logs</strong>
-                                    Immutable audit trails stored in SQL to satisfy FDA/ISO auditors.
+                                    <strong className="text-white block mb-1">{t('qmsPage.solution.auditTrail')}</strong>
+                                    {t('qmsPage.solution.auditTrailDesc')}
                                 </li>
                                 <li className="text-neutral-300">
-                                    <strong className="text-white block mb-1">Dockerized Deployment</strong>
-                                    Containerized the entire stack for easy on-premise deployment in secure hospital networks.
+                                    <strong className="text-white block mb-1">{t('qmsPage.solution.realtime')}</strong>
+                                    {t('qmsPage.solution.realtimeDesc')}
                                 </li>
                             </ul>
                         </motion.div>
@@ -118,7 +118,7 @@ export default function QMSPage() {
                             </div>
                             <div className="bg-neutral-900 h-24 border border-white/10 flex flex-col items-center justify-center">
                                 <span className="text-2xl font-bold text-white">-40%</span>
-                                <span className="text-xs text-neutral-500">Audit Time</span>
+                                <span className="text-xs text-neutral-500">{t('qmsPage.impact.stat1')}</span>
                             </div>
                             <div className="bg-neutral-900 h-24 border border-white/10 flex flex-col items-center justify-center">
                                 <span className="text-2xl font-bold text-white">0</span>
@@ -132,7 +132,7 @@ export default function QMSPage() {
             {/* Next Project */}
             <section className="py-20 border-t border-white/10 bg-neutral-950">
                 <div className="max-w-7xl mx-auto px-4 text-center">
-                    <p className="text-neutral-500 mb-4">Back to Home</p>
+                    <p className="text-neutral-500 mb-4">{t('qmsPage.nextCaseStudy')}</p>
                     <AnimatedButton href="/" variant="primary" className="text-4xl md:text-6xl font-bold hover:text-neutral-400 transition-colors">
                         Portfolio Main →
                     </AnimatedButton>

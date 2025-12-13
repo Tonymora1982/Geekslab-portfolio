@@ -1,11 +1,13 @@
 "use client";
 
-import { AnimatedHeroText, AnimatedButton } from "@geekslab/ui";
+import { AnimatedHeroText, AnimatedButton, useLanguage } from "@geekslab/ui";
 import { NoiseOverlay, MagneticCursor } from "@geekslab/ui";
 import { Navbar } from "@geekslab/ui";
 import { motion } from "framer-motion";
 
 export default function NexaStorePage() {
+    const { t } = useLanguage();
+
     return (
         <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative overflow-hidden font-sans">
             <NoiseOverlay />
@@ -34,25 +36,25 @@ export default function NexaStorePage() {
 
                     <div className="flex justify-center gap-6 mt-8">
                         <AnimatedButton href="https://github.com/Tonymora1982/Geekslab-portfolio/tree/main/apps/nexastore" variant="secondary" className="text-sm border-white/20 text-white hover:bg-white/10">
-                            View Code
+                            {t('nexastorePage.hero.viewCode')}
                         </AnimatedButton>
                         <AnimatedButton href="https://nexastore.geekslab.tech" variant="primary" className="text-sm bg-white text-black hover:bg-neutral-200">
-                            Live Demo
+                            {t('nexastorePage.hero.liveDemo')}
                         </AnimatedButton>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12 border-t border-white/10 pt-12">
                         <div>
-                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">Role</h3>
-                            <p className="text-xl font-light">Full Stack Architect</p>
+                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">{t('nexastorePage.hero.role')}</h3>
+                            <p className="text-xl font-light">{t('nexastorePage.hero.roleValue')}</p>
                         </div>
                         <div>
-                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">Timeline</h3>
+                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">{t('nexastorePage.hero.timeline')}</h3>
                             <p className="text-xl font-light">2024</p>
                         </div>
                         <div>
-                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">Core Tech</h3>
-                            <p className="text-xl font-light">Stripe Connect, Sanity, Zustand</p>
+                            <h3 className="text-sm text-neutral-500 uppercase tracking-widest mb-2">{t('nexastorePage.hero.coreTech')}</h3>
+                            <p className="text-xl font-light">{t('nexastorePage.hero.coreTechValue')}</p>
                         </div>
                     </div>
                 </div>
@@ -67,11 +69,9 @@ export default function NexaStorePage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">The Problem</h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">{t('nexastorePage.problem.title')}</h2>
                             <p className="text-neutral-400 text-lg leading-relaxed">
-                                Traditional e-commerce platforms (Shopify, WooCommerce) are often bloated and hard to customize.
-                                The goal was to build a <strong>Headless Commerce Engine</strong> that separates the frontend experience from the backend logic,
-                                allowing for sub-second page loads and complete design freedom.
+                                {t('nexastorePage.problem.description')}
                             </p>
                         </motion.div>
 
@@ -81,23 +81,22 @@ export default function NexaStorePage() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
                         >
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">The Solution</h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">{t('nexastorePage.solution.title')}</h2>
                             <p className="text-neutral-400 text-lg leading-relaxed mb-6">
-                                A decoupled architecture where content lives in Sanity.io and payments are handled by Stripe,
-                                orchestrated by a Next.js middleware layer.
+                                {t('nexastorePage.solution.description')}
                             </p>
                             <ul className="space-y-4 border-l border-white/20 pl-6">
                                 <li className="text-neutral-300">
-                                    <strong className="text-white block mb-1">Global State Management</strong>
-                                    Implemented with Zustand to handle complex cart logic without React Context re-render issues.
+                                    <strong className="text-white block mb-1">{t('nexastorePage.solution.globalState')}</strong>
+                                    {t('nexastorePage.solution.globalStateDesc')}
                                 </li>
                                 <li className="text-neutral-300">
-                                    <strong className="text-white block mb-1">Real-time Inventory</strong>
-                                    Webhooks sync Stripe inventory levels with the frontend instantly.
+                                    <strong className="text-white block mb-1">{t('nexastorePage.solution.realtime')}</strong>
+                                    {t('nexastorePage.solution.realtimeDesc')}
                                 </li>
                                 <li className="text-neutral-300">
-                                    <strong className="text-white block mb-1">Conversion Optimization</strong>
-                                    Optimized checkout flow reducing friction by 40% compared to standard templates.
+                                    <strong className="text-white block mb-1">{t('nexastorePage.solution.conversion')}</strong>
+                                    {t('nexastorePage.solution.conversionDesc')}
                                 </li>
                             </ul>
                         </motion.div>
@@ -120,9 +119,9 @@ export default function NexaStorePage() {
             {/* Next Project */}
             <section className="py-20 border-t border-white/10 bg-neutral-950">
                 <div className="max-w-7xl mx-auto px-4 text-center">
-                    <p className="text-neutral-500 mb-4">Next Case Study</p>
+                    <p className="text-neutral-500 mb-4">{t('nexastorePage.nextCaseStudy')}</p>
                     <AnimatedButton href="/qms" variant="primary" className="text-4xl md:text-6xl font-bold hover:text-neutral-400 transition-colors">
-                        ISO 13485 QMS →
+                        {t('nexastorePage.nextProject')}
                     </AnimatedButton>
                 </div>
             </section>
