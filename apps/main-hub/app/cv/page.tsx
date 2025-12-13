@@ -7,44 +7,52 @@ import { Calendar, Download, Mail, Linkedin, Github, MapPin, Award, Briefcase, G
 import Link from "next/link";
 
 const certifications = [
-  { name: "Linux Foundation Certified (LFC)", year: "2024", org: "Linux Foundation" },
-  { name: "Certified Ethical Hacker (CEH)", year: "2023", org: "EC-Council" },
+  { name: "Linux Foundation Certified (LFC) — In Progress", year: "In Progress", org: "Linux Foundation" },
+  { name: "Certified Ethical Hacker (CEH) — In Progress", year: "In Progress", org: "EC-Council" },
   { name: "ISO 13485 Internal Auditor", year: "2022", org: "BSI" },
   { name: "SolidWorks Associate (CSWA)", year: "2018", org: "Dassault Systèmes" },
 ];
 
 const experience = [
   {
+    roleEN: "Full Stack Developer (Freelance)",
+    roleES: "Desarrollador Full Stack (Freelance)",
+    company: "GeeksLab",
+    period: "2024 — Present",
+    descEN: "Building production web applications with Next.js 16, React 19, TypeScript, and modern delivery practices (CI/CD, Playwright E2E, observability).",
+    descES: "Construcción de aplicaciones web de grado producción con Next.js 16, React 19, TypeScript y prácticas modernas (CI/CD, Playwright E2E, observabilidad).",
+  },
+  {
     roleEN: "Production Supervisor",
     roleES: "Supervisor de Producción",
     company: "Establishment Labs",
-    period: "2020 - Present",
-    descEN: "Leading production operations and compliance with Quality and Safety standards in a regulated medical environment (ISO 13485). Managing cross-functional teams and driving continuous improvement initiatives.",
-    descES: "Liderazgo de operaciones de producción y cumplimiento de estándares de Calidad y Seguridad en entorno médico regulado (ISO 13485). Gestión de equipos multifuncionales e iniciativas de mejora continua.",
+    period: "Sep 2024 — Apr 2025",
+    descEN: "Led production operations in an ISO 13485 regulated environment. Managed cross-functional teams and drove continuous improvement initiatives.",
+    descES: "Lideré operaciones de producción en entorno regulado ISO 13485. Gestión de equipos multifuncionales e iniciativas de mejora continua.",
   },
   {
-    roleEN: "R&D Engineer",
-    roleES: "Ingeniero R&D",
+    roleEN: "R&D Jr. Engineer",
+    roleES: "Ingeniero Jr. de I+D",
     company: "Establishment Labs",
-    period: "2018 - 2020",
-    descEN: "Coordination of experimental tests, design verification, and prototyping for new medical devices. Led multiple product development cycles from concept to validation.",
-    descES: "Coordinación de pruebas experimentales, verificación de diseño y prototipado para nuevos dispositivos médicos. Lideré múltiples ciclos de desarrollo de productos desde concepto hasta validación.",
+    period: "Sep 2021 — Oct 2023",
+    descEN: "Design verification, prototyping, and compliance documentation for Class III medical devices (FDA/ISO).",
+    descES: "Verificación de diseño, prototipado y documentación de cumplimiento para dispositivos médicos Clase III (FDA/ISO).",
   },
   {
     roleEN: "R&D Technician",
-    roleES: "Técnico R&D",
+    roleES: "Técnico de I+D",
     company: "Establishment Labs",
-    period: "2016 - 2018",
-    descEN: "Execution of technical studies and experimental tests for projects under development. 3D scanning, prototyping, and equipment maintenance.",
-    descES: "Ejecución de estudios técnicos y pruebas experimentales para proyectos en desarrollo. Escaneo 3D, prototipado y mantenimiento de equipos.",
+    period: "Jan 2020 — Sep 2021",
+    descEN: "Experimental testing and technical studies for products under development.",
+    descES: "Pruebas experimentales y estudios técnicos para productos en desarrollo.",
   },
   {
-    roleEN: "Process Technician",
-    roleES: "Técnico de Procesos",
-    company: "Establishment Labs",
-    period: "2012 - 2016",
-    descEN: "Manufacturing operations for Class III medical devices. Quality control, process documentation, and equipment calibration.",
-    descES: "Operaciones de manufactura para dispositivos médicos Clase III. Control de calidad, documentación de procesos y calibración de equipos.",
+    roleEN: "CAD Designer",
+    roleES: "Diseñador CAD",
+    company: "Align Technology",
+    period: "Mar 2017 — Mar 2018",
+    descEN: "Designed patient-specific orthodontic solutions using treatment optimization software.",
+    descES: "Diseño de soluciones ortodónticas específicas por paciente utilizando software de optimización de tratamiento.",
   },
 ];
 
@@ -87,12 +95,12 @@ export default function CVPage() {
               Anthony Mora Parra
             </h1>
             <p className="text-2xl md:text-3xl text-neutral-300 mb-2 font-medium print:text-xl print:text-black">
-              {language === 'en' ? 'R&D Engineer & Full-Stack Developer' : 'Ingeniero R&D y Desarrollador Full-Stack'}
+              {language === 'en' ? 'Full-Stack Developer (Next.js/TS) · MedTech / ISO 13485' : 'Desarrollador Full Stack (Next.js/TS) · MedTech / ISO 13485'}
             </p>
             <p className="text-lg text-neutral-400 mb-8 leading-relaxed max-w-3xl print:text-base print:text-gray-600">
               {language === 'en'
-                ? '13+ years in manufacturing R&D. Building production-grade web applications with industrial discipline and modern technologies.'
-                : '13+ años en R&D de manufactura. Construyendo aplicaciones web de grado producción con disciplina industrial y tecnologías modernas.'}
+                ? 'Senior-minded delivery: production-grade web apps (Next.js/TS) backed by 13+ years in regulated environments (ISO 13485) where quality and traceability matter.'
+                : 'Entrega con mentalidad senior: apps web de grado producción (Next.js/TS) respaldadas por 13+ años en entornos regulados (ISO 13485) donde calidad y trazabilidad importan.'}
             </p>
 
             {/* Contact Info */}
@@ -109,11 +117,11 @@ export default function CVPage() {
                 <MapPin className="w-4 h-4 md:w-5 md:h-5" />
                 Grecia, Alajuela, Costa Rica
               </div>
-              <a href="https://www.linkedin.com/in/anthony-mora-parra-5510b0160/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-neutral-400 hover:text-cyan-400 transition-colors print:text-black">
+              <a href="https://www.linkedin.com/in/anthony-mora-parra-94941282/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-neutral-400 hover:text-cyan-400 transition-colors print:text-black">
                 <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
                 LinkedIn
               </a>
-              <a href="https://github.com/Sobgo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-neutral-400 hover:text-cyan-400 transition-colors print:text-black">
+              <a href="https://github.com/Tonymora1982" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-neutral-400 hover:text-cyan-400 transition-colors print:text-black">
                 <Github className="w-4 h-4 md:w-5 md:h-5" />
                 GitHub
               </a>

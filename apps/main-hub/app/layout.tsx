@@ -88,7 +88,7 @@ const jsonLd = {
   image: "https://geekslab.tech/og",
   sameAs: [
     "https://github.com/Tonymora1982",
-    "https://linkedin.com/in/anthonymora",
+    "https://www.linkedin.com/in/anthony-mora-parra-94941282/",
   ],
   jobTitle: "Senior Full Stack Developer",
   worksFor: {

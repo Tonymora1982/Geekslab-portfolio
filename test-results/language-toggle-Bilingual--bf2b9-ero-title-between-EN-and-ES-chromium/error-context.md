@@ -1,0 +1,233 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - link "GeeksLab Available" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: GeeksLab
+        - generic [ref=e7]:
+          - img [ref=e8]
+          - text: Available
+      - generic [ref=e10]:
+        - link "Home" [ref=e11] [cursor=pointer]:
+          - /url: /
+          - text: Home
+        - link "Projects" [ref=e12] [cursor=pointer]:
+          - /url: /#projects
+          - text: Projects
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: /#contact
+          - text: Contact
+        - link "Hire Me" [ref=e14] [cursor=pointer]:
+          - /url: mailto:tonymora1982@gmail.com?subject=Project%20Inquiry
+      - button "Toggle menu" [ref=e15]:
+        - img [ref=e17]
+    - generic [ref=e21]:
+      - link "Home" [ref=e22] [cursor=pointer]:
+        - /url: /
+      - link "Projects" [ref=e23] [cursor=pointer]:
+        - /url: /#projects
+      - link "Contact" [ref=e24] [cursor=pointer]:
+        - /url: /#contact
+      - link "Hire Me" [ref=e25] [cursor=pointer]:
+        - /url: mailto:tonymora1982@gmail.com?subject=Project%20Inquiry
+  - main [ref=e27]:
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - heading "Recruiter Evidence Layer" [level=1] [ref=e30]
+        - paragraph [ref=e31]: Three systems to demonstrate expertise, experimentation, and transparency. Not just words — real data, documented failures, explicit criteria.
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: 📊
+            - heading "SLA Metrics" [level=2] [ref=e36]
+          - paragraph [ref=e37]: Real-time metrics for uptime, latency, and error rate. Connected to Vercel Analytics with fallback to realistic simulated data. Updates every 30 seconds.
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e42]: Crítico
+            - generic [ref=e43]: "Actualizado: 23:15:59"
+          - generic [ref=e44]:
+            - generic [ref=e45]:
+              - heading "Uptime" [level=3] [ref=e47]
+              - generic [ref=e50]: 98.45%
+              - paragraph [ref=e51]: "Target: ≥99.9%"
+            - generic [ref=e52]:
+              - heading "Latencia (p95)" [level=3] [ref=e54]
+              - generic [ref=e56]:
+                - generic [ref=e57]: "170"
+                - generic [ref=e58]: ms
+              - paragraph [ref=e59]: "Target: ≤300ms"
+            - generic [ref=e60]:
+              - heading "Tasa de error" [level=3] [ref=e62]
+              - generic [ref=e64]:
+                - generic [ref=e65]: "0.05"
+                - generic [ref=e66]: "%"
+              - paragraph [ref=e67]: "Target: ≤0.2%"
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - generic [ref=e71]: 🧪
+            - heading "Experiments Log" [level=2] [ref=e72]
+          - paragraph [ref=e73]: Record of real experiments with methodology, results, and learnings. Includes 3 valuable failures with complete postmortems. Each experiment is reproducible.
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - button "📚Todos" [ref=e76]
+            - button "⚡Optimización" [ref=e77]
+            - button "🏗️Arquitectura" [ref=e78]
+            - button "🔥Fallas valiosas" [ref=e79]
+            - button "🔬Investigación" [ref=e80]
+          - generic [ref=e81]:
+            - generic [ref=e82] [cursor=pointer]:
+              - generic [ref=e83]:
+                - generic [ref=e84]: ⚡ optimization
+                - generic [ref=e85]: sept 2024
+              - heading "Dashboard de producción con Edge Caching" [level=3] [ref=e86]
+              - paragraph [ref=e87]: Reducción de latencia con actualizaciones en tiempo real
+              - generic [ref=e88]:
+                - generic [ref=e89]:
+                  - generic [ref=e90]: Latencia (p95)
+                  - generic [ref=e91]: 780ms → 45ms
+                - generic [ref=e92]: "-94.2%"
+              - generic [ref=e93]:
+                - generic [ref=e94]: Next.js
+                - generic [ref=e95]: Edge
+                - generic [ref=e96]: Caching
+                - generic [ref=e97]: "+1"
+              - generic [ref=e99]:
+                - img [ref=e100]
+                - generic [ref=e102]: Reproducir
+            - generic [ref=e103] [cursor=pointer]:
+              - generic [ref=e104]:
+                - generic [ref=e105]: ⚡ optimization
+                - generic [ref=e106]: may 2024
+              - heading "Automatización de preparación ISO 13485" [level=3] [ref=e107]
+              - paragraph [ref=e108]: Scripts para auditorías de calidad en manufactura médica
+              - generic [ref=e109]:
+                - generic [ref=e110]:
+                  - generic [ref=e111]: Tiempo de preparación
+                  - generic [ref=e112]: 40 hrs → 4.5 hrs
+                - generic [ref=e113]: "-88.8%"
+              - generic [ref=e114]:
+                - generic [ref=e115]: Python
+                - generic [ref=e116]: Automation
+                - generic [ref=e117]: ISO 13485
+                - generic [ref=e118]: "+1"
+              - generic [ref=e120]:
+                - img [ref=e121]
+                - generic [ref=e123]: Reproducir
+            - generic [ref=e124] [cursor=pointer]:
+              - generic [ref=e125]:
+                - generic [ref=e126]: 🔥 failure
+                - generic [ref=e127]: nov 2024
+              - heading "🔥 Migración DB con rollback fallido" [level=3] [ref=e128]
+              - paragraph [ref=e129]: "Falla valiosa: 2.3hrs de downtime por estrategia de migración inadecuada"
+              - generic [ref=e130]:
+                - generic [ref=e131]:
+                  - generic [ref=e132]: Downtime planificado
+                  - generic [ref=e133]: 30 min → 2.3 hrs
+                - generic [ref=e134]: +360% 💥
+              - generic [ref=e135]:
+                - generic [ref=e136]: PostgreSQL
+                - generic [ref=e137]: Migration
+                - generic [ref=e138]: Postmortem
+                - generic [ref=e139]: "+1"
+              - generic [ref=e141]:
+                - img [ref=e142]
+                - generic [ref=e145]: Postmortem
+            - generic [ref=e146] [cursor=pointer]:
+              - generic [ref=e147]:
+                - generic [ref=e148]: 🔥 failure
+                - generic [ref=e149]: jul 2024
+              - 'heading "🔥 Over-engineering: Caché distribuido innecesario" [level=3] [ref=e150]'
+              - paragraph [ref=e151]: "Falla valiosa: Optimización prematura que añadió complejidad sin beneficio"
+              - generic [ref=e152]:
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Latencia (p95)
+                  - generic [ref=e155]: 120ms → 115ms
+                - generic [ref=e156]: "-4.2% 😐"
+              - generic [ref=e157]:
+                - generic [ref=e158]: Redis
+                - generic [ref=e159]: Architecture
+                - generic [ref=e160]: Premature Optimization
+                - generic [ref=e161]: "+1"
+              - generic [ref=e163]:
+                - img [ref=e164]
+                - generic [ref=e167]: Postmortem
+            - generic [ref=e168] [cursor=pointer]:
+              - generic [ref=e169]:
+                - generic [ref=e170]: 🔥 failure
+                - generic [ref=e171]: mar 2023
+              - heading "🔥 Digital twin sin validación de usuario" [level=3] [ref=e172]
+              - paragraph [ref=e173]: "Falla valiosa: Solución técnica avanzada que no resolvió problema real"
+              - generic [ref=e174]:
+                - generic [ref=e175]:
+                  - generic [ref=e176]: Tiempo de diagnóstico
+                  - generic [ref=e177]: 8 min → 8 min
+                - generic [ref=e178]: 0% 😐
+              - generic [ref=e179]:
+                - generic [ref=e180]: Digital Twin
+                - generic [ref=e181]: User Research
+                - generic [ref=e182]: Three.js
+                - generic [ref=e183]: "+1"
+              - generic [ref=e185]:
+                - img [ref=e186]
+                - generic [ref=e189]: Postmortem
+      - generic [ref=e190]:
+        - generic [ref=e191]:
+          - generic [ref=e192]:
+            - generic [ref=e193]: 📝
+            - heading "Inverse RFC Application" [level=2] [ref=e194]
+          - paragraph [ref=e195]: "Inverse application system: companies apply to work with you. Automatic scoring based on autonomy (25pts), stack (20pts), timeline (20pts), budget (15pts), experimentation (15pts), and compliance (5pts)."
+          - generic [ref=e196]:
+            - generic [ref=e197]: ⚠️
+            - generic [ref=e198]: Criteria calibrated based on 8 years in manufacturing + transition to software
+        - generic [ref=e199]:
+          - generic [ref=e200]:
+            - heading "Aplica para colaborar" [level=2] [ref=e201]
+            - paragraph [ref=e202]: Proceso de selección inversa para proyectos de alto impacto
+          - generic [ref=e203]:
+            - generic [ref=e204]:
+              - heading "1. Información General" [level=3] [ref=e205]
+              - generic [ref=e206]:
+                - generic [ref=e207]:
+                  - generic [ref=e208]: Nombre de la empresa *
+                  - textbox [ref=e209]
+                - generic [ref=e210]:
+                  - generic [ref=e211]: Sitio web
+                  - textbox "https://ejemplo.com" [ref=e212]
+                - generic [ref=e213]:
+                  - generic [ref=e214]: Tu Nombre *
+                  - textbox [ref=e215]
+                - generic [ref=e216]:
+                  - generic [ref=e217]: Email Corporativo *
+                  - textbox [ref=e218]
+                - generic [ref=e219]:
+                  - generic [ref=e220]: Tu Rol *
+                  - textbox [ref=e221]
+            - button "Siguiente" [ref=e223]:
+              - text: Siguiente
+              - img [ref=e224]
+      - paragraph [ref=e227]:
+        - text: Systems designed for radical transparency. View source code on
+        - link "GitHub" [ref=e228] [cursor=pointer]:
+          - /url: https://github.com/Tonymora1982/Geekslab-portfolio
+  - button "Open Next.js Dev Tools" [ref=e234] [cursor=pointer]:
+    - img [ref=e235]
+  - alert [ref=e238]
+  - generic:
+    - generic:
+      - generic:
+        - dialog "GeeksLab Assistant" [ref=e239]:
+          - generic [ref=e241]:
+            - generic [ref=e245] [cursor=pointer]:
+              - generic [ref=e246]: "Agent Says:"
+              - text: Good day! What can I do for you today?
+            - button "Maximize chat" [ref=e247]
+            - button "Minimize" [ref=e248] [cursor=pointer]:
+              - img [ref=e249]
+        - button "Open Chat" [ref=e252] [cursor=pointer]:
+          - img [ref=e253]
+          - img [ref=e257]
+```

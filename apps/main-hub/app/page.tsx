@@ -64,10 +64,10 @@ export default function Home() {
 
               {/* Production Proof Block - Verifiable metrics */}
               <div className="flex flex-wrap justify-center gap-8 text-sm mb-8 py-6 border-y border-emerald-500/20 bg-gradient-emerald rounded-lg">
-                <ProofMetric value="26" label="E2E Tests" />
+                <ProofMetric value="39" label="E2E Tests" />
                 <ProofMetric value="0" label="TS Errors" />
-                <ProofMetric value="<200ms" label="LCP" />
-                <ProofMetric value="ISO 13485" label="Mindset" />
+                <ProofMetric value="CWV" label="Performance" />
+                <ProofMetric value="ISO 13485" label="Audit-ready" />
               </div>
 
               {/* Availability details */}

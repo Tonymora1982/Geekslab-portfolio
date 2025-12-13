@@ -13,6 +13,8 @@ const projects = [
         solution: "I built a custom dashboard using Next.js that integrates real-time project tracking with automated compliance reporting. The system uses a microservices architecture to ensure scalability.",
         tech: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Docker"],
         image: "/projects/geekslab-hero.jpg", // Placeholder
+        liveUrl: "/geekslab",
+        codeUrl: "https://github.com/Tonymora1982/Geekslab-portfolio",
     },
     {
         id: "dashboard",
@@ -30,9 +32,11 @@ const projects = [
         subtitle: "High-Performance Template",
         description: "A production-ready e-commerce template optimized for Core Web Vitals and conversion rates.",
         challenge: "Most e-commerce templates are bloated and slow. The goal was to create a lightweight, SEO-first alternative.",
-        solution: "Utilized Next.js App Router and Server Components to minimize client-side JavaScript. Achieved a perfect 100 Lighthouse score.",
+        solution: "Utilized Next.js App Router and Server Components to minimize client-side JavaScript. Optimized for strong Lighthouse performance and fast UX.",
         tech: ["Next.js", "Stripe", "Tailwind CSS", "Zustand"],
         image: "/projects/ecommerce-hero.jpg", // Placeholder
+        liveUrl: "/nexastore",
+        codeUrl: "https://github.com/Tonymora1982/Geekslab-portfolio/tree/main/apps/nexastore",
     },
 ];
 
@@ -85,22 +89,30 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                                 </span>
                             ))}
                         </div>
-                        <div className="flex gap-4">
-                            <a
-                                href="#"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-bold hover:bg-gray-200 transition-colors"
-                            >
-                                <Globe className="w-5 h-5" />
-                                Live Demo
-                            </a>
-                            <a
-                                href="#"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
-                            >
-                                <Github className="w-5 h-5" />
-                                View Code
-                            </a>
-                        </div>
+                        {(project.liveUrl || project.codeUrl) && (
+                            <div className="flex gap-4">
+                                {project.liveUrl && (
+                                    <Link
+                                        href={project.liveUrl}
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-bold hover:bg-gray-200 transition-colors"
+                                    >
+                                        <Globe className="w-5 h-5" />
+                                        Live Demo
+                                    </Link>
+                                )}
+                                {project.codeUrl && (
+                                    <a
+                                        href={project.codeUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                                    >
+                                        <Github className="w-5 h-5" />
+                                        View Code
+                                    </a>
+                                )}
+                            </div>
+                        )}
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-12">
