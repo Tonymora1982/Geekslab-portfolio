@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X, Circle } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { LanguageToggle } from "./language-toggle";
 import { useLanguage } from "../context/language-context";
@@ -15,8 +15,7 @@ import { useLanguage } from "../context/language-context";
  * - Active section indicator (tracks scroll position)
  * - Underline hover animation
  * - Hide on scroll down, show on scroll up
- * - Availability status badge
- * - Smooth mobile menu
+ * - Clean, spacious design
  */
 export const Navbar = () => {
     const pathname = usePathname();
@@ -95,31 +94,24 @@ export const Navbar = () => {
     return (
         <motion.nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                ? "bg-black/90 backdrop-blur-lg border-b border-white/10"
+                ? "bg-black/80 backdrop-blur-xl border-b border-white/5"
                 : "bg-transparent"
                 }`}
             animate={{ y: hidden ? -100 : 0 }}
             transition={{ duration: 0.3 }}
         >
-            <div className="max-w-5xl mx-auto px-6">
-                <div className="flex items-center justify-between h-16">
+            <div className="max-w-6xl mx-auto px-8 lg:px-12">
+                <div className="flex items-center justify-between h-20">
 
-                    {/* Logo + Status */}
-                    <Link href="/" className="flex items-center gap-3 group">
-                        <span className="text-lg font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+                    {/* Logo */}
+                    <Link href="/" className="group">
+                        <span className="text-xl font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors duration-300">
                             GeeksLab
-                        </span>
-                        {/* Availability indicator */}
-                        <span className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
-                            <Circle className="w-2 h-2 fill-emerald-400/80 text-emerald-400/80" />
-                            <span className="text-[10px] text-neutral-300 font-medium uppercase tracking-wider">
-                                {language === 'es' ? 'Disponible' : 'Available'}
-                            </span>
                         </span>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-1">
+                    {/* Desktop Navigation - Centered */}
+                    <div className="hidden lg:flex items-center gap-2">
                         {navItems.map((item) => (
                             <NavLink
                                 key={item.path}
@@ -130,21 +122,24 @@ export const Navbar = () => {
                                 {item.name}
                             </NavLink>
                         ))}
+                    </div>
 
+                    {/* Right side: Language + CTA */}
+                    <div className="hidden lg:flex items-center gap-6">
                         <LanguageToggle />
 
-                        {/* CTA Button */}
+                        {/* CTA Button - More prominent */}
                         <a
                             href="mailto:tonymora1982@gmail.com?subject=Project%20Inquiry"
-                            className="ml-4 px-4 py-2 text-sm font-medium bg-white text-black rounded-lg hover:bg-neutral-200 transition-colors"
+                            className="px-6 py-2.5 text-sm font-semibold bg-white text-black rounded-full hover:bg-emerald-400 hover:text-black transition-all duration-300 hover:scale-105"
                         >
-                            Hire Me
+                            {language === 'es' ? 'Contrátame' : 'Hire Me'}
                         </a>
                     </div>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden p-2 text-neutral-400 hover:text-white transition-colors"
+                        className="lg:hidden p-2 text-neutral-400 hover:text-white transition-colors"
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
                     >
@@ -152,7 +147,7 @@ export const Navbar = () => {
                             animate={{ rotate: isOpen ? 90 : 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
+                            {isOpen ? <X size={28} /> : <Menu size={28} />}
                         </motion.div>
                     </button>
                 </div>
@@ -166,9 +161,9 @@ export const Navbar = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden bg-black/95 backdrop-blur-lg border-b border-white/10"
+                        className="lg:hidden bg-black/95 backdrop-blur-xl border-b border-white/5"
                     >
-                        <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col gap-2">
+                        <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col gap-4">
                             {navItems.map((item, index) => (
                                 <motion.a
                                     key={item.path}
@@ -177,8 +172,8 @@ export const Navbar = () => {
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.1 }}
-                                    className={`text-2xl font-medium py-2 transition-colors ${activeSection === item.section
-                                        ? "text-emerald-300"
+                                    className={`text-3xl font-medium py-2 transition-colors ${activeSection === item.section
+                                        ? "text-emerald-400"
                                         : "text-neutral-400 hover:text-white"
                                         }`}
                                 >
@@ -186,7 +181,7 @@ export const Navbar = () => {
                                 </motion.a>
                             ))}
 
-                            <div className="mt-4">
+                            <div className="mt-6 pt-6 border-t border-white/10">
                                 <LanguageToggle />
                             </div>
 
@@ -196,9 +191,9 @@ export const Navbar = () => {
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: navItems.length * 0.1 }}
-                                className="mt-4 px-6 py-3 text-center text-lg font-medium bg-white text-black rounded-lg hover:bg-neutral-200 transition-colors"
+                                className="mt-4 px-8 py-4 text-center text-lg font-semibold bg-white text-black rounded-full hover:bg-emerald-400 transition-colors"
                             >
-                                Hire Me
+                                {language === 'es' ? 'Contrátame' : 'Hire Me'}
                             </motion.a>
                         </div>
                     </motion.div>
@@ -226,26 +221,25 @@ function NavLink({
         <a
             href={href}
             onClick={onClick}
-            className="relative px-4 py-2 text-sm transition-colors group"
+            className="relative px-5 py-3 text-[15px] font-medium transition-colors group"
         >
-            <span className={isActive ? "text-white" : "text-neutral-400 group-hover:text-white"}>
+            <span className={isActive ? "text-white" : "text-neutral-400 group-hover:text-white transition-colors duration-300"}>
                 {children}
             </span>
 
-            {/* Underline indicator */}
+            {/* Active indicator - dot */}
             <motion.span
-                className="absolute bottom-0 left-4 right-4 h-0.5 bg-emerald-400/60 rounded-full"
+                className="absolute -bottom-1 left-1/2 w-1 h-1 bg-emerald-400 rounded-full"
                 initial={false}
                 animate={{
-                    scaleX: isActive ? 1 : 0,
-                    opacity: isActive ? 1 : 0
+                    scale: isActive ? 1 : 0,
+                    x: "-50%"
                 }}
                 transition={{ duration: 0.2 }}
-                style={{ originX: 0.5 }}
             />
 
             {/* Hover underline */}
-            <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-white/20 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+            <span className="absolute bottom-1 left-5 right-5 h-px bg-white/30 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
         </a>
     );
 }
