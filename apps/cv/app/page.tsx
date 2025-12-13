@@ -94,11 +94,10 @@ export default function CVPage() {
                             Professional Summary
                         </h2>
                         <p className="text-gray-700 leading-relaxed">
-                            Full Stack Developer with <strong>13+ years in regulated industries</strong> (MedTech, Medical Devices).
-                            Transitioning from 6+ years at Establishment Labs building Class III medical devices to modern web development
-                            with <strong>Next.js, React, and TypeScript</strong>. I bring R&D discipline—documentation, traceability,
-                            systematic problem-solving—to production software. Audit-ready code, CI/CD mindset, zero tolerance for
-                            "works on my machine."
+                            Senior Full Stack Engineer with <strong>13+ years of engineering background</strong>. I combine the rigor of 
+                            ISO 13485 regulated environments with modern web architectures (Next.js/React). Expert in building 
+                            audit-ready, high-reliability software systems that drive process automation and business efficiency.
+                            Focused on delivering production-grade applications with CI/CD, automated testing, and zero tolerance for errors.
                         </p>
                     </section>
 
@@ -130,14 +129,26 @@ export default function CVPage() {
                         </h2>
 
                         <ExperienceItem
-                            title="Full Stack Developer"
-                            company="GeeksLab — Freelance"
+                            title="Lead Full Stack Engineer"
+                            company="GeeksLab"
                             period="2024 — Present"
                             location="Costa Rica (Remote)"
                             highlights={[
-                                "Building production web applications with Next.js 16, React 19, TypeScript",
-                                "Monorepo architecture with Turborepo, CI/CD pipelines, Playwright E2E testing",
-                                "Deployed e-commerce platform (NexaStore) with <200ms LCP on Vercel"
+                                "Architecting production web applications with Next.js 16, React 19, TypeScript",
+                                "Implemented Monorepo architecture with Turborepo, CI/CD pipelines, Playwright E2E testing",
+                                "Deployed e-commerce platform (NexaStore) achieving <200ms LCP on Vercel"
+                            ]}
+                        />
+
+                        <ExperienceItem
+                            title="Data & Automation Engineer"
+                            company="Grupo INS"
+                            period="Jun 2025 — Present"
+                            location="San José"
+                            highlights={[
+                                "Automating critical reporting pipelines using Python and SQL",
+                                "Developing operational dashboards with proactive alerting for distributed teams",
+                                "Reduced data validation time by ~25% through automated scripts"
                             ]}
                         />
 
@@ -154,7 +165,7 @@ export default function CVPage() {
                         />
 
                         <ExperienceItem
-                            title="R&D Junior Engineer"
+                            title="R&D Engineer"
                             company="Establishment Labs"
                             period="Sep 2021 — Oct 2023"
                             location="Coyol, Alajuela"

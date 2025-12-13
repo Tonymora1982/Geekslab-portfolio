@@ -6,7 +6,7 @@ Q: Who is Anthony Mora?
 A: Anthony Mora Parra is a Principal R&D Engineer and Full-Stack Developer with 13+ years of experience in medical device industry and modern software development. He is the founder of GeeksLab.tech, a software company based in Costa Rica.
 
 Q: What is Anthony's current role?
-A: Anthony currently works as Technical Administrative Support at Instituto Nacional de Seguros (INS) in Costa Rica while running his freelance software development business GeeksLab.tech.
+A: Anthony currently works as Data & Automation Engineer at Instituto Nacional de Seguros (INS) in Costa Rica while running his software development business GeeksLab.tech as Lead Engineer.
 
 Q: Where is Anthony located?
 A: Anthony is based in Costa Rica (GMT-6 timezone), which provides excellent alignment with US business hours.

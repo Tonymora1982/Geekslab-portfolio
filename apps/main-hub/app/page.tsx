@@ -132,8 +132,8 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-12">
               <div className="md:col-span-2 space-y-6">
                 <p className="text-lg text-neutral-300 leading-relaxed">
-                  I'm a developer with an unconventional path. Spent <strong className="text-white">6+ years at Establishment Labs</strong> building
-                  Class III medical devices—from R&D technician to Production Supervisor. That background taught me what
+                  I'm a Senior Engineer with a specialized background. Spent <strong className="text-white">6+ years at Establishment Labs</strong> building
+                  Class III medical devices—from R&D to Production Leadership. That background taught me what
                   <span className="text-emerald-400"> regulated environments demand</span>: documentation that survives FDA audits,
                   traceability from concept to production, and zero tolerance for "it works on my machine."
                 </p>
@@ -180,11 +180,19 @@ export default function Home() {
               <h3 className="text-sm font-mono text-emerald-400 uppercase tracking-widest mb-6">Software Development</h3>
               <div className="space-y-6">
                 <ExperienceItem
-                  title="Full Stack Developer"
-                  company="GeeksLab (Freelance)"
+                  title="Lead Full Stack Engineer"
+                  company="GeeksLab"
                   period="2024 — Present"
-                  description="Building production web apps with Next.js 16, React 19, TypeScript. Monorepo architecture, CI/CD, Playwright testing."
+                  description="Architecting production web apps with Next.js 16, React 19, TypeScript. Monorepo architecture, CI/CD, Playwright testing."
                   tags={["Next.js", "TypeScript", "React", "Vercel"]}
+                  isCurrent
+                />
+                <ExperienceItem
+                  title="Data & Automation Engineer"
+                  company="Grupo INS"
+                  period="Jun 2025 — Present"
+                  description="Automating critical reporting pipelines using Python and SQL. Developing operational dashboards with proactive alerting."
+                  tags={["Python", "SQL", "Automation", "Data Engineering"]}
                   isCurrent
                 />
               </div>
@@ -204,7 +212,7 @@ export default function Home() {
                   tags={["ISO 13485", "Team Leadership", "Process Improvement"]}
                 />
                 <ExperienceItem
-                  title="R&D Jr. Engineer"
+                  title="R&D Engineer"
                   company="Establishment Labs"
                   period="Sep 2021 — Oct 2023"
                   description="Design verification, prototyping, FDA compliance documentation for Class III medical devices. Technical testing coordination."
@@ -229,7 +237,7 @@ export default function Home() {
 
             {/* Note about current role */}
             <p className="mt-8 text-xs text-neutral-600 italic">
-              * Also currently in a part-time administrative role at INS while pursuing full-time software opportunities.
+              * Currently driving automation initiatives at INS while leading GeeksLab.
             </p>
           </div>
         </section>
