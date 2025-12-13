@@ -3,6 +3,7 @@ export * from "./components/animated-button";
 export * from "./components/sla-badge";
 export * from "./components/navbar";
 export * from "./context/language-context";
+export * from "./context/motion-provider";
 
 // Newly moved components from apps/main-hub/app/components/ui
 export * from "./components/3d-shape"; // Exports Scene3D
@@ -33,6 +34,7 @@ export * from "./components/inverse-application"; // Exports InverseApplication
 export * from "./components/social-proof"; // Exports SocialProof
 export * from "./components/neofetch-terminal"; // Exports NeofetchTerminal, InteractiveTerminal
 export * from "./components/scroll-to-top"; // Exports ScrollToTop
+export * from "./components/magnetic-button"; // Exports MagneticButton
 export * from "./lib/rfc-scoring"; // Exports RFC Scoring Logic
 
 // Export cn utility

@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, Phone, ExternalLink, ArrowDown, ChevronRight, Download, Calendar, Clock, FileText } from "lucide-react";
-import { AnimatedFooter, AnimatedButton, useLanguage } from "@geekslab/ui";
+import { AnimatedFooter, AnimatedButton, useLanguage, MagneticButton } from "@geekslab/ui";
 import Link from "next/link";
 
 /**
@@ -91,21 +91,28 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="flex flex-wrap gap-4 mb-16"
             >
-              <AnimatedButton
-                href="mailto:tonymora1982@gmail.com?subject=Opportunity%20for%20Anthony%20Mora"
-                variant="primary"
-                className="bg-white text-black hover:bg-neutral-200 px-8 py-4 text-lg font-semibold"
-              >
-                {t('homepage.hero.contactMe')}
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </AnimatedButton>
-              <AnimatedButton
-                href="#projects"
-                variant="secondary"
-                className="border-white/20 hover:border-white/40 px-8 py-4 text-lg"
-              >
-                {t('homepage.hero.projects')}
-              </AnimatedButton>
+              <MagneticButton>
+                <AnimatedButton
+                  href="mailto:tonymora1982@gmail.com?subject=Opportunity%20for%20Anthony%20Mora"
+                  variant="primary"
+                  magnetic={false}
+                  className="bg-white text-black hover:bg-neutral-200 px-8 py-4 text-lg font-semibold"
+                >
+                  {t('homepage.hero.contactMe')}
+                  <ChevronRight className="w-5 h-5 ml-2" />
+                </AnimatedButton>
+              </MagneticButton>
+
+              <MagneticButton>
+                <AnimatedButton
+                  href="#projects"
+                  variant="secondary"
+                  magnetic={false}
+                  className="border-white/20 hover:border-white/40 px-8 py-4 text-lg"
+                >
+                  {t('homepage.hero.projects')}
+                </AnimatedButton>
+              </MagneticButton>
             </motion.div>
 
             {/* Metrics strip - subtle proof */}
@@ -179,8 +186,8 @@ export default function Home() {
                 </div>
                 <div className="pt-4 border-t border-white/10">
                   <p className="text-neutral-500 mb-2">{t('homepage.about.certifications')}</p>
-                  <p className="text-neutral-300 text-xs">CEH · LFC (In Progress)</p>
-                  <p className="text-neutral-300 text-xs">Yale Medical Software</p>
+                  <p className="text-neutral-300 text-xs">Yale Medical Software (2022)</p>
+                  <p className="text-neutral-300 text-xs">CEH · LFC (In Progress - 2025)</p>
                 </div>
               </div>
             </div>
@@ -197,19 +204,19 @@ export default function Home() {
               <h3 className="text-xs font-mono text-neutral-400 uppercase tracking-[0.35em] mb-6">{t('homepage.experience.software')}</h3>
               <div className="space-y-6">
                 <ExperienceItem
-                  title="Lead Full Stack Engineer"
-                  company="GeeksLab"
+                  title="Full Stack Developer"
+                  company="GeeksLab (Freelance)"
                   period="2024 — Present"
                   description="Architecting production web apps with Next.js 16, React 19, TypeScript. Monorepo architecture, CI/CD, Playwright testing."
                   tags={["Next.js", "TypeScript", "React", "Vercel"]}
                   isCurrent
                 />
                 <ExperienceItem
-                  title="Data & Automation Engineer"
-                  company="Grupo INS"
-                  period="Jun 2025 — Present"
-                  description="Automating critical reporting pipelines using Python and SQL. Developing operational dashboards with proactive alerting."
-                  tags={["Python", "SQL", "Automation", "Data Engineering"]}
+                  title="Administrative Assistant"
+                  company="INS (Instituto Nacional de Seguros)"
+                  period="May 2025 — Present"
+                  description="Administrative operations, process optimization, ETL, automation, and digital transformation initiatives."
+                  tags={["Process Optimization", "ETL", "Automation", "Documentation"]}
                   isCurrent
                 />
               </div>
@@ -229,7 +236,7 @@ export default function Home() {
                   tags={["ISO 13485", "Team Leadership", "Process Improvement"]}
                 />
                 <ExperienceItem
-                  title="R&D Engineer"
+                  title="R&D Jr. Engineer"
                   company="Establishment Labs"
                   period="Sep 2021 — Oct 2023"
                   description="Design verification, prototyping, FDA compliance documentation for Class III medical devices. Technical testing coordination."

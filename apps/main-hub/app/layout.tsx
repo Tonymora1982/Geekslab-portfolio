@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { LanguageProvider, MotionProvider, Navbar, NoiseOverlay, Preloader, ScrollToTop, SmoothScroll } from "@geekslab/ui";
 import { DialogflowChat } from "@/components/dialogflow-chat";
 import "./globals.css";
 
@@ -17,10 +18,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://geekslab.tech"),
   title: {
-    default: "Anthony Mora | Senior Full Stack Developer",
+    default: "Anthony Mora | Full Stack Developer",
     template: "%s | GeeksLab",
   },
-  description: "Senior Full Stack Developer specializing in Next.js, TypeScript, and high-performance web architectures. Former R&D Engineer with MedTech background. Available for hire.",
+  description: "Full Stack Developer specializing in Next.js, TypeScript, and high-performance web architectures. 7+ years in MedTech (Establishment Labs). Available for hire.",
   keywords: [
     "Full Stack Developer",
     "Next.js Developer",
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     alternateLocale: "es_ES",
     url: "https://geekslab.tech",
     siteName: "GeeksLab - Anthony Mora Portfolio",
-    title: "Anthony Mora | Senior Full Stack Developer",
+    title: "Anthony Mora | Full Stack Developer",
     description: "Building production-grade web applications with the discipline of regulated environments and the pace of product teams.",
     images: [
       {
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anthony Mora | Senior Full Stack Developer",
+    title: "Anthony Mora | Full Stack Developer",
     description: "Building production-grade web applications. Next.js, TypeScript, Node.js. Available for hire.",
     images: ["/og"],
     creator: "@tonymora",
@@ -77,8 +78,6 @@ export const metadata: Metadata = {
   },
   category: "technology",
 };
-
-import { Navbar, SmoothScroll, Preloader, LanguageProvider, ScrollToTop } from "@geekslab/ui";
 
 // JSON-LD Structured Data
 const jsonLd = {
@@ -92,12 +91,12 @@ const jsonLd = {
     "https://github.com/Tonymora1982",
     "https://www.linkedin.com/in/anthony-mora-parra-94941282/",
   ],
-  jobTitle: "Senior Full Stack Developer",
+  jobTitle: "Full Stack Developer",
   worksFor: {
     "@type": "Organization",
     name: "GeeksLab",
   },
-  description: "Senior Full Stack Developer specializing in Next.js, TypeScript, and high-performance web architectures. Former R&D Engineer with MedTech background.",
+  description: "Full Stack Developer specializing in Next.js, TypeScript, and high-performance web architectures. 7+ years in MedTech at Establishment Labs.",
   knowsAbout: [
     "Next.js",
     "React",
@@ -129,14 +128,16 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} ${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
         <Preloader mode="never" />
-        <SmoothScroll>
-          {/* NoiseOverlay removed - was causing severe visual issues */}
-          <LanguageProvider>
-            <Navbar />
-            {children}
-            <ScrollToTop />
-          </LanguageProvider>
-        </SmoothScroll>
+        <MotionProvider>
+          <SmoothScroll>
+            <NoiseOverlay />
+            <LanguageProvider>
+              <Navbar />
+              {children}
+              <ScrollToTop />
+            </LanguageProvider>
+          </SmoothScroll>
+        </MotionProvider>
 
         {/* Dialogflow Messenger Chatbot Integration */}
         <DialogflowChat

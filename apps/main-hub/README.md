@@ -1,4 +1,4 @@
-# Anthony Mora | Senior Full Stack Developer Portfolio
+# Anthony Mora | Full Stack Developer Portfolio
 
 > "R&D discipline meets modern web engineering."
 

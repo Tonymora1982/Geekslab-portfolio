@@ -4,7 +4,7 @@
 ## About Anthony
 
 Q: Who is Anthony Mora?
-A: Anthony Mora is a Senior Full Stack Developer with 13+ years of experience in regulated environments. He specializes in Next.js, TypeScript, React, and building production-grade web applications. He previously worked 6+ years at Establishment Labs building Class III medical devices.
+A: Anthony Mora is a Full Stack Developer with 13+ years of experience in regulated environments. He specializes in Next.js, TypeScript, React, and building production-grade web applications. He worked 7+ years at Establishment Labs building Class III medical devices.
 
 Q: What does Anthony do?
 A: Anthony is a Full Stack Developer who builds production-grade web applications using Next.js 16, React 19, and TypeScript. He brings discipline from medical device development to software engineering.
@@ -16,7 +16,7 @@ Q: Is Anthony available for hire?
 A: Yes! Anthony is currently available for hire. He's open to full-time remote positions and contract work. Contact him at tonymora1982@gmail.com.
 
 Q: What is Anthony's background?
-A: Anthony spent 6+ years at Establishment Labs working on Class III medical devices, progressing from R&D Technician to Jr. Engineer to Production Supervisor. This background taught him what regulated environments demand: documentation that survives FDA audits, traceability, and zero tolerance for bugs.
+A: Anthony spent 7+ years at Establishment Labs working on Class III medical devices, progressing from Production Team Leader to R&D Technician to Jr. Engineer, and finally Production Supervisor. This background taught him what regulated environments demand: documentation that survives FDA audits, traceability, and zero tolerance for bugs.
 
 Q: What makes Anthony different?
 A: Anthony brings the rigor of medical device development to software engineering. He says: "I spent years building medical devices where a bug could hurt someone. Now I build software with the same paranoia—and it shows in the code."
@@ -111,7 +111,7 @@ A: Anthony's English level is B2+. He uses English daily for async communication
 ## Spanish / Español
 
 Q: ¿Quién es Anthony Mora?
-A: Anthony Mora es un Desarrollador Full Stack Senior con más de 13 años de experiencia en entornos regulados. Se especializa en Next.js, TypeScript y React. Email: tonymora1982@gmail.com
+A: Anthony Mora es un Desarrollador Full Stack con más de 13 años de experiencia en entornos regulados. Se especializa en Next.js, TypeScript y React. Email: tonymora1982@gmail.com
 
 Q: ¿Está disponible para trabajar?
 A: ¡Sí! Anthony está disponible para trabajo remoto a tiempo completo o por contrato. Contáctalo en tonymora1982@gmail.com

@@ -62,7 +62,7 @@ export default function CVPage() {
                             Anthony Mora Parra
                         </h1>
                         <p className="text-xl text-emerald-600 font-semibold mb-4">
-                            Full Stack Developer | MedTech Background
+                            Full Stack Developer | 13+ Years in Regulated Industries
                         </p>
 
                         {/* Contact Row */}
@@ -94,10 +94,10 @@ export default function CVPage() {
                             Professional Summary
                         </h2>
                         <p className="text-gray-700 leading-relaxed">
-                            Senior Full Stack Engineer with <strong>13+ years of engineering background</strong>. I combine the rigor of 
-                            ISO 13485 regulated environments with modern web architectures (Next.js/React). Expert in building 
-                            audit-ready, high-reliability software systems that drive process automation and business efficiency.
-                            Focused on delivering production-grade applications with CI/CD, automated testing, and zero tolerance for errors.
+                            Full Stack Developer with <strong>13+ years of engineering background</strong>, including 7+ years at Establishment Labs 
+                            building Class III medical devices. I combine the rigor of ISO 13485 regulated environments with modern web 
+                            architectures (Next.js/React). Focused on delivering production-grade applications with CI/CD, automated testing, 
+                            and quality-driven development practices.
                         </p>
                     </section>
 
@@ -129,8 +129,8 @@ export default function CVPage() {
                         </h2>
 
                         <ExperienceItem
-                            title="Lead Full Stack Engineer"
-                            company="GeeksLab"
+                            title="Full Stack Developer"
+                            company="GeeksLab (Freelance)"
                             period="2024 — Present"
                             location="Costa Rica (Remote)"
                             highlights={[
@@ -141,14 +141,14 @@ export default function CVPage() {
                         />
 
                         <ExperienceItem
-                            title="Data & Automation Engineer"
-                            company="Grupo INS"
-                            period="Jun 2025 — Present"
+                            title="Administrative Assistant"
+                            company="INS (Instituto Nacional de Seguros)"
+                            period="May 2025 — Present"
                             location="San José"
                             highlights={[
-                                "Automating critical reporting pipelines using Python and SQL",
-                                "Developing operational dashboards with proactive alerting for distributed teams",
-                                "Reduced data validation time by ~25% through automated scripts"
+                                "Administrative operations and process optimization",
+                                "ETL processes, automation, and digital transformation initiatives",
+                                "Improving documentation systems and workflows"
                             ]}
                         />
 
@@ -165,7 +165,18 @@ export default function CVPage() {
                         />
 
                         <ExperienceItem
-                            title="R&D Engineer"
+                            title="Quality Inspector (Temporary)"
+                            company="ACESA (Third-Party for FLEX)"
+                            period="Jan 2024 — May 2024"
+                            location="Heredia"
+                            highlights={[
+                                "Quality inspection for automotive components manufactured by FLEX",
+                                "Ensuring adherence to quality standards for Controlled Shipping (CS2)"
+                            ]}
+                        />
+
+                        <ExperienceItem
+                            title="R&D Jr. Engineer"
                             company="Establishment Labs"
                             period="Sep 2021 — Oct 2023"
                             location="Coyol, Alajuela"
@@ -184,6 +195,28 @@ export default function CVPage() {
                             highlights={[
                                 "Experimental testing and technical studies for devices under development",
                                 "Laboratory equipment operation and maintenance"
+                            ]}
+                        />
+
+                        <ExperienceItem
+                            title="3D Digital-Lab MIC Technician"
+                            company="Establishment Labs"
+                            period="Aug 2019 — Jan 2020"
+                            location="Coyol, Alajuela"
+                            highlights={[
+                                "3D scanning tests and regression testing of device functionality",
+                                "Device hardware maintenance and global upgrades"
+                            ]}
+                        />
+
+                        <ExperienceItem
+                            title="Production Team Leader"
+                            company="Establishment Labs"
+                            period="Mar 2018 — Aug 2019"
+                            location="Coyol, Alajuela"
+                            highlights={[
+                                "Led team to meet objectives ensuring safety and production goals",
+                                "Quality monitoring and compliance procedures coordination"
                             ]}
                         />
 
@@ -222,16 +255,16 @@ export default function CVPage() {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                             <div>
-                                <h3 className="font-semibold text-gray-900">CEH</h3>
-                                <p className="text-gray-600">Certified Ethical Hacker</p>
+                                <h3 className="font-semibold text-gray-900">Yale Medical Software</h3>
+                                <p className="text-gray-600">Introduction to Medical Software (2022)</p>
                             </div>
                             <div>
                                 <h3 className="font-semibold text-gray-900">LFC</h3>
-                                <p className="text-gray-600">Linux Foundation (In Progress)</p>
+                                <p className="text-gray-600">Linux Foundation (In Progress - 2025)</p>
                             </div>
                             <div>
-                                <h3 className="font-semibold text-gray-900">Yale Medical Software</h3>
-                                <p className="text-gray-600">Medical Device Software Development</p>
+                                <h3 className="font-semibold text-gray-900">CEH</h3>
+                                <p className="text-gray-600">Certified Ethical Hacker (In Progress - 2025)</p>
                             </div>
                         </div>
                     </section>

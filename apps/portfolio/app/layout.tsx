@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar, SmoothScroll, NoiseOverlay, MagneticCursor, Preloader, LanguageProvider } from "@geekslab/ui";
+import { LanguageProvider, MagneticCursor, MotionProvider, Navbar, NoiseOverlay, Preloader, SmoothScroll } from "@geekslab/ui";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,14 +19,16 @@ export default function RootLayout({
         <html lang="en" className="dark scroll-smooth">
             <body className={inter.className}>
                 <Preloader />
-                <SmoothScroll>
-                    <NoiseOverlay />
-                    <MagneticCursor />
-                    <LanguageProvider>
-                        <Navbar />
-                        {children}
-                    </LanguageProvider>
-                </SmoothScroll>
+                <MotionProvider>
+                    <SmoothScroll>
+                        <NoiseOverlay />
+                        <MagneticCursor />
+                        <LanguageProvider>
+                            <Navbar />
+                            {children}
+                        </LanguageProvider>
+                    </SmoothScroll>
+                </MotionProvider>
             </body>
         </html>
     );

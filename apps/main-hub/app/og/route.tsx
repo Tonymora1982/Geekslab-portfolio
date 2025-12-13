@@ -111,7 +111,7 @@ export async function GET() {
                             letterSpacing: '-1px',
                         }}
                     >
-                        Senior R&D Engineer
+                        Full Stack Developer
                     </h2>
 
                     {/* Description */}

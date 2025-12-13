@@ -83,7 +83,8 @@ export const Navbar = () => {
             e.preventDefault();
             const element = document.querySelector(path);
             if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
+                const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+                element.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
             }
             setIsOpen(false);
         } else {

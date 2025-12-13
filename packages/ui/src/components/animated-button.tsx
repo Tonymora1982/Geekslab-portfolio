@@ -8,6 +8,7 @@ interface AnimatedButtonProps {
     href?: string;
     onClick?: () => void;
     variant?: "primary" | "secondary";
+    magnetic?: boolean;
     className?: string;
 }
 
@@ -20,18 +21,24 @@ export const AnimatedButton = ({
     href,
     onClick,
     variant = "primary",
+    magnetic = true,
     className = "",
 }: AnimatedButtonProps) => {
     const buttonRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
     const magneticStrength = 0.3;
     const [reduceMotion, setReduceMotion] = useState(false);
+    const [hoverEnabled, setHoverEnabled] = useState(true);
 
     useEffect(() => {
-        setReduceMotion(window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false);
+        const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+        const finePointer = window.matchMedia?.("(pointer: fine)")?.matches ?? false;
+        const hoverCapable = window.matchMedia?.("(hover: hover)")?.matches ?? false;
+        setReduceMotion(reduce);
+        setHoverEnabled(finePointer && hoverCapable);
     }, []);
 
     const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
-        if (reduceMotion) return;
+        if (reduceMotion || !hoverEnabled || !magnetic) return;
         if (!buttonRef.current) return;
 
         const rect = buttonRef.current.getBoundingClientRect();
@@ -49,7 +56,7 @@ export const AnimatedButton = ({
     };
 
     const handleMouseEnter = () => {
-        if (reduceMotion) return;
+        if (reduceMotion || !hoverEnabled) return;
         if (!buttonRef.current) return;
 
         anime({
@@ -61,7 +68,7 @@ export const AnimatedButton = ({
     };
 
     const handleMouseLeave = () => {
-        if (reduceMotion) return;
+        if (reduceMotion || !hoverEnabled) return;
         if (!buttonRef.current) return;
 
         anime({

@@ -1,8 +1,7 @@
 "use client";
 
 import { AnimatedHeroText, AnimatedButton, useLanguage } from "@geekslab/ui";
-import { NoiseOverlay, MagneticCursor } from "@geekslab/ui";
-import { Navbar } from "@geekslab/ui";
+import { MagneticCursor } from "@geekslab/ui";
 import { motion } from "framer-motion";
 
 export default function NexaStorePage() {
@@ -10,9 +9,7 @@ export default function NexaStorePage() {
 
     return (
         <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative overflow-hidden font-sans">
-            <NoiseOverlay />
             <MagneticCursor />
-            <Navbar />
 
             {/* Project Hero */}
             <section className="min-h-[80vh] w-full flex flex-col justify-center relative px-4 pt-20 border-b border-white/10">

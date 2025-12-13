@@ -1,8 +1,7 @@
 "use client";
 
 import { AnimatedHeroText, AnimatedButton, NeofetchTerminal, useLanguage } from "@geekslab/ui";
-import { NoiseOverlay, MagneticCursor } from "@geekslab/ui";
-import { Navbar } from "@geekslab/ui";
+import { MagneticCursor } from "@geekslab/ui";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Terminal, Code2, Cpu, Zap } from "lucide-react";
 import Link from "next/link";
@@ -12,9 +11,7 @@ export default function GeekslabPage() {
 
     return (
         <main className="min-h-screen bg-black text-white selection:bg-green-400 selection:text-black relative overflow-hidden font-sans">
-            <NoiseOverlay />
             <MagneticCursor />
-            <Navbar />
 
             {/* Interactive Neofetch Demo Hero */}
             <section className="min-h-screen w-full flex flex-col justify-center relative px-4 pt-20">
