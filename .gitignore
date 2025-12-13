@@ -15,7 +15,14 @@ node_modules
 
 # next.js
 .next/
-/out/
+
+# next export / static output (monorepo)
+out/
+**/out/
+
+# turborepo
+.turbo/
+**/.turbo/
 
 # production
 /build
@@ -45,3 +52,7 @@ hostinger-deploy/
 
 # Old backups
 old_site_backup/
+
+# Playwright artifacts
+playwright-report/
+test-results/
