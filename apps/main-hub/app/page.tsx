@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, Phone, ExternalLink, ArrowDown, ChevronRight, Download, Calendar, Clock, FileText } from "lucide-react";
-import { AnimatedFooter, AnimatedButton, useLanguage, MagneticButton } from "@geekslab/ui";
+import { Github, Linkedin, Mail, MapPin, Phone, ArrowDown, ChevronRight, Download, Calendar, Clock, FileText } from "lucide-react";
+import { AnimatedFooter, AnimatedButton, ProjectShowcase, useLanguage, MagneticButton } from "@geekslab/ui";
 import Link from "next/link";
 
 /**
@@ -192,10 +192,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section >
+        </section>
 
         {/* ===== EXPERIENCE SECTION ===== */}
-        < section id="experience" className="py-24 px-4 bg-neutral-950 border-t border-white/10" >
+        <section id="experience" className="py-24 px-4 bg-neutral-950 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
             <SectionHeader title={t('homepage.experience.title')} />
 
@@ -264,50 +264,38 @@ export default function Home() {
               {t('homepage.experience.currentNote')}
             </p>
           </div>
-        </section >
+        </section>
 
         {/* ===== PROJECTS SECTION ===== */}
-        <section id="projects" className="py-24 px-4 border-t border-white/10">
-          <div className="max-w-5xl mx-auto">
+        <section id="projects" className="border-t border-white/10">
+          <div className="max-w-5xl mx-auto px-4 pt-24 pb-10">
             <SectionHeader title={t('homepage.projects.title')} />
+            <p className="text-neutral-400 text-sm max-w-2xl">
+              {t('homepage.projects.productionProofDesc')}
+            </p>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <ProjectCard
-                title="NexaStore"
-                subtitle="E-commerce Platform"
-                description="Full-stack e-commerce with Next.js 16. Product catalog, cart management, Stripe-ready checkout flow."
-                problem="Needed a demo e-commerce that showcases modern React patterns and production practices."
-                result="Deployed to Vercel with <200ms LCP, mobile-first responsive design."
-                tags={["Next.js 16", "React 19", "TypeScript", "Tailwind"]}
-                liveUrl="https://nexastore.geekslab.tech"
-                codeUrl="https://github.com/Tonymora1982/Geekslab-portfolio/tree/main/apps/nexastore"
-              />
-              <ProjectCard
-                title="ISO 13485 QMS"
-                subtitle="Quality Management System"
-                description="Internal tool for medical device compliance. Automated traceability matrix linking requirements to test cases."
-                problem="Manual Excel-based traceability was error-prone and audit-risky."
-                result="Automated coverage reports, reduced audit prep time by 40%."
-                tags={["Python", "SQL", "React", "Docker"]}
-                caseStudyUrl="/qms"
-              />
-            </div>
+          <ProjectShowcase />
 
-            {/* Evidence Layer CTA */}
+          <div className="max-w-5xl mx-auto px-4 pb-24">
             <div className="p-6 bg-white/5 border border-white/10 rounded-lg">
               <h3 className="text-lg font-bold text-white mb-2">{t('homepage.projects.productionProofTitle')}</h3>
               <p className="text-neutral-400 text-sm mb-4">
                 {t('homepage.projects.productionProofDesc')}
               </p>
-              <AnimatedButton href="/evidence-layer" variant="secondary" className="border-white/20 text-white hover:border-emerald-400/40 hover:bg-white/10">
+              <AnimatedButton
+                href="/evidence-layer"
+                variant="secondary"
+                className="border-white/20 text-white hover:border-emerald-400/40 hover:bg-white/10"
+              >
                 {t('homepage.projects.viewEvidenceLayer')} <ChevronRight className="w-4 h-4 ml-1" />
               </AnimatedButton>
             </div>
           </div>
-        </section >
+        </section>
 
         {/* ===== WHAT I DELIVER ===== */}
-        < section id="services" className="py-24 px-4 bg-neutral-950 border-t border-white/10" >
+        <section id="services" className="py-24 px-4 bg-neutral-950 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
             <SectionHeader title={t('homepage.services.title')} />
 
@@ -347,10 +335,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section >
+        </section>
 
         {/* ===== SKILLS SECTION ===== */}
-        < section id="skills" className="py-24 px-4 border-t border-white/10" >
+        <section id="skills" className="py-24 px-4 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
             <SectionHeader title={t('homepage.skills.title')} />
 
@@ -373,10 +361,10 @@ export default function Home() {
               />
             </div>
           </div>
-        </section >
+        </section>
 
         {/* ===== CONTACT SECTION ===== */}
-        < section id="contact" className="py-24 px-4 bg-neutral-950 border-t border-white/10" >
+        <section id="contact" className="py-24 px-4 bg-neutral-950 border-t border-white/10">
           <div className="max-w-2xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -412,10 +400,10 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-        </section >
+        </section>
 
         <AnimatedFooter />
-      </main >
+      </main>
     </>
   );
 }
@@ -492,68 +480,6 @@ function ExperienceItem({ title, company, period, description, tags, isCurrent }
               </span>
             ))}
           </div>
-        )}
-      </div>
-    </motion.div>
-  );
-}
-
-interface ProjectCardProps {
-  title: string;
-  subtitle: string;
-  description: string;
-  problem?: string;
-  result?: string;
-  tags: string[];
-  liveUrl?: string;
-  codeUrl?: string;
-  caseStudyUrl?: string;
-}
-
-function ProjectCard({ title, subtitle, description, problem, result, tags, liveUrl, codeUrl, caseStudyUrl }: ProjectCardProps) {
-  return (
-    <motion.div
-      className="group p-6 bg-neutral-900/50 border border-white/10 rounded-lg hover-glow transition-all duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-    >
-      <p className="text-xs text-neutral-500 uppercase tracking-widest mb-2">{subtitle}</p>
-      <h3 className="font-display text-xl font-semibold tracking-tight text-white mb-3 transition-colors">
-        {title}
-      </h3>
-      <p className="text-neutral-400 text-sm mb-4">{description}</p>
-
-      {(problem || result) && (
-        <div className="space-y-2 mb-4 text-xs">
-          {problem && <p className="text-neutral-500"><strong className="text-neutral-400">Problem:</strong> {problem}</p>}
-          {result && <p className="text-neutral-500"><strong className="text-emerald-300">Result:</strong> {result}</p>}
-        </div>
-      )}
-
-      <div className="flex flex-wrap gap-2 mb-4">
-        {tags.map(tag => (
-          <span key={tag} className="px-2 py-1 text-xs bg-white/5 rounded text-neutral-400">
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <div className="flex gap-4 text-sm">
-        {liveUrl && (
-          <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-300 hover:text-emerald-200 flex items-center gap-1">
-            <ExternalLink className="w-4 h-4" /> Live
-          </a>
-        )}
-        {codeUrl && (
-          <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white flex items-center gap-1">
-            <Github className="w-4 h-4" /> Code
-          </a>
-        )}
-        {caseStudyUrl && (
-          <Link href={caseStudyUrl} className="text-neutral-400 hover:text-white flex items-center gap-1">
-            <ChevronRight className="w-4 h-4" /> Details
-          </Link>
         )}
       </div>
     </motion.div>

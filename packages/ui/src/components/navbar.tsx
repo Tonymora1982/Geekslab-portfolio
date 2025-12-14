@@ -111,21 +111,23 @@ export const Navbar = () => {
                     </Link>
 
                     {/* Desktop Navigation - Centered */}
-                    <div className="hidden lg:flex items-center gap-2">
+                    <div className="desktop-nav">
                         {navItems.map((item) => (
-                            <NavLink
+                            <a
                                 key={item.path}
                                 href={item.path}
-                                isActive={activeSection === item.section}
                                 onClick={(e) => handleClick(e, item.path)}
+                                className={`text-[15px] font-medium transition-colors duration-300 hover:text-white ${
+                                    activeSection === item.section ? "text-white" : "text-neutral-400"
+                                }`}
                             >
                                 {item.name}
-                            </NavLink>
+                            </a>
                         ))}
                     </div>
 
                     {/* Right side: Language + CTA */}
-                    <div className="hidden lg:flex items-center gap-6">
+                    <div className="desktop-nav-links">
                         <LanguageToggle />
 
                         {/* CTA Button - More prominent */}
@@ -221,25 +223,19 @@ function NavLink({
         <a
             href={href}
             onClick={onClick}
-            className="relative px-5 py-3 text-[15px] font-medium transition-colors group"
+            className="relative text-[15px] font-medium transition-colors duration-300 group"
         >
-            <span className={isActive ? "text-white" : "text-neutral-400 group-hover:text-white transition-colors duration-300"}>
+            <span className={isActive ? "text-white" : "text-neutral-400 group-hover:text-white"}>
                 {children}
             </span>
 
             {/* Active indicator - dot */}
-            <motion.span
-                className="absolute -bottom-1 left-1/2 w-1 h-1 bg-emerald-400 rounded-full"
-                initial={false}
-                animate={{
-                    scale: isActive ? 1 : 0,
-                    x: "-50%"
-                }}
-                transition={{ duration: 0.2 }}
-            />
-
-            {/* Hover underline */}
-            <span className="absolute bottom-1 left-5 right-5 h-px bg-white/30 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            {isActive && (
+                <motion.span
+                    className="absolute -bottom-2 left-1/2 w-1 h-1 bg-emerald-400 rounded-full -translate-x-1/2"
+                    layoutId="activeIndicator"
+                />
+            )}
         </a>
     );
 }

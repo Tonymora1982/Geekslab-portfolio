@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page, Locator } from '@playwright/test';
 
 /**
  * Bilingual (EN/ES) Language Toggle E2E Tests
@@ -9,6 +9,20 @@ import { test, expect, Page } from '@playwright/test';
  */
 test.describe('Bilingual Language Toggle Tests', () => {
 
+    async function isInViewport(locator: Locator): Promise<boolean> {
+        return locator
+            .evaluate((element) => {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.bottom > 0 &&
+                    rect.right > 0 &&
+                    rect.top < window.innerHeight &&
+                    rect.left < window.innerWidth
+                );
+            })
+            .catch(() => false);
+    }
+
     /**
      * Helper function to click the language toggle in the navbar
      * The toggle is typically a button containing "EN" and "ES" text
@@ -16,31 +30,48 @@ test.describe('Bilingual Language Toggle Tests', () => {
     async function toggleLanguage(page: Page): Promise<void> {
         // Ensure navbar is not hidden due to "hide on scroll" behavior
         await page.evaluate(() => window.scrollTo(0, 0));
-        await page.waitForTimeout(150);
+        await page.waitForFunction(() => {
+            const nav = document.querySelector('nav');
+            if (!nav) return false;
+            const rect = nav.getBoundingClientRect();
+            return rect.bottom > 0 && rect.top >= -1;
+        });
 
         const previous = await page.evaluate(() => localStorage.getItem('language') || 'en');
 
         const toggles = page.getByTestId('language-toggle');
 
-        // Ensure toggle is visible (may need to open mobile menu first)
-        if (!(await toggles.first().isVisible().catch(() => false))) {
+        async function clickVisibleToggle(): Promise<boolean> {
+            const count = await toggles.count();
+            for (let i = 0; i < count; i++) {
+                const candidate = toggles.nth(i);
+                if (!(await candidate.isVisible().catch(() => false))) continue;
+
+                if (!(await isInViewport(candidate))) {
+                    await candidate.scrollIntoViewIfNeeded().catch(() => undefined);
+                }
+
+                if (!(await isInViewport(candidate))) continue;
+
+                try {
+                    await candidate.click({ force: true });
+                    return true;
+                } catch {
+                    // Try the next toggle (desktop vs mobile menu).
+                }
+            }
+            return false;
+        }
+
+        let clicked = await clickVisibleToggle();
+
+        // If no toggle is clickable, try opening mobile menu and retry.
+        if (!clicked) {
             const menuButton = page.locator('button[aria-label="Toggle menu"]');
             if (await menuButton.isVisible().catch(() => false)) {
                 await menuButton.click();
-                await page.waitForTimeout(300);
-            }
-        }
-
-        // Click the first visible toggle (desktop or mobile menu)
-        let clicked = false;
-        const count = await toggles.count();
-        for (let i = 0; i < count; i++) {
-            const candidate = toggles.nth(i);
-            if (await candidate.isVisible().catch(() => false)) {
-                await candidate.scrollIntoViewIfNeeded();
-                await candidate.click();
-                clicked = true;
-                break;
+                await page.waitForTimeout(250);
+                clicked = await clickVisibleToggle();
             }
         }
 

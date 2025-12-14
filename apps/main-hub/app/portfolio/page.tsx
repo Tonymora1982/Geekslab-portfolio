@@ -9,48 +9,50 @@ import Link from "next/link";
 const projects = [
   {
     id: "geekslab",
-    slug: "geekslab",
     titleEN: "GeeksLab Development",
     titleES: "Desarrollo GeeksLab",
     descEN: "My Personal R&D Lab & Consultancy. Building High-Performance Next.js Architectures.",
     descES: "Mi Laboratorio de I+D y Consultoría. Construyendo Arquitecturas Next.js de Alto Rendimiento.",
     year: "2024",
     stack: ["Next.js 16", "React 19", "TypeScript", "Framer Motion", "Tailwind v4"],
-    image: "/projects/geekslab-hero.png",
+    image: "/images/projects/geekslab.svg",
+    caseStudy: "/geekslab",
     live: "/geekslab",
+    codeUrl: "https://github.com/Tonymora1982/Geekslab-portfolio",
     isInternal: true,
     featured: true,
   },
   {
     id: "nexastore",
-    slug: "nexastore",
     titleEN: "NexaStore E-commerce",
     titleES: "NexaStore E-commerce",
     descEN: "Luxury tech e-commerce with Gucci-inspired design. Full shopping cart, checkout flow & responsive UI.",
     descES: "E-commerce de tecnología luxury con diseño inspirado en Gucci. Carrito completo, checkout y UI responsive.",
     year: "2024",
     stack: ["Next.js 16", "React 19", "Zustand", "Tailwind CSS", "TypeScript"],
-    image: "/projects/nexastore-hero.png",
+    image: "/images/projects/nexastore.svg",
+    caseStudy: "/nexastore",
     live: "https://nexastore.geekslab.tech",
+    codeUrl: "https://github.com/Tonymora1982/Geekslab-portfolio/tree/main/apps/nexastore",
     featured: true,
   },
   {
     id: "qms",
-    slug: "qms",
     titleEN: "ISO 13485 QMS",
     titleES: "SGC ISO 13485",
     descEN: "Quality Management System for MedTech. Automated auditing and Traceability.",
     descES: "Sistema de Gestión de Calidad para MedTech. Auditoría automatizada y Trazabilidad.",
     year: "2023",
     stack: ["C#", ".NET Core", "SQL Server", "Azure", "Power BI"],
-    image: "/projects/qms-hero.png",
+    image: "/images/projects/qms.svg",
+    caseStudy: "/qms",
     live: null,
     featured: true,
   },
 ];
 
 export default function PortfolioPage() {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black relative overflow-hidden">
@@ -95,7 +97,7 @@ export default function PortfolioPage() {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Project Image - Clickable */}
                 <Link 
-                  href={`/projects/${project.slug}`}
+                  href={project.caseStudy}
                   className={`relative overflow-hidden bg-neutral-900 border border-white/10 aspect-video block ${index % 2 === 1 ? 'md:order-2' : ''}`}
                 >
                   <motion.div
@@ -103,10 +105,12 @@ export default function PortfolioPage() {
                     transition={{ duration: 0.6 }}
                     className="w-full h-full"
                   >
-                    <div className="absolute inset-0 bg-white/5 group-hover:bg-white/10 transition-colors duration-500" />
-                    <div className="absolute inset-0 flex items-center justify-center text-neutral-800 group-hover:text-neutral-700 transition-colors text-6xl font-bold tracking-tighter">
-                      {project.id.toUpperCase()}
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-white/5 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
+                    <motion.img
+                      src={project.image}
+                      alt={language === 'en' ? project.titleEN : project.titleES}
+                      className="absolute inset-0 w-full h-full object-contain p-10 opacity-90 group-hover:opacity-100"
+                    />
                   </motion.div>
                 </Link>
 
@@ -114,6 +118,7 @@ export default function PortfolioPage() {
                 <div className={index % 2 === 1 ? 'md:order-1' : ''}>
                   <div className="flex items-center gap-4 mb-6">
                     <span className="text-sm text-neutral-500 font-mono flex items-center gap-2">
+                      <Calendar className="w-4 h-4" />
                       <span className="w-2 h-px bg-neutral-500"></span>
                       {project.year}
                     </span>
@@ -124,7 +129,7 @@ export default function PortfolioPage() {
                     )}
                   </div>
 
-                  <Link href={`/projects/${project.slug}`}>
+                  <Link href={project.caseStudy}>
                     <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white hover:text-neutral-200 transition-colors tracking-tight cursor-pointer">
                       {language === 'en' ? project.titleEN : project.titleES}
                     </h2>
@@ -149,12 +154,23 @@ export default function PortfolioPage() {
                   {/* Links - Now separate, no nesting */}
                   <div className="flex gap-6">
                     <Link
-                      href={`/projects/${project.slug}`}
+                      href={project.caseStudy}
                       className="inline-flex items-center gap-2 text-white border-b border-white/20 pb-1 hover:border-white transition-colors"
                     >
                       <span className="font-medium">{language === 'en' ? 'View Case Study' : 'Ver Caso de Estudio'}</span>
                       <ArrowUpRight className="w-4 h-4 transition-transform hover:-translate-y-0.5 hover:translate-x-0.5" />
                     </Link>
+                    {project.codeUrl && (
+                      <a
+                        href={project.codeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-neutral-400 border-b border-white/10 pb-1 hover:text-white hover:border-white/20 transition-colors"
+                      >
+                        <span className="font-medium">{language === 'en' ? 'View Code' : 'Ver Código'}</span>
+                        <Code className="w-4 h-4" />
+                      </a>
+                    )}
                     {project.live && (
                       (project as any).isInternal ? (
                         <Link
