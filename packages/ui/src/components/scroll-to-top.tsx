@@ -17,7 +17,10 @@ export const ScrollToTop = () => {
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    // Sync initial state (important when scroll happens before hydration/effect runs)
+    toggleVisibility();
+
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", toggleVisibility);

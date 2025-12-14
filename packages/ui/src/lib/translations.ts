@@ -382,6 +382,30 @@ export const translations = {
             },
         },
         geekslabPage: {
+            hero: {
+                badge: "Case Study",
+                subtitle: "The engineering system behind this portfolio: a monorepo with shared UI, CI budgets, and E2E tests.",
+                bullets: {
+                    0: "Monorepo: 5 apps + shared packages for UI and configs.",
+                    1: "Lighthouse CI budgets for performance + accessibility.",
+                    2: "Playwright E2E suite covering critical navigation flows.",
+                    3: "Bilingual UX (EN/ES) + reduced-motion friendly interactions.",
+                },
+                ctaEvidence: "View Evidence Layer",
+                ctaRepo: "View Repo",
+                ctaPortfolio: "Explore Projects",
+                scrollHint: "Press Enter or scroll to continue",
+                stats: {
+                    monorepo: "Monorepo",
+                    monorepoValue: "5 apps · 3 packages",
+                    quality: "Quality",
+                    qualityValue: "Tests + budgets",
+                    e2e: "E2E",
+                    e2eValue: "Playwright suite",
+                    ux: "UX",
+                    uxValue: "EN/ES + a11y",
+                },
+            },
             demo: {
                 badge: "Interactive Demo",
                 git: "git clone",
@@ -395,6 +419,17 @@ export const translations = {
                 coreTech: "Core Tech",
                 coreTechValue: "Next.js 16, React 19, Turborepo",
             },
+            proof: {
+                title: "Evidence & Links",
+                description: "Everything here is backed by code you can run and CI you can inspect.",
+                links: {
+                    lighthouse: "Lighthouse CI workflow + budgets",
+                    tests: "Tests workflow (Playwright)",
+                    evidenceLayer: "Evidence Layer (live)",
+                    thisPage: "This case study page (source)",
+                    showcase: "Project showcase component (source)",
+                },
+            },
             engineering: {
                 challengeTitle: "# The Challenge",
                 challengeDesc: "Modern web development is often constrained by \"safe\" choices. GeeksLab was born from a necessity to break things. I needed a sandbox to test high-performance architectures, experimental UI patterns (like this portfolio), and bleeding-edge libraries before deploying them to production client environments.",
@@ -407,7 +442,21 @@ export const translations = {
                 edge: "→ Edge Computing",
                 edgeDesc: "Middleware logic on Vercel Edge for sub-millisecond routing.",
             },
+            sidebar: {
+                repoMapTitle: "$ tree -L 2 (simplified)",
+                qualityTitle: "Quality budgets (CI enforced)",
+                budgets: {
+                    lcp: "LCP",
+                    cls: "CLS",
+                    tbt: "TBT",
+                    a11y: "Accessibility score",
+                },
+                viewBudget: "View lighthouserc.json",
+            },
             nextProject: "NexaStore →",
+            nextDescription: "Next up: NexaStore, a production-style e-commerce demo (catalog → cart → checkout).",
+            nextCta: "Open NexaStore",
+            backToProjects: "Back to Projects",
         },
         nexastorePage: {
             hero: {
@@ -873,6 +922,30 @@ export const translations = {
             },
         },
         geekslabPage: {
+            hero: {
+                badge: "Caso de Estudio",
+                subtitle: "El sistema de ingeniería detrás de este portafolio: monorepo con UI compartida, budgets en CI y pruebas E2E.",
+                bullets: {
+                    0: "Monorepo: 5 apps + paquetes compartidos para UI y configs.",
+                    1: "Budgets Lighthouse CI para performance + accesibilidad.",
+                    2: "Suite Playwright E2E cubriendo flujos críticos de navegación.",
+                    3: "UX bilingüe (EN/ES) + interacciones amigables con reduced motion.",
+                },
+                ctaEvidence: "Ver Capa de Evidencia",
+                ctaRepo: "Ver Repo",
+                ctaPortfolio: "Ver Proyectos",
+                scrollHint: "Presiona Enter o haz scroll para continuar",
+                stats: {
+                    monorepo: "Monorepo",
+                    monorepoValue: "5 apps · 3 paquetes",
+                    quality: "Calidad",
+                    qualityValue: "Tests + budgets",
+                    e2e: "E2E",
+                    e2eValue: "Suite Playwright",
+                    ux: "UX",
+                    uxValue: "EN/ES + a11y",
+                },
+            },
             demo: {
                 badge: "Demo Interactivo",
                 git: "git clone",
@@ -886,6 +959,17 @@ export const translations = {
                 coreTech: "Stack Principal",
                 coreTechValue: "Next.js 16, React 19, Turborepo",
             },
+            proof: {
+                title: "Evidencia y Links",
+                description: "Todo aquí está respaldado por código ejecutable y configuración CI verificable.",
+                links: {
+                    lighthouse: "Workflow Lighthouse CI + budgets",
+                    tests: "Workflow de tests (Playwright)",
+                    evidenceLayer: "Capa de Evidencia (en vivo)",
+                    thisPage: "Código de esta página (case study)",
+                    showcase: "Componente ProjectShowcase (código)",
+                },
+            },
             engineering: {
                 challengeTitle: "# El Desafío",
                 challengeDesc: "El desarrollo web moderno suele estar limitado por decisiones \"seguras\". GeeksLab nació de la necesidad de romper cosas. Necesitaba un sandbox para probar arquitecturas de alto rendimiento, patrones UI experimentales (como este portafolio), y librerías de vanguardia antes de desplegarlas en ambientes de producción.",
@@ -898,7 +982,21 @@ export const translations = {
                 edge: "→ Edge Computing",
                 edgeDesc: "Lógica middleware en Vercel Edge para routing sub-milisegundo.",
             },
+            sidebar: {
+                repoMapTitle: "$ tree -L 2 (simplificado)",
+                qualityTitle: "Budgets de calidad (en CI)",
+                budgets: {
+                    lcp: "LCP",
+                    cls: "CLS",
+                    tbt: "TBT",
+                    a11y: "Score Accesibilidad",
+                },
+                viewBudget: "Ver lighthouserc.json",
+            },
             nextProject: "NexaStore →",
+            nextDescription: "Siguiente: NexaStore, un demo e-commerce estilo producción (catálogo → carrito → checkout).",
+            nextCta: "Abrir NexaStore",
+            backToProjects: "Volver a Proyectos",
         },
         nexastorePage: {
             hero: {

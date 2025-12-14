@@ -1,12 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { AnimatedButton } from "./animated-button";
 import { AnimatedHeroText } from "./animated-hero-text";
 import { useLanguage } from "../context/language-context";
 
 export const AnimatedFooter = () => {
     const { t } = useLanguage();
+
+    const [time, setTime] = useState("");
+
+    useEffect(() => {
+        const updateTime = () => {
+            setTime(new Date().toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'America/Costa_Rica'
+            }));
+        };
+
+        updateTime();
+        const interval = setInterval(updateTime, 60000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <footer className="relative bg-neutral-950 text-white pt-16 md:pt-32 pb-8 md:pb-12 px-4 border-t border-white/10 overflow-hidden">
@@ -90,7 +107,9 @@ export const AnimatedFooter = () => {
                         <span className="text-neutral-400">{t('footer.location')}</span>
                         <br className="hidden md:block" />
                         <span className="md:hidden"> · </span>
-                        <span>{t('footer.localTime')}: {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Costa_Rica' })}</span>
+                        <span>
+                            {t('footer.localTime')}: {time}
+                        </span>
                     </div>
                 </div>
             </div>
