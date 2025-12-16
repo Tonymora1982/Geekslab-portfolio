@@ -52,3 +52,50 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* === DIALOGFLOW MESSENGER CHATBOT STYLES === */
+/* Custom styling for the Dialogflow Messenger widget to match the portfolio aesthetic */
+df-messenger {
+  --df-messenger-bot-message: #1a1a2e; /* Dark blue/purple background for bot */
+  --df-messenger-button-titlebar-color: #000000; /* Black titlebar */
+  --df-messenger-chat-background-color: #0a0a0a; /* Dark background */
+  --df-messenger-font-color: #e5e5e5; /* Light grey text */
+  --df-messenger-send-icon: #ffffff; /* White send icon */
+  --df-messenger-user-message: #262626; /* Dark grey for user message */
+  --df-messenger-input-box-color: #171717; /* Darker input box */
+  --df-messenger-input-font-color: #ffffff;
+  --df-messenger-input-placeholder-font-color: #737373;
+  --df-messenger-minimized-chat-close-icon-color: #ffffff;
+  --df-messenger-titlebar-font-color: #ffffff;
+  --df-messenger-titlebar-icon-color: #ffffff;
+  z-index: 9999;
+}
+
+/* Chat wrapper styling with glassmorphism */
+df-messenger::part(chat-wrapper) {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  background-color: rgba(10, 10, 10, 0.8); /* Semi-transparent black */
+}
+
+/* Chat bubble button with simplified sleek look */
+df-messenger::part(chat-bubble) {
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the chat bubble */
+df-messenger::part(chat-bubble):hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Customize the icon inside the bubble if possible,
+   otherwise the background color change is the main customizer */
+df-messenger::part(chat-bubble-icon) {
+    fill: #000000; /* Black icon on white bubble */
+}
