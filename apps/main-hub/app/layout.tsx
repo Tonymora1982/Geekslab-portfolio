@@ -142,7 +142,7 @@ export default function RootLayout({
         {/* Dialogflow Messenger Chatbot Integration */}
         <DialogflowChat
           agentId="c5c3e09c-f873-4644-8b57-95749196aded"
-          chatTitle="GeeksLab Assistant"
+          chatTitle="GeeksLab AI"
           languageCode="en"
         />
       </body>

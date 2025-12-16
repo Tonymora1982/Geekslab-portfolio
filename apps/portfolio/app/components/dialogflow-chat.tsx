@@ -7,18 +7,13 @@
  * This prevents hydration errors by only mounting the df-messenger
  * element after the component mounts on the client.
  *
- * Features:
- * - Bilingual support via useLanguage hook (auto-switches EN/ES)
- * - Custom robot icon for better branding
- * - Styled via globals.css with emerald theme
- * - Graceful fallback if LanguageProvider is not available
- *
  * Uses dangerouslySetInnerHTML to inject the web component as raw HTML,
  * avoiding TypeScript JSX intrinsic element issues.
  */
 
 import Script from "next/script";
-import { useEffect, useState, useContext, createContext } from "react";
+import { useEffect, useState } from "react";
+import { useLanguage } from "@geekslab/ui";
 
 interface DialogflowChatProps {
     /** The Dialogflow agent ID */
@@ -31,38 +26,6 @@ interface DialogflowChatProps {
     intent?: string;
 }
 
-/**
- * Safe language hook that doesn't throw if provider is missing.
- * This allows DialogflowChat to work even outside LanguageProvider context.
- */
-function useSafeLanguage(fallbackLanguage: string): string {
-    const [language, setLanguage] = useState(fallbackLanguage);
-
-    useEffect(() => {
-        // Try to get language from localStorage (same as LanguageProvider)
-        try {
-            const savedLang = localStorage.getItem('language');
-            if (savedLang === 'en' || savedLang === 'es') {
-                setLanguage(savedLang);
-            }
-        } catch {
-            // localStorage not available (SSR or privacy mode)
-        }
-
-        // Listen for language changes via storage event
-        const handleStorageChange = (e: StorageEvent) => {
-            if (e.key === 'language' && (e.newValue === 'en' || e.newValue === 'es')) {
-                setLanguage(e.newValue);
-            }
-        };
-
-        window.addEventListener('storage', handleStorageChange);
-        return () => window.removeEventListener('storage', handleStorageChange);
-    }, []);
-
-    return language;
-}
-
 export function DialogflowChat({
     agentId,
     chatTitle = "GeeksLab AI",
@@ -71,9 +34,10 @@ export function DialogflowChat({
 }: DialogflowChatProps) {
     // Only render on client to prevent hydration mismatch
     const [isMounted, setIsMounted] = useState(false);
+    const { language } = useLanguage();
 
-    // Use safe language hook that syncs with LanguageProvider via localStorage
-    const currentLanguage = useSafeLanguage(languageCode);
+    // Use context language if available, otherwise fallback to prop
+    const currentLanguage = language || languageCode;
 
     useEffect(() => {
         setIsMounted(true);
@@ -85,8 +49,8 @@ export function DialogflowChat({
     }
 
     // Create the df-messenger HTML string
-    // Styles are defined in globals.css for proper emerald theme integration
     // Using dangerouslySetInnerHTML to avoid TypeScript JSX issues with web components
+    // Added chat-icon and inline styles to ensure customization applies
     const messengerHtml = `
     <df-messenger
       intent="${intent}"
@@ -94,6 +58,22 @@ export function DialogflowChat({
       agent-id="${agentId}"
       language-code="${currentLanguage}"
       chat-icon="/assets/graphics/Robot.png"
+      style="
+        --df-messenger-bot-message: #1a1a1a;
+        --df-messenger-button-titlebar-color: #ffffff;
+        --df-messenger-button-titlebar-font-color: #000000;
+        --df-messenger-chat-background-color: #0a0a0a;
+        --df-messenger-font-color: #e5e5e5;
+        --df-messenger-send-icon: #ffffff;
+        --df-messenger-user-message: #262626;
+        --df-messenger-input-box-color: #171717;
+        --df-messenger-input-font-color: #ffffff;
+        --df-messenger-input-placeholder-font-color: #737373;
+        --df-messenger-minimized-chat-close-icon-color: #000000;
+        --df-messenger-titlebar-font-color: #000000;
+        --df-messenger-titlebar-icon-color: #000000;
+        z-index: 9999;
+      "
     ></df-messenger>
   `;
 

@@ -1,129 +1,102 @@
 # GeeksLab Portfolio Assistant - FAQ Knowledge Base
-# Upload this file to Dialogflow Knowledge Base as FAQ format
+# Upload this file to Dialogflow Knowledge Base as FAQ format (CSV/Markdown)
 
-## About Anthony
+## 1. About Anthony & Background
 
 Q: Who is Anthony Mora?
-A: Anthony Mora is a Full Stack Developer with 13+ years of experience in regulated environments. He specializes in Next.js, TypeScript, React, and building production-grade web applications. He worked 7+ years at Establishment Labs building Class III medical devices.
+A: Anthony Mora is a Full Stack Developer with 13+ years of experience in regulated environments. He spent 7+ years at Establishment Labs (MedTech) before transitioning to building production-grade web applications with Next.js 16 and React 19.
 
-Q: What does Anthony do?
-A: Anthony is a Full Stack Developer who builds production-grade web applications using Next.js 16, React 19, and TypeScript. He brings discipline from medical device development to software engineering.
+Q: What is Anthony's professional background?
+A: Anthony worked for 7+ years at Establishment Labs, progressing from Production Supervisor to R&D Jr. Engineer. He brings the discipline of ISO 13485 and FDA compliance to software engineering—focusing on audit-ready code, testing, and documentation.
 
-Q: Where is Anthony located?
-A: Anthony is based in Costa Rica (GMT-6 timezone) and is available for full-time remote work or contract positions. He has 4-6 hours daily overlap with EU/US timezones.
+Q: What makes Anthony different from other developers?
+A: Anthony combines "Industrial Discipline" with "Artisanal Code". His background in Class III medical devices means he builds software with a zero-tolerance mindset for bugs. As he says: "I spent years building devices where a bug could hurt someone. Now I build software with the same paranoia."
+
+## 2. Tech Stack & Skills
+
+Q: What is Anthony's specialized Tech Stack?
+A: Core: Next.js 16 (App Router), React 19, TypeScript (Strict), Tailwind CSS v4.
+Backend: Node.js, Python, PostgreSQL, REST APIs.
+DevOps: Vercel, Docker, Linux, CI/CD (GitHub Actions).
+Testing: Playwright (E2E), Jest.
+
+Q: Does Anthony know Backend development?
+A: Yes. He builds robust backends using Node.js and Python, manages PostgreSQL databases, and architects RESTful APIs. He focuses on secure, scalable infrastructure.
+
+Q: What are Anthony's engineering practices?
+A: He follows strict engineering protocols: CI/CD from day one, 100% E2E test coverage for critical flows (Playwright), TypeScript strict mode, and comprehensive documentation.
+
+## 3. Availability, Rates & Hiring
 
 Q: Is Anthony available for hire?
-A: Yes! Anthony is currently available for hire. He's open to full-time remote positions and contract work. Contact him at tonymora1982@gmail.com.
+A: Yes! Anthony is currently available ('Available Now') for Full-time Remote roles or Freelance Contracts.
 
-Q: What is Anthony's background?
-A: Anthony spent 7+ years at Establishment Labs working on Class III medical devices, progressing from Production Team Leader to R&D Technician to Jr. Engineer, and finally Production Supervisor. This background taught him what regulated environments demand: documentation that survives FDA audits, traceability, and zero tolerance for bugs.
+Q: What are Anthony's rates?
+A: Rates are competitive and depend on the project scope (MVP vs. maintenance). For full-time roles, he is open to discussing accurate market compensation. Contact him at tonymora1982@gmail.com to discuss.
 
-Q: What makes Anthony different?
-A: Anthony brings the rigor of medical device development to software engineering. He says: "I spent years building medical devices where a bug could hurt someone. Now I build software with the same paranoia—and it shows in the code."
+Q: When can Anthony start?
+A: Anthony is available to start immediately for the right opportunity.
 
-## Skills & Technologies
+Q: What represents "The Deconstructed Dev"?
+A: It's Anthony's philosophy of understanding every layer of the stack—from the pixel (Frontend) to the packet (Infrastructure). He doesn't just use tools; he understands how they work.
 
-Q: What technologies does Anthony use?
-A: Anthony's tech stack includes: Frontend (React 19, Next.js 16, TypeScript, Tailwind CSS), Backend (Node.js, Python, SQL, REST APIs), DevOps (Docker, Linux, Git, Vercel), and Testing (Playwright, Jest, E2E, TDD).
-
-Q: Does Anthony know React?
-A: Yes, Anthony is proficient in React 19 and uses it as his primary frontend library along with Next.js 16.
-
-Q: Does Anthony know TypeScript?
-A: Yes, TypeScript is one of Anthony's core skills. He uses TypeScript strict mode in all his projects.
-
-Q: What frontend frameworks does Anthony use?
-A: Anthony primarily uses React 19 with Next.js 16 for frontend development, along with Tailwind CSS for styling.
-
-Q: Does Anthony do backend development?
-A: Yes, Anthony is a Full Stack Developer. On the backend he works with Node.js, Python, SQL databases, and REST APIs.
-
-Q: Does Anthony do DevOps?
-A: Yes, Anthony handles DevOps with Docker, Linux, Git, and Vercel deployments. He sets up CI/CD pipelines from day one.
-
-Q: What testing tools does Anthony use?
-A: Anthony uses Playwright for E2E testing, Jest for unit tests, and practices TDD (Test-Driven Development). His portfolio has 26 E2E tests with 0 TypeScript errors.
-
-## Projects
+## 4. Projects & Portfolio
 
 Q: What projects has Anthony built?
-A: Anthony has built several projects including: 1) NexaStore - a full-stack e-commerce platform with Next.js 16, 2) ISO 13485 QMS - a quality management system for medical device compliance, and his portfolio itself which is a monorepo with 5 apps.
+A: 1. NexaStore: A production-grade e-commerce app with Next.js 16 and Zustand.
+2. ISO 13485 QMS: A compliance system for medical devices (traceability automation).
+3. GeeksLab Portfolio: A monorepo with 5 apps, shared UI packages, and CI/CD budgets.
+4. Evidence Layer: A system showing real-time metrics and SLAs.
 
-Q: Tell me about NexaStore
-A: NexaStore is a full-stack e-commerce platform built with Next.js 16, React 19, and TypeScript. It features a product catalog, cart management, and Stripe-ready checkout flow. It's deployed to Vercel with <200ms LCP and mobile-first responsive design. Live at nexastore.geekslab.tech
+Q: Tell me about NexaStore.
+A: NexaStore is a luxury tech e-commerce demo featuring a product catalog, persistent cart (Zustand), and a simulated checkout flow, all optimized for Core Web Vitals (<200ms LCP).
 
-Q: What is the QMS project?
-A: The ISO 13485 QMS is an internal tool for medical device compliance. It automates traceability matrix linking requirements to test cases. It reduced audit prep time by 40% and replaced error-prone Excel-based tracking.
+Q: What is the "Evidence Layer"?
+A: The Evidence Layer is a transparency dashboard that proves Anthony's claims. It shows real-time uptime, E2E test results, and performance budgets—evidence that his code ships and runs reliably.
 
-Q: Can I see Anthony's code?
-A: Yes! Anthony's projects are on GitHub at github.com/Tonymora1982. His portfolio repository shows his monorepo architecture, CI/CD setup, and coding practices.
-
-## Services & Work Style
-
-Q: What services does Anthony offer?
-A: Anthony offers: MVP Development (0 → 1), Feature Development & Refactoring, Performance Optimization, API Integrations, and Testing & QA Automation.
-
-Q: How does Anthony work?
-A: Anthony's work style includes: Clear planning before code, Weekly async updates, Defined acceptance criteria, CI/CD from day one, and Documentation as a deliverable.
-
-Q: What engineering practices does Anthony follow?
-A: Anthony follows professional engineering practices including: CI/CD pipelines, Playwright E2E testing, TypeScript strict mode, Observability, Security patches, and an audit-ready mindset from his MedTech background.
-
-## Contact Information
+## 5. Contact Information
 
 Q: How can I contact Anthony?
-A: You can contact Anthony via email at tonymora1982@gmail.com, phone/WhatsApp at +506 7017-9787, or LinkedIn at linkedin.com/in/anthony-mora-parra-94941282
+A: Email: tonymora1982@gmail.com
+Phone/WhatsApp: +506 7017-9787
+LinkedIn: linkedin.com/in/anthony-mora-parra-94941282
 
-Q: What is Anthony's email?
-A: Anthony's email is tonymora1982@gmail.com
+Q: Where is Anthony located?
+A: Anthony is based in Grecia, Alajuela, Costa Rica (GMT-6). He has 4-6 hours of daily overlap with US and European timezones.
 
-Q: What is Anthony's phone number?
-A: Anthony's phone/WhatsApp number is +506 7017-9787 (Costa Rica)
+Q: Can I download Anthony's CV?
+A: Yes, you can view and download the full CV at geekslab.tech/cv
 
-Q: What is Anthony's LinkedIn?
-A: Anthony's LinkedIn profile is linkedin.com/in/anthony-mora-parra-94941282
-
-Q: What is Anthony's GitHub?
-A: Anthony's GitHub profile is github.com/Tonymora1982
-
-## Education & Certifications
-
-Q: What is Anthony's education?
-A: Anthony is completing a B.S. in Computer Engineering from UNED (TFG/thesis pending). He also has a Diploma in Computer Science.
-
-Q: What certifications does Anthony have?
-A: Anthony is working on CEH (Certified Ethical Hacker) and Linux LFC certifications. He also completed Yale Medical Software training.
-
-## Availability & Hiring
-
-Q: Is Anthony available now?
-A: Yes, Anthony is currently available for hire. He's looking for full-time remote positions or contract work.
-
-Q: What timezone is Anthony in?
-A: Anthony is in GMT-6 (Costa Rica timezone) with 4-6 hours daily overlap with EU and US timezones.
-
-Q: Does Anthony work remotely?
-A: Yes, Anthony works 100% remotely and has experience with async communication, written updates, PR reviews, and technical documentation in English.
-
-Q: What is Anthony's English level?
-A: Anthony's English level is B2+. He uses English daily for async communication, written updates, PR reviews, and technical documentation.
-
-## Spanish / Español
+## 6. Spanish Support (Español)
 
 Q: ¿Quién es Anthony Mora?
-A: Anthony Mora es un Desarrollador Full Stack con más de 13 años de experiencia en entornos regulados. Se especializa en Next.js, TypeScript y React. Email: tonymora1982@gmail.com
+A: Anthony Mora es un Desarrollador Full Stack con más de 13 años de experiencia en entornos regulados (MedTech). Se especializa en crear aplicaciones web robustas con Next.js 16 y React 19.
 
 Q: ¿Está disponible para trabajar?
-A: ¡Sí! Anthony está disponible para trabajo remoto a tiempo completo o por contrato. Contáctalo en tonymora1982@gmail.com
+A: Sí, Anthony está disponible de inmediato para puestos remotos de tiempo completo o contratos freelance.
 
-Q: ¿Cuáles son sus habilidades?
-A: Anthony trabaja con React 19, Next.js 16, TypeScript, Node.js, Python, Docker y más. Tiene experiencia en desarrollo de dispositivos médicos y prácticas de calidad ISO 13485.
+Q: ¿Cuáles son sus tarifas?
+A: Sus tarifas son competitivas y dependen del alcance del proyecto. Para puestos fijos, está abierto a negociar según el mercado. Escríbele a tonymora1982@gmail.com.
 
-Q: ¿Dónde está ubicado?
-A: Anthony está en Costa Rica (zona horaria GMT-6) y trabaja de forma remota con superposición de 4-6 horas con Europa y Estados Unidos.
+Q: ¿Qué tecnologías usa?
+A: Su fuerte es el stack moderno: Next.js 16, React 19, TypeScript, Node.js y Python. Todo con prácticas de CI/CD y Testing riguroso.
 
-Q: ¿Cómo puedo contactarlo?
-A: Puedes contactar a Anthony por email: tonymora1982@gmail.com, teléfono/WhatsApp: +506 7017-9787, o LinkedIn: linkedin.com/in/anthony-mora-parra-94941282
+Q: ¿Cómo lo contacto?
+A: Puedes escribirle a tonymora1982@gmail.com o por WhatsApp al +506 7017-9787.
 
-Q: ¿Qué proyectos ha realizado?
-A: Anthony ha construido NexaStore (e-commerce con Next.js), un sistema QMS para ISO 13485, y su portafolio que es un monorepo con 5 aplicaciones. Ver más en geekslab.tech
+Q: ¿Habla español?
+A: Sí, es su lengua nativa. También tiene un nivel de inglés B2+ (Profesional) para entornos globales.
+
+## 7. Operational & Conversational
+
+Q: Hello / Hi
+A: Hi! I'm the GeeksLab Assistant. I can tell you about Anthony's experience, stack, or availability. What would you like to know?
+
+Q: Hola
+A: ¡Hola! Soy el asistente de GeeksLab. Pregúntame sobre la experiencia, tecnología o disponibilidad de Anthony.
+
+Q: Bye / Goodbye
+A: Thanks for chatting! Feel free to email Anthony directly at tonymora1982@gmail.com if you have more questions.
+
+Q: Adiós
+A: ¡Gracias por visitar! Si tienes más preguntas, contacta a Anthony en tonymora1982@gmail.com.
