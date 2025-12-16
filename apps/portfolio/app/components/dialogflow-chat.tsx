@@ -13,6 +13,7 @@
 
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import { useLanguage } from "@geekslab/ui";
 
 interface DialogflowChatProps {
     /** The Dialogflow agent ID */
@@ -27,12 +28,16 @@ interface DialogflowChatProps {
 
 export function DialogflowChat({
     agentId,
-    chatTitle = "GeeksLab Assistant",
+    chatTitle = "GeeksLab AI",
     languageCode = "en",
     intent = "WELCOME",
 }: DialogflowChatProps) {
     // Only render on client to prevent hydration mismatch
     const [isMounted, setIsMounted] = useState(false);
+    const { language } = useLanguage();
+
+    // Use context language if available, otherwise fallback to prop
+    const currentLanguage = language || languageCode;
 
     useEffect(() => {
         setIsMounted(true);
@@ -45,12 +50,30 @@ export function DialogflowChat({
 
     // Create the df-messenger HTML string
     // Using dangerouslySetInnerHTML to avoid TypeScript JSX issues with web components
+    // Added chat-icon and inline styles to ensure customization applies
     const messengerHtml = `
     <df-messenger
       intent="${intent}"
       chat-title="${chatTitle}"
       agent-id="${agentId}"
-      language-code="${languageCode}"
+      language-code="${currentLanguage}"
+      chat-icon="/assets/graphics/Robot.png"
+      style="
+        --df-messenger-bot-message: #1a1a1a;
+        --df-messenger-button-titlebar-color: #ffffff;
+        --df-messenger-button-titlebar-font-color: #000000;
+        --df-messenger-chat-background-color: #0a0a0a;
+        --df-messenger-font-color: #e5e5e5;
+        --df-messenger-send-icon: #ffffff;
+        --df-messenger-user-message: #262626;
+        --df-messenger-input-box-color: #171717;
+        --df-messenger-input-font-color: #ffffff;
+        --df-messenger-input-placeholder-font-color: #737373;
+        --df-messenger-minimized-chat-close-icon-color: #000000;
+        --df-messenger-titlebar-font-color: #000000;
+        --df-messenger-titlebar-icon-color: #000000;
+        z-index: 9999;
+      "
     ></df-messenger>
   `;
 
