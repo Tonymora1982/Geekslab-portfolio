@@ -14,6 +14,7 @@ import {
     SLAPanel,
     useLanguage,
 } from "@geekslab/ui";
+import { MessageCircle } from "lucide-react";
 
 const copy = {
     en: {
@@ -270,6 +271,11 @@ export default function PortfolioHome() {
                             >
                                 {t.hero.ctaSecondary}
                             </AnimatedButton>
+                            {/* AI Trigger Note */}
+                            <div className="hidden lg:flex items-center gap-2 text-sm text-neutral-400 animate-pulse">
+                                <MessageCircle className="w-4 h-4 text-emerald-400" />
+                                <span>Try asking the AI Assistant</span>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

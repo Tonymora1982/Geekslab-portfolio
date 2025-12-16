@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider, MagneticCursor, MotionProvider, Navbar, NoiseOverlay, Preloader, SmoothScroll } from "@geekslab/ui";
+import { DialogflowChat } from "./components/dialogflow-chat";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,10 @@ export default function RootLayout({
                         <LanguageProvider>
                             <Navbar />
                             {children}
+                            <DialogflowChat
+                                agentId="c5c3e09c-f873-4644-8b57-95749196aded"
+                                chatTitle="GeeksLab Assistant"
+                            />
                         </LanguageProvider>
                     </SmoothScroll>
                 </MotionProvider>
