@@ -18,7 +18,7 @@
  */
 
 import Script from "next/script";
-import { useEffect, useState, useContext, createContext } from "react";
+import { useEffect, useState } from "react";
 
 interface DialogflowChatProps {
     /** The Dialogflow agent ID */
@@ -85,8 +85,9 @@ export function DialogflowChat({
     }
 
     // Create the df-messenger HTML string
-    // Styles are defined in globals.css for proper emerald theme integration
-    // Using dangerouslySetInnerHTML to avoid TypeScript JSX issues with web components
+        // IMPORTANT: Dialogflow Messenger sometimes ignores external CSS for theming in certain builds.
+        // Setting CSS custom properties inline ensures the minimal dark theme is applied consistently.
+        // Using dangerouslySetInnerHTML to avoid TypeScript JSX issues with web components.
     const messengerHtml = `
     <df-messenger
       intent="${intent}"
@@ -94,6 +95,27 @@ export function DialogflowChat({
       agent-id="${agentId}"
       language-code="${currentLanguage}"
       chat-icon="/assets/graphics/Robot.png"
+            style="
+                --df-messenger-chat-background-color: var(--color-background);
+                                --df-messenger-font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace;
+                --df-messenger-font-color: var(--color-foreground);
+                                --df-messenger-input-box-color: rgba(0, 0, 0, 0.66);
+                --df-messenger-input-font-color: var(--color-foreground);
+                --df-messenger-input-placeholder-font-color: var(--color-muted-foreground);
+                --df-messenger-send-icon: var(--color-emerald);
+
+                --df-messenger-bot-message: rgba(255, 255, 255, 0.05);
+                --df-messenger-user-message: color-mix(in srgb, var(--color-emerald-subtle) 80%, transparent);
+
+                                --df-messenger-primary-color: rgba(0, 0, 0, 0.88);
+                                --df-messenger-titlebar-color: rgba(0, 0, 0, 0.88);
+                                --df-messenger-button-titlebar-color: rgba(0, 0, 0, 0.88);
+                --df-messenger-button-titlebar-font-color: var(--color-foreground);
+                --df-messenger-titlebar-font-color: var(--color-foreground);
+                --df-messenger-titlebar-icon-color: var(--color-foreground);
+                --df-messenger-minimized-chat-close-icon-color: var(--color-foreground);
+                z-index: 9999;
+            "
     ></df-messenger>
   `;
 

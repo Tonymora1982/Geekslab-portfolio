@@ -260,40 +260,77 @@
 }
 
 /* === DIALOGFLOW MESSENGER CHATBOT STYLES === */
-/* Custom styling for the Dialogflow Messenger widget to match the emerald theme */
+/* Minimal styling for the Dialogflow Messenger widget to match the site's dark/glass aesthetic */
 df-messenger {
-  --df-messenger-bot-message: #1a1a2e;
-  --df-messenger-button-titlebar-color: #10b981;
-  --df-messenger-chat-background-color: #0a0a0f;
-  --df-messenger-font-color: #ffffff;
-  --df-messenger-send-icon: #10b981;
-  --df-messenger-user-message: #10b981;
-  --df-messenger-input-box-color: #1a1a2e;
-  --df-messenger-input-font-color: #ffffff;
-  --df-messenger-input-placeholder-font-color: #6b7280;
-  --df-messenger-minimized-chat-close-icon-color: #ffffff;
-  --df-messenger-titlebar-font-color: #ffffff;
-  --df-messenger-titlebar-icon-color: #ffffff;
+  --df-messenger-chat-background-color: var(--color-background);
+  --df-messenger-font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --df-messenger-font-color: var(--color-foreground);
+  --df-messenger-input-box-color: rgba(0, 0, 0, 0.66);
+  --df-messenger-input-font-color: var(--color-foreground);
+  --df-messenger-input-placeholder-font-color: var(--color-muted-foreground);
+  --df-messenger-send-icon: var(--color-emerald);
+
+  /* Message bubbles */
+  --df-messenger-bot-message: rgba(255, 255, 255, 0.05);
+  --df-messenger-user-message: color-mix(in srgb, var(--color-emerald-subtle) 80%, transparent);
+
+  /* Titlebar / minimized button */
+  --df-messenger-titlebar-color: rgba(0, 0, 0, 0.88);
+  --df-messenger-button-titlebar-color: rgba(0, 0, 0, 0.88);
+  --df-messenger-titlebar-font-color: var(--color-foreground);
+  --df-messenger-titlebar-icon-color: var(--color-foreground);
+  --df-messenger-minimized-chat-close-icon-color: var(--color-foreground);
   z-index: 9999;
 }
 
-/* Chat wrapper styling with emerald glow effect */
+/* Chat wrapper: glass panel */
 df-messenger::part(chat-wrapper) {
-  border-radius: 16px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.25);
+  background: rgba(0, 0, 0, 0.92);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+  backdrop-filter: none;
 }
 
-/* Chat bubble button with gradient and glow */
+/* Titlebar: tighter + glassy */
+df-messenger::part(titlebar) {
+  background: rgba(0, 0, 0, 0.88);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 12px;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 0.01em;
+}
+
+/* Input: remove default blue outline, match site focus ring */
+df-messenger::part(input-box) {
+  background: rgba(0, 0, 0, 0.66);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 12px;
+}
+
+df-messenger::part(input) {
+  outline: none;
+  box-shadow: none;
+}
+
+df-messenger::part(input):focus {
+  outline: 2px solid var(--color-emerald);
+  outline-offset: 2px;
+}
+
+/* Chat bubble button: subtle, minimal */
 df-messenger::part(chat-bubble) {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
-  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  width: 52px;
+  height: 52px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Hover effect for the chat bubble */
 df-messenger::part(chat-bubble):hover {
-  transform: scale(1.1);
-  box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+  transform: scale(1.04);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.65);
 }
