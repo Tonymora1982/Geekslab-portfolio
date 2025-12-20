@@ -37,6 +37,20 @@ const projects = [
     featured: true,
   },
   {
+    id: "brickworld",
+    titleEN: "BrickWorld 3D Game",
+    titleES: "BrickWorld Juego 3D",
+    descEN: "Interactive 3D block building game with seasonal themes. Built with React Three Fiber and Zustand for immersive gameplay.",
+    descES: "Juego de construcción 3D interactivo con temas estacionales. Construido con React Three Fiber y Zustand para gameplay inmersivo.",
+    year: "2024",
+    stack: ["React Three Fiber", "Three.js", "Next.js 16", "Zustand", "TypeScript"],
+    image: "/images/projects/brickworld.svg",
+    caseStudy: "/lab",
+    live: "https://geekslab-portfolio-brickworld.vercel.app",
+    codeUrl: "https://github.com/Tonymora1982/Geekslab-portfolio/tree/main/apps/brickworld",
+    featured: true,
+  },
+  {
     id: "qms",
     titleEN: "ISO 13485 QMS",
     titleES: "SGC ISO 13485",
@@ -96,7 +110,7 @@ export default function PortfolioPage() {
             >
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Project Image - Clickable */}
-                <Link 
+                <Link
                   href={project.caseStudy}
                   className={`relative overflow-hidden bg-neutral-900 border border-white/10 aspect-video block ${index % 2 === 1 ? 'md:order-2' : ''}`}
                 >
