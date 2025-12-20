@@ -153,7 +153,7 @@ export default function LabPage() {
       <section className="relative z-10 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.a
-            href="/brickworld"
+            href="https://geekslab-portfolio-brickworld.vercel.app"
             target="_blank"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
