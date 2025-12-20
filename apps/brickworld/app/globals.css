@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/**
+ * BrickWorld Global Styles
+ * Theme colors and base styling for the 3D building game
+ */
+
+:root {
+    /* Background colors */
+    --color-background: #0a0a0f;
+    --color-surface: #1a1a2e;
+    --color-surface-elevated: #252540;
+
+    /* Text colors */
+    --color-foreground: #ffffff;
+    --color-muted: #8888aa;
+
+    /* Brick colors palette */
+    --brick-red: #C4281B;
+    --brick-blue: #0055BF;
+    --brick-yellow: #F5CD2F;
+    --brick-green: #237841;
+    --brick-white: #FFFFFF;
+    --brick-black: #1B2A34;
+    --brick-orange: #FE8A18;
+    --brick-purple: #81007B;
+    --brick-cyan: #00BCD4;
+    --brick-pink: #FF69B4;
+    --brick-lime: #7CFC00;
+    --brick-brown: #8B4513;
+
+    /* UI accent */
+    --color-accent: #10b981;
+    --color-accent-hover: #059669;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Canvas takes full viewport */
+canvas {
+    display: block;
+    touch-action: none;
+}
+
+/* Toolbar styles */
+.toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+}
+
+/* Block button in toolbar */
+.block-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background: var(--color-surface-elevated);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.block-btn:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+.block-btn.active {
+    border-color: var(--color-accent);
+    background: rgba(16, 185, 129, 0.2);
+}
+
+/* Color swatch */
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.active {
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26, 26, 46, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Action buttons */
+.action-btn {
+    background: var(--color-surface-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: var(--color-foreground);
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.action-btn.primary {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.action-btn.primary:hover {
+    background: var(--color-accent-hover);
+}
