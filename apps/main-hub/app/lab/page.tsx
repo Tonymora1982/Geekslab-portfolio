@@ -149,12 +149,63 @@ export default function LabPage() {
         </div>
       </section>
 
+      {/* Featured Interactive Demo - BrickWorld */}
+      <section className="relative z-10 pb-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.a
+            href="/brickworld"
+            target="_blank"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="group relative block border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-950/50 to-black rounded-2xl overflow-hidden hover:border-emerald-500/60 transition-all duration-300"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+            <div className="p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+              {/* Icon/Emoji */}
+              <div className="text-7xl md:text-8xl">🧱</div>
+
+              {/* Content */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 mb-3 text-xs uppercase tracking-widest text-emerald-400">
+                  <Sparkles className="w-4 h-4" />
+                  {language === 'en' ? 'INTERACTIVE DEMO' : 'DEMO INTERACTIVO'}
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                  BrickWorld
+                </h2>
+                <p className="text-neutral-400 text-lg mb-4">
+                  {language === 'en'
+                    ? '3D block building game with seasonal themes. Build, stack, rotate, and share your creations.'
+                    : 'Juego de construcción 3D con temas estacionales. Construye, apila, rota y comparte tus creaciones.'}
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                  <span className="text-xs px-2 py-1 bg-white/10 rounded">React Three Fiber</span>
+                  <span className="text-xs px-2 py-1 bg-white/10 rounded">Zustand</span>
+                  <span className="text-xs px-2 py-1 bg-white/10 rounded">Next.js 15</span>
+                  <span className="text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded">🎄 Christmas Theme</span>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="flex-shrink-0">
+                <div className="flex items-center gap-2 px-6 py-3 bg-emerald-500 text-black font-bold rounded-lg group-hover:bg-emerald-400 transition-colors">
+                  <Play className="w-4 h-4 fill-current" />
+                  {language === 'en' ? 'Play Now' : 'Jugar Ahora'}
+                </div>
+              </div>
+            </div>
+          </motion.a>
+        </div>
+      </section>
+
       {/* Experiments Grid */}
       <section className="relative z-10 pb-32 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {experiments.map((exp, index) => {
             const config = statusConfig[exp.status as keyof typeof statusConfig];
-            
+
             return (
               <motion.div
                 key={exp.id}
@@ -216,8 +267,8 @@ export default function LabPage() {
                   <div className="flex items-center gap-2 mb-6">
                     <div className="w-full h-px bg-white/5 relative">
                       {exp.commits.map((commit, i) => (
-                        <div 
-                          key={commit} 
+                        <div
+                          key={commit}
                           className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-neutral-800 border border-neutral-600 rounded-full"
                           style={{ left: `${(i + 1) * 25}%` }}
                         />
