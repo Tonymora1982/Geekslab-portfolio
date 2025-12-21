@@ -62,6 +62,10 @@ export const translations = {
                 title: "TurboRepo Monorepo",
                 description: "Monorepo ecosystem with shared UI, multiple Next.js apps, and CI (tests + Lighthouse budgets).",
             },
+            brickworld: {
+                title: "BrickWorld 3D Game",
+                description: "Interactive 3D block building game with seasonal themes. Built with React Three Fiber for immersive gameplay.",
+            },
         },
         experience: {
             title: "Professional Journey",
@@ -602,6 +606,10 @@ export const translations = {
             item4: {
                 title: "Monorepo TurboRepo",
                 description: "Monorepo con UI compartida, múltiples apps Next.js y CI (tests + presupuestos Lighthouse).",
+            },
+            brickworld: {
+                title: "BrickWorld Juego 3D",
+                description: "Juego de construcción 3D interactivo con temas estacionales. Construido con React Three Fiber para gameplay inmersivo.",
             },
         },
         experience: {

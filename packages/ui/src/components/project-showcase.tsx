@@ -54,7 +54,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         >
             {/* Background gradient accent */}
             <div className={`absolute inset-0 opacity-30 pointer-events-none bg-gradient-to-br ${project.gradient}`} />
-            
+
             <div className="relative container px-4 mx-auto">
                 <div className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${!isEven ? "md:grid-flow-dense" : ""}`}>
                     {/* Text Content */}
@@ -168,10 +168,10 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                     >
                         {/* Glowing border effect */}
                         <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-br ${project.gradient} opacity-50`} />
-                        
+
                         <div className="absolute inset-[1px] rounded-2xl bg-neutral-900 overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-transparent z-10" />
-                            
+
                             {/* Animated grid overlay */}
                             <div className="absolute inset-0 opacity-20 z-10"
                                 style={{
@@ -211,9 +211,9 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                                     />
                                 </Link>
                             )}
-                            
+
                             {/* Hover overlay */}
-                            <motion.div 
+                            <motion.div
                                 className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8 z-20"
                             >
                                 <span className="text-white font-medium flex items-center gap-2">
@@ -262,6 +262,23 @@ export const ProjectShowcase = () => {
             metrics: [
                 { label: "Scope", value: "Catalog + PDP", icon: <TrendingUp className="w-3 h-3" /> },
                 { label: "Flow", value: "Cart → Checkout", icon: <Users className="w-3 h-3" /> },
+            ],
+        },
+        {
+            id: "brickworld",
+            title: t('bento.brickworld.title'),
+            description: t('bento.brickworld.description'),
+            tags: ["React Three Fiber", "Three.js", "Next.js 16", "Zustand", "TypeScript"],
+            year: "2024",
+            image: "/images/projects/brickworld.svg",
+            link: "/lab",
+            liveUrl: "https://geekslab-portfolio-brickworld.vercel.app",
+            codeUrl: "https://github.com/Tonymora1982/Geekslab-portfolio/tree/main/apps/brickworld",
+            gradient: "from-green-600/20 via-transparent to-emerald-600/20",
+            status: "live",
+            metrics: [
+                { label: "3D Engine", value: "R3F", icon: <Zap className="w-3 h-3" /> },
+                { label: "Themes", value: "Seasonal", icon: <Clock className="w-3 h-3" /> },
             ],
         },
         {
