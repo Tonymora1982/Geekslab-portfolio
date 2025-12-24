@@ -26,6 +26,11 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
         }
     }, []);
 
+    // Update the html lang attribute for accessibility
+    useEffect(() => {
+        document.documentElement.lang = language;
+    }, [language]);
+
     const toggleLanguage = () => {
         const newLang = language === 'en' ? 'es' : 'en';
         setLanguage(newLang);
